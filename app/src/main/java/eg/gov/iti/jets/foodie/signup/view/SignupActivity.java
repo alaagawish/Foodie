@@ -3,6 +3,7 @@ package eg.gov.iti.jets.foodie.signup.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import eg.gov.iti.jets.foodie.R;
 
 public class SignupActivity extends AppCompatActivity {
 
