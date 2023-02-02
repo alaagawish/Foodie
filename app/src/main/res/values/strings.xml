@@ -4,4 +4,9 @@
     <string name="good_mood">GOOD MOOD</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="foodieTxt">FOODIE</string>
+    <string name="skip">Skip</string>
+    <string name="forgotPassword">Forgot you password?</string>
+    <string name="login">Login</string>
+    <string name="haveAccount">Have an account?</string>
 </resources>

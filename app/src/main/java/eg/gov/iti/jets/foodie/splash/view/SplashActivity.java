@@ -11,6 +11,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
 
+import eg.gov.iti.jets.foodie.R;
+
 public class SplashActivity extends AppCompatActivity {
     LottieAnimationView lottieAnimationView;
 
