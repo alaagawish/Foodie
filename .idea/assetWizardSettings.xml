@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -28,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_calendar_month_24" />
-                            <entry key="sourceFile" value="D:\ITI9-Months\AndroidProject\Foodie" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="third_top" />
+                            <entry key="sourceFile" value="C:\Users\LAPTOP\Desktop\third_top.svg" />
                           </map>
                         </option>
                       </PersistentState>

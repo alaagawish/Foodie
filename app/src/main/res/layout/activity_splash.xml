@@ -4,6 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/green"
     tools:context=".splash.view.SplashActivity">
 
+    <View
+        android:id="@+id/splashView"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        android:background="@drawable/splash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieLogo"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:elevation="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/food" />
+
+    <TextView
+        android:id="@+id/goodFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="@color/green"
+        android:shadowDx="6"
+        android:shadowDy="6"
+        android:shadowRadius="2"
+        android:text="@string/good_food"
+        android:textColor="@color/black"
+        android:textSize="38dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/splashView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/splashView"
+        app:layout_constraintVertical_bias="0.648" />
+
+    <TextView
+        android:id="@+id/goodMood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="52dp"
+        android:shadowColor="@color/green"
+        android:shadowDx="6"
+        android:shadowDy="6"
+        android:shadowRadius="2"
+        android:text="@string/good_mood"
+        android:textColor="@color/black"
+        android:textSize="38dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goodFood" />
 </androidx.constraintlayout.widget.ConstraintLayout>
