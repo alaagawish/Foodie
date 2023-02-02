@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import eg.gov.iti.jets.foodie.R;
 
+import eg.gov.iti.jets.foodie.R;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
