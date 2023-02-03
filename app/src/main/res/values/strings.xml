@@ -9,4 +9,5 @@
     <string name="forgotPassword">Forgot you password?</string>
     <string name="login">Login</string>
     <string name="haveAccount">Have an account?</string>
+    <string name="logout">Logout</string>
 </resources>
