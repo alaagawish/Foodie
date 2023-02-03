@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".home.view.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <View
+        android:id="@+id/topHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="117dp"
+        android:background="@drawable/second_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="29dp" />
+
+    <TextView
+        android:id="@+id/dailyInspirationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dailyInspiration"
+        android:textColor="@color/dark_blue"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/topHome" />
+
+    <com.smarteist.autoimageslider.SliderView
+        android:id="@+id/imageSlider"
+        android:layout_width="342dp"
+        android:layout_height="213dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/dailyInspirationTextView"
+        app:sliderAnimationDuration="600"
+        app:sliderAutoCycleDirection="back_and_forth"
+        app:sliderAutoCycleEnabled="true"
+        app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorGravity="center_horizontal|bottom"
+        app:sliderIndicatorMargin="15dp"
+        app:sliderIndicatorOrientation="horizontal"
+        app:sliderIndicatorPadding="3dp"
+        app:sliderIndicatorRadius="2dp"
+        app:sliderIndicatorSelectedColor="@color/green"
+        app:sliderIndicatorUnselectedColor="@color/white"
+        app:sliderScrollTimeInSec="1"
+        app:sliderStartAutoCycle="true" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/categoryButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/green"
+        android:textColor="@color/dark_blue"
+        android:text="@string/category"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ingredientButton"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:textColor="@color/dark_blue"
+        android:text="@string/ingredient"
+        app:layout_constraintBottom_toBottomOf="@+id/categoryButton"
+        app:layout_constraintStart_toEndOf="@+id/categoryButton"
+        app:layout_constraintTop_toTopOf="@+id/categoryButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/regionButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:textColor="@color/dark_blue"
+        android:text="@string/region"
+        app:layout_constraintBottom_toBottomOf="@+id/ingredientButton"
+        app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ingredientButton"
+        app:layout_constraintTop_toTopOf="@+id/ingredientButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuideline"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="29dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
