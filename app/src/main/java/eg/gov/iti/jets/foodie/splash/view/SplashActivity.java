@@ -8,8 +8,8 @@ import android.os.Handler;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.login.view.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
     LottieAnimationView lottieAnimationView;
@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         }, 5000);
