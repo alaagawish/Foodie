@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, profileFragment).commit();
                         return true;
-                    case R.id.calendar:
+                    case R.id.planner:
                         getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, planFragment).commit();
                         return true;
                     case R.id.search:
