@@ -9,7 +9,7 @@
 
     <View
         android:id="@+id/topLogin"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="117dp"
         android:background="@drawable/third_top"
         app:layout_constraintEnd_toEndOf="parent"

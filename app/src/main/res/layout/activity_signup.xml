@@ -9,7 +9,7 @@
 
     <View
         android:id="@+id/topSignup"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="117dp"
         android:background="@drawable/second_top"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,7 @@
 
     <View
         android:id="@+id/bottomSignUp"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="117dp"
         android:background="@drawable/bottom"
         app:layout_constraintBottom_toBottomOf="parent"
