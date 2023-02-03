@@ -19,8 +19,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         lottieAnimationView = findViewById(R.id.lottieLogo);
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

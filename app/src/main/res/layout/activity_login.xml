@@ -7,24 +7,17 @@
     tools:context=".login.view.LoginActivity"
     android:background="@color/background">
 
-    <View
-        android:id="@+id/topLogin"
-        android:layout_width="412dp"
-        android:layout_height="117dp"
-        android:background="@drawable/third_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/skipTextView"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="44dp"
         android:text="@string/skip"
         android:textColor="@color/dark_gray"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/foodieTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,13 +25,12 @@
         android:id="@+id/foodieTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="80dp"
         android:text="@string/foodieTxt"
         android:textColor="@color/dark_blue"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,13 +39,11 @@
         android:layout_width="325dp"
         android:layout_height="54dp"
         android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
         android:background="@drawable/rounded_edit_text"
         android:elevation="15dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
         android:paddingHorizontal="20dp"
-        android:textColorHint="@color/hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodieTextView" />
@@ -63,19 +53,17 @@
         android:layout_width="325dp"
         android:layout_height="54dp"
         android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPassword"
         android:background="@drawable/rounded_edit_text"
         android:elevation="15dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
         android:paddingHorizontal="20dp"
-        android:textColorHint="@color/hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLogin" />
 
     <TextView
-        android:id="@+id/forgetPasswordTextView"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -88,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLogin" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginButton"
+        android:id="@+id/button"
         android:layout_width="322dp"
         android:layout_height="65dp"
         android:layout_marginTop="28dp"
@@ -99,22 +87,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgetPasswordTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/haveAnAccountTextView"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginTop="15dp"
         android:text="@string/haveAccount"
         android:textColor="@color/dark_gray"
-        android:textSize="15sp"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
-        android:id="@+id/signUpEditText"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -122,40 +110,28 @@
         android:text="@string/login"
         android:textColor="@color/gray"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/haveAnAccountTextView"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
-    <ImageButton
-        android:id="@+id/facebookButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_edit_text"
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="36dp"
         android:backgroundTint="@color/white"
-        android:scaleType="fitCenter"
-        android:src="@drawable/facebook"
+        app:cornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/haveAnAccountTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <ImageButton
-        android:id="@+id/googleButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:background="@drawable/rounded_edit_text"
         android:backgroundTint="@color/white"
-        android:scaleType="fitCenter"
-        android:src="@drawable/google"
-        app:layout_constraintStart_toEndOf="@+id/facebookButton"
-        app:layout_constraintTop_toTopOf="@+id/facebookButton" />
-
-    <View
-        android:id="@+id/bottomLogin"
-        android:layout_width="412dp"
-        android:layout_height="117dp"
-        android:background="@drawable/bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toTopOf="@+id/button5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
