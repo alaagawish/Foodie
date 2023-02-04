@@ -34,6 +34,23 @@
     <string name="see_more"> ...See More</string>
     <string name="longTxt">kdddd\nddddddddddddnvklsdnlakdkddddddddddddddddnvklsdnlakddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnncfnwknfjendkjnkjcdnnnncdddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnncfnwknfjendkjnkjcdnnnnc</string>
     <string name="watch_recipe">Watch Recipe</string>
-    <string name="amount">120g</string>
+    <string name="amount">1\\5 tsp</string>
     <string name="kiwi">Kiwi</string>
+    <string name="dosenthaveAccount">Do not have an account?</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="username">Username</string>
+    <string name="signup">Sign Up</string>
+    <string name="myFavourites">My Favourites</string>
+    <string name="dailyInspiration">Daily Inspiration</string>
+    <string name="category">Category</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="region">Region</string>
+    <string name="slidePagerMeal">Slide Pager Meal</string>
+    <string name="search_meal">Search for a meal</string>
+    <string name="meal">Yogurt with fruits</string>
+    <string name="popular_menu">Popular Menu</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="dinner">Dinner</string>
+    <string name="appetizers">Appetizers</string>
+    <string name="lunch">Lunch</string>
 </resources>
