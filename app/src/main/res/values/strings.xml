@@ -26,4 +26,14 @@
     <string name="monday">Monday</string>
     <string name="sunday">Sunday</string>
     <string name="add">+Add</string>
+    <string name="information">Information</string>
+    <string name="country">Country</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="preparation">Preparation</string>
+    <string name="see_more"> ...See More</string>
+    <string name="longTxt">kdddd\nddddddddddddnvklsdnlakdkddddddddddddddddnvklsdnlakddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnncfnwknfjendkjnkjcdnnnncdddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnnckddddddddddddddddnvklsdnlafnwknfjendkjnkjcdnnnncfnwknfjendkjnkjcdnnnnc</string>
+    <string name="watch_recipe">Watch Recipe</string>
+    <string name="amount">120g</string>
+    <string name="kiwi">Kiwi</string>
 </resources>
