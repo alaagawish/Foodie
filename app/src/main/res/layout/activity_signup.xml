@@ -10,7 +10,7 @@
     <View
         android:id="@+id/topSignup"
         android:layout_width="match_parent"
-        android:layout_height="117dp"
+        android:layout_height="100dp"
         android:background="@drawable/second_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

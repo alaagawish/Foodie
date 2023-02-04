@@ -5,11 +5,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
     app:cardCornerRadius="25dp"
-    app:cardElevation="10dp"
-    app:contentPadding="10dp"
+    app:cardElevation="6dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,9 +17,8 @@
 
         <ImageView
             android:id="@+id/slidePagerImageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +29,7 @@
             android:id="@+id/heartButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
             android:background="@drawable/rounded_edit_text"
             android:backgroundTint="@color/white"
             android:scaleType="fitCenter"
@@ -42,11 +41,13 @@
             android:id="@+id/slidePagerMealTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/slidePagerMeal"
             android:textColor="@color/dark_blue"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/slidePagerImageView"
             app:layout_constraintStart_toStartOf="@+id/slidePagerImageView"
             app:layout_constraintTop_toBottomOf="@+id/slidePagerImageView" />
