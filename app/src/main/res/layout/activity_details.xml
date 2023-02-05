@@ -111,6 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/information"
                     android:textColor="@color/dark_blue"
@@ -147,12 +148,13 @@
                     android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:src="@drawable/eco_food"
                     app:layout_constraintBottom_toBottomOf="@+id/foodTypeTextView"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.382"
                     app:layout_constraintStart_toEndOf="@+id/areaTextView"
-                    app:layout_constraintTop_toTopOf="@+id/foodTypeTextView" />
+                    app:layout_constraintTop_toTopOf="@+id/foodTypeTextView"
+                    app:layout_constraintVertical_bias="0.375" />
 
                 <TextView
                     android:id="@+id/foodTypeTextView"
@@ -160,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginVertical="10dp"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:text="@string/vegetarian"
                     android:textSize="20sp"
@@ -241,14 +244,15 @@
                     android:id="@+id/mealPreparationTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:breakStrategy="balanced"
-                    android:textSize="16sp"
+                    android:text="@string/longTxt"
+                    android:textSize="19sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView4"
                     app:readMoreColor="@color/green"
                     app:readMoreMaxLine="2"
-                    app:readMoreText="@string/see_more"
-                    tools:text="@string/longTxt" />
+                    app:readMoreText="@string/see_more" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -287,6 +291,7 @@
                     android:id="@+id/youtubePlayerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     app:autoPlay="true"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"

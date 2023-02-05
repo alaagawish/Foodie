@@ -2,20 +2,21 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
     android:elevation="10dp"
     app:cardCornerRadius="25dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/deleteMealImageViewPlannerCard"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:background="@color/white"
             android:elevation="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/baseline_indeterminate_check_box_24"
@@ -24,29 +25,30 @@
 
         <ImageView
             android:id="@+id/mealImageViewPlannerCard"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_background"
-            tools:src="@tools:sample/avatars"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/mealNameTextView"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="50dp"
             android:alpha="0.8"
             android:background="@color/black"
-           android:padding="5dp"
-            tools:text="okifffffffffffffjdddddddddddddjffffffff"
+            android:gravity="center"
             android:textColor="@color/white"
-
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="okifffffffffffffjdddddddddddddjffffffff" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
