@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import eg.gov.iti.jets.foodie.home.view.Slider;
+
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.plan.view.DayAdapter;
 import eg.gov.iti.jets.foodie.plan.view.PlanFragment;
 
-public class HomeFragment extends Fragment implements HomeMealsClickListener{
+public class HomeFragment extends Fragment implements HomeMealsClickListener {
 
     Button categoryButton;
     Button ingredientButton;
@@ -104,6 +106,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener{
             }
         });
     }
+
     public void dumy() {
         meals = new ArrayList<>();
         meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));

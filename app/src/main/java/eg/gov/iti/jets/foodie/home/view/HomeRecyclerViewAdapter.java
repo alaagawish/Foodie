@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.home.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
 import eg.gov.iti.jets.foodie.model.Meal;
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> {
@@ -60,7 +62,12 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
             notifyDataSetChanged();
         });
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
-
+        holder.slidePagerImageView.setOnClickListener(e -> {
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("mealName", allMeals.get(position).getStrMeal());
+            intent.putExtra("mealImage", allMeals.get(position).getStrMealThumb());
+            context.startActivity(intent);
+        });
     }
 
     @Override

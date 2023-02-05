@@ -10,10 +10,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +26,31 @@ import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.model.Ingredient;
 
 public class DetailsActivity extends AppCompatActivity implements AllIngredientsClickListener {
-    YouTubePlayerView youTubePlayerView;
-    RecyclerView allIngredientsRecyclerView;
-    IngredientsAdapter ingredientsAdapter;
-    ImageButton backArrowCircularImageButton,likeCircularImageButton;
-    List<Ingredient> dumyIngredients;
+    private YouTubePlayerView youTubePlayerView;
+    private RecyclerView allIngredientsRecyclerView;
+    private IngredientsAdapter ingredientsAdapter;
+    private ImageButton backArrowCircularImageButton, likeCircularImageButton;
+    private List<Ingredient> dumyIngredients;
     boolean favFlag = false;
+    private String mealImage, mealName;
+
+    private ImageView mealImageView;
+    private TextView mealNameTextview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+
         init();
         dumy();
+            Intent intentt = getIntent();
+            mealImage = intentt.getStringExtra("mealImage");
+            mealName = intentt.getStringExtra("mealName");
+            mealNameTextview.setText(mealName);
+
+            Picasso.get().load(mealImage).into(mealImageView);
 
         ingredientsAdapter.setAllIngredients(dumyIngredients);
         allIngredientsRecyclerView.setAdapter(ingredientsAdapter);
@@ -75,7 +89,10 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
         allIngredientsRecyclerView = findViewById(R.id.ingredientsRecyclerView);
         ingredientsAdapter = new IngredientsAdapter(this, this);
         backArrowCircularImageButton = findViewById(R.id.backArrowCircularImageButton);
-        likeCircularImageButton=findViewById(R.id.likeCircularImageButton);
+        likeCircularImageButton = findViewById(R.id.likeCircularImageButton);
+        mealNameTextview = findViewById(R.id.mealNameTextview);
+        mealImageView = findViewById(R.id.mealImageView);
+
     }
 
     public void dumy() {
