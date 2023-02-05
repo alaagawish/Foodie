@@ -29,13 +29,14 @@
     <string name="information">Information</string>
     <string name="country">Country</string>
     <string name="vegetarian">Vegetarian</string>
+    <string name="protein">Protein</string>
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>
     <string name="see_more"> ...See More</string>
     <string name="longTxt">Bring a large pot of water to a boil. Add kosher salt to the boiling water, then add the pasta. Cook according to the package instructions, about 9 minutes.\r\nIn a large skillet over medium-high heat, add the olive oil and heat until the oil starts to shimmer. Add the garlic and cook, stirring, until fragrant, 1 to 2 minutes. Add the chopped tomatoes, red chile flakes, Italian seasoning and salt and pepper to taste. Bring to a boil and cook for 5 minutes. Remove from the heat and add the chopped basil.\r\nDrain the pasta and add it to the sauce. Garnish with Parmigiano-Reggiano flakes and more basil and serve warm.</string>
     <string name="watch_recipe">Watch Recipe</string>
-    <string name="amount">1\\5 tsp</string>
-    <string name="kiwi">Kiwi</string>
+    <string name="amount">360g</string>
+    <string name="chicken">Chicken</string>
     <string name="dosenthaveAccount">Do not have an account?</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="username">Username</string>

@@ -59,8 +59,8 @@
                 android:id="@+id/mealImageView"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/oip"
+                android:scaleType="fitXY"
+                android:src="@drawable/chicken"
                 android:textSize="20dp" />
         </androidx.cardview.widget.CardView>
 
@@ -165,7 +165,7 @@
                     android:layout_marginVertical="10dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:text="@string/vegetarian"
+                    android:text="@string/protein"
                     android:textSize="20sp"
                     app:layout_constraintLeft_toRightOf="@+id/image"
                     app:layout_constraintTop_toBottomOf="@+id/textView1" />
