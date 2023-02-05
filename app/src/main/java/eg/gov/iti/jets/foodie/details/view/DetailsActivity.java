@@ -51,7 +51,7 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "SuehATaxMEQ";
+                String videoId = "1TYK3S2zLL4";
 //                youTubePlayer.loadVideo(videoId, 0);
                 youTubePlayer.cueVideo(videoId, 0);
             }
@@ -79,10 +79,10 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
     }
 
     public void dumy() {
-        dumyIngredients.add(new Ingredient("kiwi", "129g", "https://th.bing.com/th/id/R.b4c59039ce8b34a01ffb09e53c19dccb?rik=ZqKmxcf4pVLZ5Q&pid=ImgRaw&r=0"));
-        dumyIngredients.add(new Ingredient("kiwi", "129g", "https://th.bing.com/th/id/R.b4c59039ce8b34a01ffb09e53c19dccb?rik=ZqKmxcf4pVLZ5Q&pid=ImgRaw&r=0"));
-        dumyIngredients.add(new Ingredient("kiwi", "129g", "https://th.bing.com/th/id/R.b4c59039ce8b34a01ffb09e53c19dccb?rik=ZqKmxcf4pVLZ5Q&pid=ImgRaw&r=0"));
-        dumyIngredients.add(new Ingredient("kiwi", "129g", "https://th.bing.com/th/id/R.b4c59039ce8b34a01ffb09e53c19dccb?rik=ZqKmxcf4pVLZ5Q&pid=ImgRaw&r=0"));
-        dumyIngredients.add(new Ingredient("kiwi", "129g", "https://th.bing.com/th/id/R.b4c59039ce8b34a01ffb09e53c19dccb?rik=ZqKmxcf4pVLZ5Q&pid=ImgRaw&r=0"));
+        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
+        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
+        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
+        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
+        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
     }
 }

@@ -61,9 +61,9 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener{
         sliderView = view.findViewById(R.id.imageSlider);
         sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
         sliderArrayList = new ArrayList<>();
-        sliderArrayList.add(new Slider("https://th.bing.com/th/id/R.4296f49fb527bdaf3039e31e1d0dcb2f?rik=0NrAyeJdAkOzwQ&pid=ImgRaw&r=0"));
+        sliderArrayList.add(new Slider("https://www.meingenuss.de/images/box-editor/-13324-0.jpeg?v="));
         sliderArrayList.add(new Slider("https://westernnews.media.clients.ellingtoncms.com/img/photos/2018/02/09/Pancakes.jpeg"));
-        sliderArrayList.add(new Slider("https://www.inliv.com/wp-content/uploads/2017/06/Untitled-design-e1530748897399.jpg"));
+        sliderArrayList.add(new Slider("https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
         sliderAdapter = new SliderAdapter(sliderArrayList);
         sliderView.setSliderAdapter(sliderAdapter);
         sliderView.setScrollTimeInSec(3);
@@ -107,9 +107,9 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener{
     public void dumy() {
         meals = new ArrayList<>();
         meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
-        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
-        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
-        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
-        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
+        meals.add(new Meal("Pasta", "https://www.meingenuss.de/images/box-editor/-13324-0.jpeg?v="));
+        meals.add(new Meal("Green Salad", "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/2/28/4/FNM_040112-Spring-Greens-011_s4x3.jpg.rend.hgtvcom.826.620.suffix/1371606120248.jpeg"));
+        meals.add(new Meal("Appetizer", "https://www.walderwellness.com/wp-content/uploads/2021/11/Parmesan-Crusted-Brussels-Sprouts-Bites-Walder-Wellness-7-768x1152.jpg"));
+        meals.add(new Meal("spicy chicken", "https://vismaifood.com/storage/app/uploads/public/105/fc7/89f/thumb__700_0_0_0_auto.jpg"));
     }
 }

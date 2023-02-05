@@ -18,7 +18,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
             android:elevation="10dp"
-            android:src="@drawable/oip" />
+            android:src="@drawable/chicken" />
 
         <TextView
             android:id="@+id/ingredientAmountCardTextView"
@@ -32,11 +32,11 @@
 
         <TextView
             android:id="@+id/ingredientNameCardTextView"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:maxLines="1"
-            android:text="@string/kiwi"
+            android:text="@string/chicken"
             android:textColor="@color/dark_blue"
             android:textSize="15sp" />
     </LinearLayout>
