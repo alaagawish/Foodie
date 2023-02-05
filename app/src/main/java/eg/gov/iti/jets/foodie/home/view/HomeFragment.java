@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -19,8 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.model.Meal;
+import eg.gov.iti.jets.foodie.plan.view.DayAdapter;
+import eg.gov.iti.jets.foodie.plan.view.PlanFragment;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements HomeMealsClickListener{
 
     Button categoryButton;
     Button ingredientButton;
@@ -30,13 +34,14 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<Slider> sliderArrayList;
 
+    RecyclerView homeRecyclerView;
+    HomeRecyclerViewAdapter homeRecyclerViewAdapter;
+    List<Meal> meals;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
@@ -65,6 +70,13 @@ public class HomeFragment extends Fragment {
         sliderView.setAutoCycle(true);
         sliderView.startAutoCycle();
 
+        dumy();
+        homeRecyclerView = view.findViewById(R.id.homeRecyclerView);
+        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(getContext(), HomeFragment.this);
+        homeRecyclerViewAdapter.setAllMeals(meals);
+        homeRecyclerView.setAdapter(homeRecyclerViewAdapter);
+        homeRecyclerViewAdapter.notifyDataSetChanged();
+
         categoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,5 +103,13 @@ public class HomeFragment extends Fragment {
                 regionButton.setBackgroundResource(R.color.green);
             }
         });
+    }
+    public void dumy() {
+        meals = new ArrayList<>();
+        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
+        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
+        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
+        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
+        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
     }
 }

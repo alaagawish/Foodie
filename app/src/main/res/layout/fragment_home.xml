@@ -64,7 +64,7 @@
             app:sliderIndicatorUnselectedColor="@color/white"
             app:sliderScrollTimeInSec="1"
             app:sliderStartAutoCycle="true"
-            />
+            android:elevation="16dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/categoryButton"
@@ -104,7 +104,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favouriteRecyclerView"
+            android:id="@+id/homeRecyclerView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -114,10 +114,9 @@
             app:layout_constraintStart_toStartOf="@+id/startGuideline"
             app:layout_constraintTop_toBottomOf="@+id/categoryButton"
             app:layout_constraintVertical_bias="0.0"
-            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/slide_pager_home__card"
-            tools:orientation="horizontal"
-            tools:spanCount="1" />
+            android:orientation="horizontal"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/endGuideline"
