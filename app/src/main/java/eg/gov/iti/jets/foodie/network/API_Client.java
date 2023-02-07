@@ -5,6 +5,9 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
+import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.MyResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,25 +40,23 @@ public class API_Client implements RemoteSource {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         api_service = retrofit.create(API_Service.class);
-        Call<MyResponse> myCall = api_service.getAllMealsByArea();
+        Call<List<Meal>> mealsByRandom = api_service.getMealsByRandom();
         Log.d(TAG, "startCall: ");
-
-        myCall.enqueue(new Callback<MyResponse>() {
+        mealsByRandom.enqueue(new Callback<List<Meal>>() {
             @Override
-            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Log.d(TAG, "onResponse: " + response.body());
-//                    networkDelegate.onSuccess(response.body().getProducts());
+            public void onResponse(Call<List<Meal>> call, Response<List<Meal>> response) {
 
-                }
+                Log.d(TAG, "onResponse: meals by random retrivied successfully");
+//                networkDelegate.onSuccess(response.body().);
             }
 
             @Override
-            public void onFailure(Call<MyResponse> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
+            public void onFailure(Call<List<Meal>> call, Throwable t) {
+                Log.d(TAG, "onFailure: on retriving meals by random" + t.getLocalizedMessage());
                 networkDelegate.onFailure(t.getMessage());
             }
         });
+
 
     }
 }
