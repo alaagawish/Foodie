@@ -8,23 +8,35 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.db.LocalSource;
 import eg.gov.iti.jets.foodie.model.Meal;
+import eg.gov.iti.jets.foodie.model.Repository;
+import eg.gov.iti.jets.foodie.network.API_Client;
 import eg.gov.iti.jets.foodie.plan.view.DayAdapter;
 import eg.gov.iti.jets.foodie.plan.view.PlanFragment;
+import eg.gov.iti.jets.foodie.search.presenter.SearchPresenter;
+import eg.gov.iti.jets.foodie.search.presenter.SearchPresenterInterface;
 
 
-public class SearchFragment extends Fragment implements SearchClickListener{
+public class SearchFragment extends Fragment implements SearchClickListener, SearchViewInterface {
+    private static final String TAG = "SearchFragment";
     RecyclerView searchResultRecyclerView;
     SearchedMealsAdapter searchedMealsAdapter;
+    EditText searchEditText;
     List<Meal> meals;
+    SearchPresenterInterface searchPresenterInterface;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,19 +54,45 @@ public class SearchFragment extends Fragment implements SearchClickListener{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dumy();
-        searchResultRecyclerView = view.findViewById(R.id.searchResultRecyclerView);
-        searchedMealsAdapter = new SearchedMealsAdapter(getContext(),SearchFragment.this);
-        searchedMealsAdapter.setAllMeals(meals);
-        searchResultRecyclerView.setAdapter(searchedMealsAdapter);
+        init(view);
+        searchPresenterInterface = new SearchPresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
+
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "onTextChanged: " + charSequence);
+
+
+                searchPresenterInterface.getSearchedMeals(charSequence + "");
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+
     }
 
-    public void dumy() {
-        meals = new ArrayList<>();
-        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
-        meals.add(new Meal("Pasta", "https://www.meingenuss.de/images/box-editor/-13324-0.jpeg?v="));
-        meals.add(new Meal("Green Salad", "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/2/28/4/FNM_040112-Spring-Greens-011_s4x3.jpg.rend.hgtvcom.826.620.suffix/1371606120248.jpeg"));
-        meals.add(new Meal("Appetizer", "https://www.walderwellness.com/wp-content/uploads/2021/11/Parmesan-Crusted-Brussels-Sprouts-Bites-Walder-Wellness-7-768x1152.jpg"));
-        meals.add(new Meal("spicy chicken", "https://cdn.diys.com/wp-content/uploads/2016/01/Spicy-crockpot-chicken-curry-finished-tall1.jpg"));
+    public void init(View view) {
+        searchResultRecyclerView = view.findViewById(R.id.searchResultRecyclerView);
+        searchEditText = view.findViewById(R.id.searchEditText);
+    }
+
+    @Override
+    public void showMeals(List<Meal> meals) {
+        if (meals != null) {
+            Log.d(TAG, "showMeals: " + meals.get(0).getStrMeal());
+            searchedMealsAdapter = new SearchedMealsAdapter(getContext(), SearchFragment.this);
+            searchedMealsAdapter.setAllMeals(meals);
+            searchResultRecyclerView.setAdapter(searchedMealsAdapter);
+        }
     }
 }

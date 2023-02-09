@@ -28,8 +28,8 @@ public interface API_Service {
     @GET("api/json/v1/1/filter.php?")
     Single<MyResponse> getAllMealsByCategory(@Query("c") String category);
 
-    @GET("api/json/v1/1/search.php?s={name}")
-    Single<List<Meal>> getAllMealsBySearch(@Path("name") String name);
+    @GET("api/json/v1/1/search.php?")
+    Single<MyResponse> getAllMealsBySearch(@Query("s") String name);
 
 
     @GET("api/json/v1/1/search.php?f={c}")

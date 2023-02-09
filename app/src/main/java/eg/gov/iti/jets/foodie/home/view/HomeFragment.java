@@ -93,8 +93,6 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
 
 
         homePresenterInterface = new HomePresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
-
-
         homePresenterInterface.getRandomMeals();
 
 
@@ -117,9 +115,6 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
                 .error(R.drawable.ic_launcher_foreground)
                 .into(randomImageView);
         randomMealTextView.setText(meals.get(0).getStrMeal());
-//        categoryRecyclerViewAdapter.setAllMeals(meals);
-//        homeRecyclerView.setAdapter(categoryRecyclerViewAdapter);
-//        categoryRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override

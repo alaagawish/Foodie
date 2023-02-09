@@ -7,6 +7,13 @@ import java.util.List;
 import eg.gov.iti.jets.foodie.db.MealFavPlanDAO;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
+
+import eg.gov.iti.jets.foodie.db.MealFavPlanDAO;
+import eg.gov.iti.jets.foodie.network.NetworkDelegation;
+
 public interface RepositoryInterface {
     public void insertMeal(MealFavPlan mealFavPlan);
 
@@ -17,4 +24,6 @@ public interface RepositoryInterface {
     public void getAllRandomMeals(NetworkDelegation networkDelegate);
 
     public void getFilteredMeals(NetworkDelegation networkDelegate, String name, char c);
+
+    public void getSearchedMeals(NetworkDelegation networkDelegate, String search);
 }
