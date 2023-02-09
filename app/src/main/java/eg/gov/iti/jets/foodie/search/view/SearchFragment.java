@@ -18,9 +18,11 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.db.LocalSource;
+import eg.gov.iti.jets.foodie.home.presenter.HomePresenter;
 import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.Repository;
 import eg.gov.iti.jets.foodie.network.API_Client;
@@ -54,6 +56,7 @@ public class SearchFragment extends Fragment implements SearchClickListener, Sea
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        dumy();
         init(view);
         searchPresenterInterface = new SearchPresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
 
@@ -95,4 +98,6 @@ public class SearchFragment extends Fragment implements SearchClickListener, Sea
             searchResultRecyclerView.setAdapter(searchedMealsAdapter);
         }
     }
+
+
 }

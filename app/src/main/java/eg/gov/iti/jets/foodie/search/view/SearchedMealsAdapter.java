@@ -20,6 +20,7 @@ import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
+import eg.gov.iti.jets.foodie.meals.view.MealsActivity;
 import eg.gov.iti.jets.foodie.model.Meal;
 
 
@@ -60,6 +61,11 @@ public class SearchedMealsAdapter extends RecyclerView.Adapter<SearchedMealsAdap
                 .into(holder.mealSearchedCardImageView);
 
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
+        holder.searchCardConstraintLayout.setOnClickListener(e -> {
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("meal", meal);
+            context.startActivity(intent);
+        });
 
     }
 
@@ -72,11 +78,13 @@ public class SearchedMealsAdapter extends RecyclerView.Adapter<SearchedMealsAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mealSearchedNameCardTextView;
         ImageView mealSearchedCardImageView;
+        ConstraintLayout searchCardConstraintLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mealSearchedCardImageView = itemView.findViewById(R.id.mealSearchedCardImageView);
             mealSearchedNameCardTextView = itemView.findViewById(R.id.mealSearchedNameCardTextView);
+            searchCardConstraintLayout = itemView.findViewById(R.id.searchCardConstraintLayout);
 
 
         }
