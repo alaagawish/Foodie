@@ -10,6 +10,7 @@ import java.util.List;
 
 import eg.gov.iti.jets.foodie.home.model.CategoryResponse;
 import eg.gov.iti.jets.foodie.home.model.CountryResponse;
+import eg.gov.iti.jets.foodie.home.model.IngredientResponse;
 import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
@@ -70,7 +71,7 @@ public class API_Client implements RemoteSource {
         Single<MyResponse> mealsByRandom = api_service.getMealsByRandom();
         Single<CountryResponse> countries = api_service.getAllCountries();
         Single<CategoryResponse> allCategories = api_service.getAllCategories();
-//        Single<List<IngredientList>> allIngredients = api_service.getAllIngredients();
+        Single<IngredientResponse> allIngredients = api_service.getAllIngredients();
 //        Single<String> largeImage = api_service.getImageOfIngredient(ingredientName);
 //        Single<String> smallImage = api_service.getSmallImageOfIngredient(ingredientImgName);
         Log.d(TAG, "startCall: ");
@@ -131,12 +132,12 @@ public class API_Client implements RemoteSource {
                             networkDelegate.onSuccessCategory(categories.getCategories());
                         },
                         throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//
-//        allIngredients.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(ingredientLists -> networkDelegate.onSuccessIngredient(ingredientLists),
-//                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//
+
+        allIngredients.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(ingredientResponse -> networkDelegate.onSuccessIngredient(ingredientResponse.getMeals()),
+                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
+
 //        largeImage.subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(meals -> networkDelegate.onSuccessString(meals),
@@ -146,7 +147,10 @@ public class API_Client implements RemoteSource {
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(meals -> networkDelegate.onSuccessString(meals),
 //                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//
+
+
+
+//              use disposter to close all observers
     }
 }
 

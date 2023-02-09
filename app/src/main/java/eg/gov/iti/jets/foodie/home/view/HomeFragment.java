@@ -33,6 +33,7 @@ import java.util.List;
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
+import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.MealFavPlan;
 import eg.gov.iti.jets.foodie.model.Repository;
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     //    RecyclerView homeRecyclerView;
     private CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
     private CountryRecyclerViewAdapter countryRecyclerViewAdapter;
+    private IngredientRecyclerViewAdapter ingredientRecyclerViewAdapter;
     //    CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
     List<Meal> meals;
 
@@ -128,6 +130,13 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     }
 
     @Override
+    public void showIngrediants(List<IngredientList> ingredient) {
+        ingredientRecyclerViewAdapter.setAllIngredients(ingredient);
+        ingredientsHomeRecyclerView.setAdapter(ingredientRecyclerViewAdapter);
+        ingredientRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void showCountries(List<Country> countries) {
         countryRecyclerViewAdapter.setAllCountries(countries);
         countriesHomeRecyclerView.setAdapter(countryRecyclerViewAdapter);
@@ -155,10 +164,10 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         ingredientsHomeRecyclerView = view.findViewById(R.id.ingredientsHomeRecyclerView);
 
 
-//        categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter(getContext(), HomeFragment.this);
+        ingredientRecyclerViewAdapter = new IngredientRecyclerViewAdapter(getContext(), HomeFragment.this);
         countryRecyclerViewAdapter = new CountryRecyclerViewAdapter(getContext(), HomeFragment.this);
         categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter(getContext(), HomeFragment.this);
-//        ingredientsHomeRecyclerView.setAdapter(categoryRecyclerViewAdapter);
+        ingredientsHomeRecyclerView.setAdapter(ingredientRecyclerViewAdapter);
         categoriesHomeRecyclerView.setAdapter(categoryRecyclerViewAdapter);
         countriesHomeRecyclerView.setAdapter(countryRecyclerViewAdapter);
     }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
+import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
 
 public interface HomeMealsViewInterface {
@@ -12,6 +13,8 @@ public interface HomeMealsViewInterface {
     public void showCountries(List<Country> countries);
 
     public void showCategories(List<Category> categories);
+
+    public void showIngrediants(List<IngredientList> ingredient);
 
     public void addMeal(Meal meal);
 }

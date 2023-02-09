@@ -58,6 +58,7 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     @Override
     public void onSuccessIngredient(List<IngredientList> ingredientLists) {
         Log.d(TAG, "onSuccessIngredient: ");
+        homePresenterInterface.showIngrediants(ingredientLists);
     }
 
     @Override
