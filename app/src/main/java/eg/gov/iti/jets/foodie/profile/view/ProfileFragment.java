@@ -20,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
@@ -59,10 +60,17 @@ public class ProfileFragment extends Fragment {
             String userName = account.getDisplayName();
             usernameTextView.setText(userName);
         }
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null)
+        {
+            String userName = user.getDisplayName();
+            usernameTextView.setText(userName);
+        }
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
