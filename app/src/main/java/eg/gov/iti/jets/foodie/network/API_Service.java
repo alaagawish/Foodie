@@ -2,6 +2,8 @@ package eg.gov.iti.jets.foodie.network;
 
 import java.util.List;
 
+import eg.gov.iti.jets.foodie.home.model.CategoryResponse;
+import eg.gov.iti.jets.foodie.home.model.CountryResponse;
 import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
@@ -38,9 +40,11 @@ public interface API_Service {
     @GET("api/json/v1/1/random.php")
     Single<MyResponse> getMealsByRandom();
 
+    @GET("api/json/v1/1/list.php?a=list")
+    Single<CountryResponse> getAllCountries();
 
     @GET("api/json/v1/1/categories.php")
-    Single<List<Category>> getAllCategories();
+    Single<CategoryResponse> getAllCategories();
 
 //    @GET("api/json/v1/1/lookup.php?i={id}")
 //    Call<List<Meal>> getAllMealsByCategory(@Path("id") String id);

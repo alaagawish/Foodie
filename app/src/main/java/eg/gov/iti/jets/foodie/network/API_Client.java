@@ -8,6 +8,8 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import eg.gov.iti.jets.foodie.home.model.CategoryResponse;
+import eg.gov.iti.jets.foodie.home.model.CountryResponse;
 import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
@@ -66,7 +68,8 @@ public class API_Client implements RemoteSource {
 //        Single<Meal> allMealsByFirstLetter = api_service.getAllMealsByFirstLetter(c);
 //        Single<Meal> mealById = api_service.getMealById(id);
         Single<MyResponse> mealsByRandom = api_service.getMealsByRandom();
-//        Single<List<Category>> allCategories = api_service.getAllCategories();
+        Single<CountryResponse> countries = api_service.getAllCountries();
+        Single<CategoryResponse> allCategories = api_service.getAllCategories();
 //        Single<List<IngredientList>> allIngredients = api_service.getAllIngredients();
 //        Single<String> largeImage = api_service.getImageOfIngredient(ingredientName);
 //        Single<String> smallImage = api_service.getSmallImageOfIngredient(ingredientImgName);
@@ -107,15 +110,27 @@ public class API_Client implements RemoteSource {
         mealsByRandom.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(myResponse -> {
-                            Log.d(TAG, "enqueueCall: " + myResponse.getMeals().get(0).getStrMeal());
+                            Log.d(TAG, "enqueueCall: random " + myResponse.getMeals().get(0).getStrMeal());
                             networkDelegate.onSuccess(myResponse.getMeals());
                         },
                         throwable -> networkDelegate.onFailure(throwable.getMessage()));
 
-//        allCategories.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(categories -> networkDelegate.onSuccessCategory(categories),
-//                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
+        countries.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(myResponse -> {
+//                            Log.d(TAG, "enqueueCall country: " + myResponse.getCountries().get(0).getStrArea());
+                            networkDelegate.onSuccessCountries(myResponse.getCountries());
+                        },
+                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
+
+
+        allCategories.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(categories -> {
+                            Log.d(TAG, "enqueueCall: category " + categories.getCategories().get(0).getStrCategory());
+                            networkDelegate.onSuccessCategory(categories.getCategories());
+                        },
+                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
 //
 //        allIngredients.subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())

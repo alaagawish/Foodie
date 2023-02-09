@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
     app:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/eco_food"
-        android:orientation="vertical">
+        android:id="@+id/categoryConstraintLayout"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/categoryNameCardImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/categoryNameCardTextView"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="70dp"
+            android:layout_height="35dp"
             android:alpha="0.8"
             android:background="@color/black"
             android:gravity="center"
-            android:maxLines="1"
-            android:text="@string/breakfast"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/appetizers" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

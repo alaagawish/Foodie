@@ -1,53 +1,61 @@
 package eg.gov.iti.jets.foodie.home.view;
 
-import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import eg.gov.iti.jets.foodie.db.LocalSource;
+import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
 import eg.gov.iti.jets.foodie.home.presenter.HomePresenter;
 import eg.gov.iti.jets.foodie.home.presenter.HomePresenterInterface;
-import eg.gov.iti.jets.foodie.home.view.Slider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.model.Category;
+import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.MealFavPlan;
 import eg.gov.iti.jets.foodie.model.Repository;
 import eg.gov.iti.jets.foodie.network.API_Client;
-import eg.gov.iti.jets.foodie.plan.view.DayAdapter;
-import eg.gov.iti.jets.foodie.plan.view.PlanFragment;
 
 public class HomeFragment extends Fragment implements HomeMealsClickListener, HomeMealsViewInterface {
 
-    Button categoryButton;
-    Button ingredientButton;
-    Button regionButton;
     SliderView sliderView;
+    Meal randomMeal;
     SliderAdapter sliderAdapter;
     HomePresenterInterface homePresenterInterface;
+    ImageButton randomHeartButton;
+    ImageView randomImageView;
+    TextView randomMealTextView;
     private static final String TAG = "HomeFragment";
-
+    CardView randomCardView;
     private ArrayList<Slider> sliderArrayList;
+    private RecyclerView ingredientsHomeRecyclerView, categoriesHomeRecyclerView, countriesHomeRecyclerView;
 
-    RecyclerView homeRecyclerView;
-    HomeRecyclerViewAdapter homeRecyclerViewAdapter;
+    //    RecyclerView homeRecyclerView;
+    private CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
+    private CountryRecyclerViewAdapter countryRecyclerViewAdapter;
+    //    CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
     List<Meal> meals;
 
 
@@ -68,11 +76,8 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        init(view);
 
-        categoryButton = view.findViewById(R.id.categoryButton);
-        ingredientButton = view.findViewById(R.id.ingredientButton);
-        regionButton = view.findViewById(R.id.regionButton);
-        sliderView = view.findViewById(R.id.imageSlider);
         sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
         sliderArrayList = new ArrayList<>();
         sliderArrayList.add(new Slider("https://www.meingenuss.de/images/box-editor/-13324-0.jpeg?v="));
@@ -84,40 +89,18 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         sliderView.setAutoCycle(true);
         sliderView.startAutoCycle();
 
-//        dumy();
 
         homePresenterInterface = new HomePresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
 
-        homeRecyclerView = view.findViewById(R.id.homeRecyclerView);
-        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(getContext(), HomeFragment.this);
-        homeRecyclerView.setAdapter(homeRecyclerViewAdapter);
+
         homePresenterInterface.getRandomMeals();
 
-        categoryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                categoryButton.setBackgroundResource(R.color.green);
-                ingredientButton.setBackgroundResource(R.color.transparent);
-                regionButton.setBackgroundResource(R.color.transparent);
-            }
-        });
 
-        ingredientButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                categoryButton.setBackgroundResource(R.color.transparent);
-                ingredientButton.setBackgroundResource(R.color.green);
-                regionButton.setBackgroundResource(R.color.transparent);
-            }
-        });
+        randomCardView.setOnClickListener(e -> {
+            Intent intent = new Intent(getContext(), DetailsActivity.class);
+            intent.putExtra("meal", randomMeal);
+            startActivity(intent);
 
-        regionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                categoryButton.setBackgroundResource(R.color.transparent);
-                ingredientButton.setBackgroundResource(R.color.transparent);
-                regionButton.setBackgroundResource(R.color.green);
-            }
         });
 
 
@@ -125,9 +108,30 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
 
     @Override
     public void showMeals(List<Meal> meals) {
-        homeRecyclerViewAdapter.setAllMeals(meals);
-        homeRecyclerView.setAdapter(homeRecyclerViewAdapter);
-        homeRecyclerViewAdapter.notifyDataSetChanged();
+        randomMeal = meals.get(0);
+        Glide.with(getContext()).load(meals.get(0).getStrMealThumb())
+                .apply(new RequestOptions().override(200, 160))
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(randomImageView);
+        randomMealTextView.setText(meals.get(0).getStrMeal());
+//        categoryRecyclerViewAdapter.setAllMeals(meals);
+//        homeRecyclerView.setAdapter(categoryRecyclerViewAdapter);
+//        categoryRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCategories(List<Category> categories) {
+        categoryRecyclerViewAdapter.setAllCategories(categories);
+        categoriesHomeRecyclerView.setAdapter(categoryRecyclerViewAdapter);
+        categoryRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCountries(List<Country> countries) {
+        countryRecyclerViewAdapter.setAllCountries(countries);
+        countriesHomeRecyclerView.setAdapter(countryRecyclerViewAdapter);
+        countryRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -139,12 +143,24 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         homePresenterInterface.addFavouriteMeal(mealFavPlan);
     }
 
-//    public void dumy() {
-//        meals = new ArrayList<>();
-//        meals.add(new Meal("Meat", "https://th.bing.com/th/id/R.a86a695d7575310d4af66450ffe8ce1d?rik=7%2f4%2fov%2fN4ecSzQ&pid=ImgRaw&r=0"));
-//        meals.add(new Meal("Pasta", "https://www.meingenuss.de/images/box-editor/-13324-0.jpeg?v="));
-//        meals.add(new Meal("Green Salad", "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/2/28/4/FNM_040112-Spring-Greens-011_s4x3.jpg.rend.hgtvcom.826.620.suffix/1371606120248.jpeg"));
-//        meals.add(new Meal("Appetizer", "https://www.walderwellness.com/wp-content/uploads/2021/11/Parmesan-Crusted-Brussels-Sprouts-Bites-Walder-Wellness-7-768x1152.jpg"));
-//        meals.add(new Meal("spicy chicken", "https://vismaifood.com/storage/app/uploads/public/105/fc7/89f/thumb__700_0_0_0_auto.jpg"));
-//    }
+    public void init(View view) {
+        randomHeartButton = view.findViewById(R.id.randomHeartButton);
+        randomImageView = view.findViewById(R.id.randomImageView);
+        randomMealTextView = view.findViewById(R.id.randomMealTextView);
+        randomCardView = view.findViewById(R.id.randomCardView);
+        sliderView = view.findViewById(R.id.imageSlider);
+
+        categoriesHomeRecyclerView = view.findViewById(R.id.categoriesHomeRecyclerView);
+        countriesHomeRecyclerView = view.findViewById(R.id.countriesHomeRecyclerView);
+        ingredientsHomeRecyclerView = view.findViewById(R.id.ingredientsHomeRecyclerView);
+
+
+//        categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter(getContext(), HomeFragment.this);
+        countryRecyclerViewAdapter = new CountryRecyclerViewAdapter(getContext(), HomeFragment.this);
+        categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter(getContext(), HomeFragment.this);
+//        ingredientsHomeRecyclerView.setAdapter(categoryRecyclerViewAdapter);
+        categoriesHomeRecyclerView.setAdapter(categoryRecyclerViewAdapter);
+        countriesHomeRecyclerView.setAdapter(countryRecyclerViewAdapter);
+    }
+
 }

@@ -43,9 +43,9 @@
     <string name="signup">Sign Up</string>
     <string name="myFavourites">My Favourites</string>
     <string name="dailyInspiration">Daily Inspiration</string>
-    <string name="category">Check these Categories</string>
-    <string name="ingredient">Check meals by these Ingredients</string>
-    <string name="area">Check meals in these Countries</string>
+    <string name="category">Categories</string>
+    <string name="ingredient">Ingredients</string>
+    <string name="area">Countries</string>
     <string name="slidePagerMeal">Slide Pager Meal</string>
     <string name="search_meal">Search for a meal</string>
     <string name="meal">Yogurt with fruits</string>

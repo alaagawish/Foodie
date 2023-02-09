@@ -6,6 +6,7 @@ import java.util.List;
 
 import eg.gov.iti.jets.foodie.home.view.HomeMealsViewInterface;
 import eg.gov.iti.jets.foodie.model.Category;
+import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.MealByFilter;
@@ -40,6 +41,11 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     }
 
     @Override
+    public void onSuccessCountries(List<Country> countries) {
+        homePresenterInterface.showCountries(countries);
+    }
+
+    @Override
     public void onSuccessMealByFilter(List<MealByFilter> meals) {
         Log.d(TAG, "onSuccessMealByFilter: ");
     }
@@ -57,6 +63,8 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     @Override
     public void onSuccessCategory(List<Category> categories) {
         Log.d(TAG, "onSuccessCategory: ");
+        homePresenterInterface.showCategories(categories);
+
     }
 
     @Override

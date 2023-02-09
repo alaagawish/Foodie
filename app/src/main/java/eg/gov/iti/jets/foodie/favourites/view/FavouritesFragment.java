@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
-import eg.gov.iti.jets.foodie.home.view.HomeFragment;
-import eg.gov.iti.jets.foodie.home.view.HomeRecyclerViewAdapter;
 import eg.gov.iti.jets.foodie.model.Meal;
 
 public class FavouritesFragment extends Fragment implements FavouriteMealsClickListener{
