@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,14 +55,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @Override
     public void onBindViewHolder(@NonNull IngredientsAdapter.ViewHolder holder, int position) {
         Ingredient ingredient = allIngredients.get(position);
-            holder.ingredientNameCardTextView.setText(allIngredients.get(position).getName());
-            holder.ingredientAmountCardTextView.setText(allIngredients.get(position).getAmount());
-            Glide.with(context).load(allIngredients.get(position).getThumbnail())
-                    .apply(new RequestOptions().override(200, 160))
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_foreground)
-                    .into(holder.ingredientCardImageView);
-
+        holder.ingredientNameCardTextView.setText(allIngredients.get(position).getName());
+        holder.ingredientAmountCardTextView.setText(allIngredients.get(position).getAmount());
+        allIngredients.get(position).setThumbnail("https://www.themealdb.com/images/ingredients/" + allIngredients.get(position).getName().replaceAll(" ", "%20") + ".png");
+        Glide.with(context).load(allIngredients.get(position).getThumbnail())
+                .apply(new RequestOptions().override(100, 100))
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.ingredientCardImageView);
 
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
 

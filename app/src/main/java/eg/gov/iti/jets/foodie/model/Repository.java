@@ -58,6 +58,11 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
+    public void getMealDetails(NetworkDelegation networkDelegate, String id) {
+        remoteSource.enqueueCallById(networkDelegate, id);
+    }
+
+    @Override
     public void getSearchedMeals(NetworkDelegation networkDelegate, String search) {
         remoteSource.enqueueCallBySearch(networkDelegate, search);
     }

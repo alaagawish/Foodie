@@ -25,5 +25,7 @@ public interface RepositoryInterface {
 
     public void getFilteredMeals(NetworkDelegation networkDelegate, String name, char c);
 
+    public void getMealDetails(NetworkDelegation networkDelegate, String id);
+
     public void getSearchedMeals(NetworkDelegation networkDelegate, String search);
 }

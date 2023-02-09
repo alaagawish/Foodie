@@ -15,14 +15,13 @@ public interface NetworkDelegation {
 
     public void onSuccessMealByFilter(List<Meal> meals);
 
-    public void onSuccessMeal(Meal meals);
+    public void onSuccessMeal(Meal meal);
 
     public void onSuccessCategory(List<Category> categories);
 
     public void onSuccessIngredient(List<IngredientList> ingredientLists);
 
     public void onSuccessString(String img);
-
 
     public void onFailure(String error);
 }

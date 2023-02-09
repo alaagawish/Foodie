@@ -52,12 +52,9 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     CardView randomCardView;
     private ArrayList<Slider> sliderArrayList;
     private RecyclerView ingredientsHomeRecyclerView, categoriesHomeRecyclerView, countriesHomeRecyclerView;
-
-    //    RecyclerView homeRecyclerView;
     private CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
     private CountryRecyclerViewAdapter countryRecyclerViewAdapter;
     private IngredientRecyclerViewAdapter ingredientRecyclerViewAdapter;
-    //    CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
     List<Meal> meals;
 
 

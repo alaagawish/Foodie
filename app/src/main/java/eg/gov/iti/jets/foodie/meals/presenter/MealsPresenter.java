@@ -28,7 +28,8 @@ public class MealsPresenter implements MealsPresenterInterface, NetworkDelegatio
 
     @Override
     public void onSuccess(List<Meal> meals) {
-
+        Log.d(TAG, "onSuccess: ");
+        mealsViewInterface.showMealDetails(meals.get(0));
     }
 
     @Override
@@ -73,6 +74,10 @@ public class MealsPresenter implements MealsPresenterInterface, NetworkDelegatio
 
     }
 
+    @Override
+    public void getMealDetails(String id) {
+         repositoryInterface.getMealDetails(this, id);
+    }
 
     @Override
     public void getFilteredMeals(String name, char c) {

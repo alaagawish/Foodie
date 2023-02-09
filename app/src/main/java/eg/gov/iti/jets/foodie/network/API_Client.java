@@ -47,6 +47,17 @@ public class API_Client implements RemoteSource {
     }
 
     @Override
+    public void enqueueCallById(NetworkDelegation networkDelegate, String id) {
+        Single<MyResponse> mealById = api_service.getMealById(id);
+        mealById.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                            networkDelegate.onSuccess(response.getMeals());
+                        },
+                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
+    }
+
+    @Override
     public void enqueueCall(NetworkDelegation networkDelegate, String name, char c) {
 
         Gson gson = new GsonBuilder().create();
@@ -62,11 +73,13 @@ public class API_Client implements RemoteSource {
             allMealsByArea.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(myResponse -> {
-                                Log.d(TAG, "enqueueCall: kkkkkkkkkk" + myResponse.getMeals().get(0).getStrMeal());
+                                Log.d(TAG, "enqueueCall: " + myResponse.getMeals().get(0).getStrMeal());
                                 networkDelegate.onSuccessMealByFilter(myResponse.getMeals());
                             },
                             throwable -> networkDelegate.onFailure(throwable.getMessage()));
-
+//            Single<List<Meal>> m = allMealsByArea.concatMap(response -> {
+//                return api_service.getMealById(response.getIdMeal());
+//            }).subscribe(myResponse -> networkDelegate.onSuccessMealByFilter(myResponse.getMeals()));
 
         } else if (c == 'i') {
             Single<MyResponse> allMealsByIngredient = api_service.getAllMealsByIngredient(name);
@@ -103,7 +116,7 @@ public class API_Client implements RemoteSource {
         allMealsBySearch.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(myResponse -> {
-                            Log.d(TAG, "enqueueCall: search " );
+                            Log.d(TAG, "enqueueCall: search ");
                             networkDelegate.onSuccess(myResponse.getMeals());
                         },
                         throwable -> networkDelegate.onFailure(throwable.getMessage()));
@@ -123,7 +136,6 @@ public class API_Client implements RemoteSource {
 
 
 //        Single<Meal> allMealsByFirstLetter = api_service.getAllMealsByFirstLetter(c);
-//        Single<Meal> mealById = api_service.getMealById(id);
         Single<MyResponse> mealsByRandom = api_service.getMealsByRandom();
         Single<CountryResponse> countries = api_service.getAllCountries();
         Single<CategoryResponse> allCategories = api_service.getAllCategories();
@@ -137,12 +149,8 @@ public class API_Client implements RemoteSource {
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(meals -> networkDelegate.onSuccessMeal(meals),
 //                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//        mealById.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(meals -> networkDelegate.onSuccessMeal(meals),
-//                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//
-//
+
+
         mealsByRandom.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(myResponse -> {

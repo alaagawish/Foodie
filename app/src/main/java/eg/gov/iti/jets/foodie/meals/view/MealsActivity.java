@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.MainActivity;
@@ -33,6 +34,7 @@ public class MealsActivity extends AppCompatActivity implements MealsClickListen
     String type;
     MealsAdapter mealsAdapter;
     MealsPresenterInterface mealsPresenterInterface;
+    List<Meal> meals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,19 +70,32 @@ public class MealsActivity extends AppCompatActivity implements MealsClickListen
     }
 
     public void init() {
+        meals = new ArrayList<>();
         itemsRecyclerView = findViewById(R.id.itemsRecyclerView);
         mealsTypeTextView = findViewById(R.id.mealsTypeTextView);
         backArrowCircularImageButton = findViewById(R.id.backArrowCircularImageButton);
         mealsAdapter = new MealsAdapter(this, this);
 
+
+    }
+
+    @Override
+    public void showMealDetails(Meal meal) {
+        this.meals.add(meal);
+        mealsAdapter.setAllMeals(this.meals);
+        itemsRecyclerView.setAdapter(mealsAdapter);
+        mealsAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showMeals(List<Meal> meals) {
         Log.d(TAG, "showMealsArea: ");
-        mealsAdapter.setAllMeals(meals);
-        itemsRecyclerView.setAdapter(mealsAdapter);
-        mealsAdapter.notifyDataSetChanged();
+        for (int i = 0; i < meals.size(); i++) {
+            Log.d(TAG, "showMeals: vvvvvvvvvvvv " + meals.get(i).getStrArea());
+
+            mealsPresenterInterface.getMealDetails(meals.get(i).getIdMeal());
+            Log.d(TAG, "showMeals: aaaaaaaaa " + meals.get(i).getStrArea());
+        }
     }
 
 }
