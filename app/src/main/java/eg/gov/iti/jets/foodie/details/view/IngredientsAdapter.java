@@ -8,13 +8,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import eg.gov.iti.jets.foodie.R;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -30,6 +33,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     public IngredientsAdapter(Context context, AllIngredientsClickListener allIngredientsClickListener) {
         super();
+        allIngredients = new ArrayList<>();
         this.context = context;
         this.allIngredientsClickListener = allIngredientsClickListener;
     }
@@ -50,13 +54,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @Override
     public void onBindViewHolder(@NonNull IngredientsAdapter.ViewHolder holder, int position) {
         Ingredient ingredient = allIngredients.get(position);
-        holder.ingredientNameCardTextView.setText(allIngredients.get(position).getName());
-        holder.ingredientAmountCardTextView.setText(allIngredients.get(position).getAmount());
-        Glide.with(context).load(allIngredients.get(position).getThumbnail())
-                .apply(new RequestOptions().override(200, 160))
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(holder.ingredientCardImageView);
+            holder.ingredientNameCardTextView.setText(allIngredients.get(position).getName());
+            holder.ingredientAmountCardTextView.setText(allIngredients.get(position).getAmount());
+            Glide.with(context).load(allIngredients.get(position).getThumbnail())
+                    .apply(new RequestOptions().override(200, 160))
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(holder.ingredientCardImageView);
+
 
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
 

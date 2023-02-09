@@ -1,13 +1,17 @@
 package eg.gov.iti.jets.foodie.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 import java.util.List;
+
 @Entity(tableName = "favMeals")
 public class MealFavPlan {
+    private static final String TAG = "MealFavPlan";
     @PrimaryKey
     @NonNull
     private int id;
@@ -489,5 +493,19 @@ public class MealFavPlan {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setMeal(Meal meal) {
+        this.strMeal = meal.getStrMeal();
+        this.strCategory = meal.getStrCategory();
+        this.strArea = meal.getStrArea();
+        this.strInstructions = meal.getStrInstructions();
+        this.strMealThumb = meal.getStrMealThumb();
+        this.strYoutube = meal.getStrYoutube();
+        for (Ingredient ingredient : meal.getIngredientList()) {
+            Log.d(TAG, "setMeal: " + ingredient.getName());
+        }
+
+//        this.isFav=true;
     }
 }

@@ -52,7 +52,7 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public void getAllMeals(NetworkDelegation networkDelegate) {
+    public void getAllRandomMeals(NetworkDelegation networkDelegate) {
         remoteSource.enqueueCall(networkDelegate);
 
     }

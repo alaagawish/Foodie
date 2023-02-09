@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -24,51 +25,53 @@ import java.util.List;
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.model.Ingredient;
+import eg.gov.iti.jets.foodie.model.Meal;
+import kr.co.prnd.readmore.ReadMoreTextView;
 
 public class DetailsActivity extends AppCompatActivity implements AllIngredientsClickListener {
+    private static final String TAG = "DetailsActivity";
     private YouTubePlayerView youTubePlayerView;
     private RecyclerView allIngredientsRecyclerView;
     private IngredientsAdapter ingredientsAdapter;
     private ImageButton backArrowCircularImageButton, likeCircularImageButton;
     private List<Ingredient> dumyIngredients;
+    private ReadMoreTextView mealPreparationTextView;
     boolean favFlag = false;
-    private String mealImage, mealName;
-
+    private Meal meal;
     private ImageView mealImageView;
-    private TextView mealNameTextview;
-
+    private TextView mealNameTextview, areaTextView, foodTypeTextView;
+    String videoId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-
         init();
-        dumy();
-            Intent intentt = getIntent();
-            mealImage = intentt.getStringExtra("mealImage");
-            mealName = intentt.getStringExtra("mealName");
-            mealNameTextview.setText(mealName);
+        Intent intentt = getIntent();
+        meal = (Meal) intentt.getSerializableExtra("meal");
+        mealNameTextview.setText(meal.getStrMeal());
 
-            Picasso.get().load(mealImage).into(mealImageView);
+        Picasso.get().load(meal.getStrMealThumb()).into(mealImageView);
 
-        ingredientsAdapter.setAllIngredients(dumyIngredients);
+        ingredientsAdapter.setAllIngredients(meal.getIngredientList());
         allIngredientsRecyclerView.setAdapter(ingredientsAdapter);
         ingredientsAdapter.notifyDataSetChanged();
         getLifecycle().addObserver(youTubePlayerView);
-        backArrowCircularImageButton.setOnClickListener(e -> {
-            Intent intent = new Intent(DetailsActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-
-
+        mealPreparationTextView.setText(meal.getStrInstructions());
+        areaTextView.setText(meal.getStrArea());
+        foodTypeTextView.setText(meal.getStrCategory());
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "1TYK3S2zLL4";
+              videoId = meal.getStrYoutube().split("=")[1];
 //                youTubePlayer.loadVideo(videoId, 0);
                 youTubePlayer.cueVideo(videoId, 0);
             }
+        });
+
+        backArrowCircularImageButton.setOnClickListener(e -> {
+            Intent intent = new Intent(DetailsActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -92,6 +95,9 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
         likeCircularImageButton = findViewById(R.id.likeCircularImageButton);
         mealNameTextview = findViewById(R.id.mealNameTextview);
         mealImageView = findViewById(R.id.mealImageView);
+        mealPreparationTextView = findViewById(R.id.mealPreparationTextView);
+        areaTextView = findViewById(R.id.areaTextView);
+        foodTypeTextView = findViewById(R.id.foodTypeTextView);
 
     }
 

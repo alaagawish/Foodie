@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
@@ -30,6 +31,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     public HomeRecyclerViewAdapter(Context context, HomeMealsClickListener homeMealsClickListener) {
         super();
+        allMeals = new ArrayList<>();
         this.context = context;
         this.homeMealsClickListener = homeMealsClickListener;
     }
@@ -64,8 +66,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
         holder.slidePagerImageView.setOnClickListener(e -> {
             Intent intent = new Intent(context, DetailsActivity.class);
-            intent.putExtra("mealName", allMeals.get(position).getStrMeal());
-            intent.putExtra("mealImage", allMeals.get(position).getStrMealThumb());
+            intent.putExtra("meal", allMeals.get(position));
             context.startActivity(intent);
         });
     }

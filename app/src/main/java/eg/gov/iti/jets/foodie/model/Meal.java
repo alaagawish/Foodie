@@ -1,8 +1,13 @@
 package eg.gov.iti.jets.foodie.model;
 
+import android.util.Log;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Meal {
+public class Meal implements Serializable {
+    private static final String TAG = "Meal";
     private String idMeal;
     private String strMeal;
     private String strDrinkAlternate;
@@ -13,8 +18,49 @@ public class Meal {
     private String strTags;
     private String strYoutube;
     private List<Ingredient> ingredientList;
+    private String strIngredient1;
+    private String strIngredient2;
+    private String strIngredient3;
+    private String strIngredient4;
+    private String strIngredient5;
+    private String strIngredient6;
+    private String strIngredient7;
+    private String strIngredient8;
+    private String strIngredient9;
+    private String strIngredient10;
+    private String strIngredient11;
+    private String strIngredient12;
+    private String strIngredient13;
+    private String strIngredient14;
+    private String strIngredient15;
+    private String strIngredient16;
+    private String strIngredient17;
+    private String strIngredient18;
+    private String strIngredient19;
+    private String strIngredient20;
+    private String strMeasure1;
+    private String strMeasure2;
+    private String strMeasure3;
+    private String strMeasure4;
+    private String strMeasure5;
+    private String strMeasure6;
+    private String strMeasure7;
+    private String strMeasure8;
+    private String strMeasure9;
+    private String strMeasure10;
+    private String strMeasure11;
+    private String strMeasure12;
+    private String strMeasure13;
+    private String strMeasure14;
+    private String strMeasure15;
+    private String strMeasure16;
+    private String strMeasure17;
+    private String strMeasure18;
+    private String strMeasure19;
+    private String strMeasure20;
 
     public Meal() {
+        ingredientList = new ArrayList<>();
     }
 
     public Meal(String strMeal, String strMealThumb) {
@@ -22,14 +68,14 @@ public class Meal {
         this.strMealThumb = strMealThumb;
     }
 
-    public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strMealThumb, String strYoutube, List<Ingredient> ingredientList) {
+    public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strMealThumb, String strYoutube) {
         this.strMeal = strMeal;
         this.strCategory = strCategory;
         this.strArea = strArea;
         this.strInstructions = strInstructions;
         this.strMealThumb = strMealThumb;
         this.strYoutube = strYoutube;
-        this.ingredientList = ingredientList;
+//        this.ingredientList = ingredientList;
     }
 
     public String getIdMeal() {
@@ -105,6 +151,66 @@ public class Meal {
     }
 
     public List<Ingredient> getIngredientList() {
+        if (!strIngredient1.equals(""))
+            ingredientList.add(new Ingredient(strIngredient1, strMeasure1));
+        if (!strIngredient2.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient2, strMeasure2));
+        if (!strIngredient3.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient3, strMeasure3));
+        if (!strIngredient4.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient4, strMeasure4));
+        if (!strIngredient5.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient5, strMeasure5));
+        if (!strIngredient6.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient6, strMeasure6));
+        if (!strIngredient7.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient7, strMeasure7));
+        if (!strIngredient8.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient8, strMeasure8));
+        if (!strIngredient9.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient9, strMeasure9));
+        if (!strIngredient10.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient10, strMeasure10));
+        if (!strIngredient11.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient11, strMeasure11));
+        if (!strIngredient12.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient12, strMeasure12));
+        if (!strIngredient13.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient13, strMeasure13));
+        if (!strIngredient14.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient14, strMeasure14));
+        if (!strIngredient15.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient15, strMeasure15));
+        if (!strIngredient16.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient16, strMeasure16));
+        if (!strIngredient17.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient17, strMeasure17));
+        if (!strIngredient18.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient18, strMeasure18));
+        if (!strIngredient19.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient19, strMeasure19));
+        if (!strIngredient20.equals(""))
+
+            ingredientList.add(new Ingredient(strIngredient20, strMeasure20));
+
         return ingredientList;
     }
 
