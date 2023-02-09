@@ -2,7 +2,9 @@ package eg.gov.iti.jets.foodie.model;
 
 import androidx.dynamicanimation.animation.SpringAnimation;
 
-public class IngredientList {
+import java.io.Serializable;
+
+public class IngredientList implements Serializable {
 
     private String idIngredient;
     private String strIngredient;

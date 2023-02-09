@@ -1,6 +1,8 @@
 package eg.gov.iti.jets.foodie.model;
 
-public class Country {
+import java.io.Serializable;
+
+public class Country implements Serializable {
     private String strArea;
 
     public Country(String strArea) {

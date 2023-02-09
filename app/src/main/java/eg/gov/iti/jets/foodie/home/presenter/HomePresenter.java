@@ -15,12 +15,12 @@ import eg.gov.iti.jets.foodie.model.RepositoryInterface;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 
 public class HomePresenter implements HomePresenterInterface, NetworkDelegation {
-    private HomeMealsViewInterface homePresenterInterface;
+    private HomeMealsViewInterface homeMealsViewInterface;
     private RepositoryInterface repositoryInterface;
     private static final String TAG = "HomePresenter";
 
-    public HomePresenter(HomeMealsViewInterface homePresenterInterface, RepositoryInterface repositoryInterface) {
-        this.homePresenterInterface = homePresenterInterface;
+    public HomePresenter(HomeMealsViewInterface homeMealsViewInterface, RepositoryInterface repositoryInterface) {
+        this.homeMealsViewInterface = homeMealsViewInterface;
         this.repositoryInterface = repositoryInterface;
     }
 
@@ -37,18 +37,14 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     @Override
     public void onSuccess(List<Meal> meals) {
         Log.d(TAG, "onSuccess: ");
-        homePresenterInterface.showMeals(meals);
+        homeMealsViewInterface.showMeals(meals);
     }
 
     @Override
     public void onSuccessCountries(List<Country> countries) {
-        homePresenterInterface.showCountries(countries);
+        homeMealsViewInterface.showCountries(countries);
     }
 
-    @Override
-    public void onSuccessMealByFilter(List<MealByFilter> meals) {
-        Log.d(TAG, "onSuccessMealByFilter: ");
-    }
 
     @Override
     public void onSuccessMeal(Meal meals) {
@@ -58,13 +54,13 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     @Override
     public void onSuccessIngredient(List<IngredientList> ingredientLists) {
         Log.d(TAG, "onSuccessIngredient: ");
-        homePresenterInterface.showIngrediants(ingredientLists);
+        homeMealsViewInterface.showIngrediants(ingredientLists);
     }
 
     @Override
     public void onSuccessCategory(List<Category> categories) {
         Log.d(TAG, "onSuccessCategory: ");
-        homePresenterInterface.showCategories(categories);
+        homeMealsViewInterface.showCategories(categories);
 
     }
 
@@ -76,6 +72,12 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     @Override
     public void onFailure(String error) {
         Log.d(TAG, "onFailure: no products");
+    }
+
+
+    @Override
+    public void onSuccessMealByFilter(List<Meal> meals) {
+
     }
 
 }

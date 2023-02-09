@@ -15,4 +15,6 @@ public interface RepositoryInterface {
     public LiveData<List<MealFavPlan>> getMealsDB();
 
     public void getAllRandomMeals(NetworkDelegation networkDelegate);
+
+    public void getFilteredMeals(NetworkDelegation networkDelegate, String name, char c);
 }

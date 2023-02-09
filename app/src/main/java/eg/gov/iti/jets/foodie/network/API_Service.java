@@ -15,16 +15,18 @@ import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface API_Service {
-    @GET("api/json/v1/1/filter.php?a={area}")
-    Single<List<MealByFilter>> getAllMealsByArea(@Path("area") String area);
+    @GET("api/json/v1/1/filter.php?")
+    Single<MyResponse> getAllMealsByArea(@Query("a") String area);
 
-    @GET("api/json/v1/1/filter.php?i={ingredient}")
-    Single<List<MealByFilter>> getAllMealsByIngredient(@Path("ingredient") String ingredient);
 
-    @GET("api/json/v1/1/filter.php?c={category}")
-    Single<List<MealByFilter>> getAllMealsByCategory(@Path("category") String category);
+    @GET("api/json/v1/1/filter.php?")
+    Single<MyResponse> getAllMealsByIngredient(@Query("i") String ingredient);
+
+    @GET("api/json/v1/1/filter.php?")
+    Single<MyResponse> getAllMealsByCategory(@Query("c") String category);
 
     @GET("api/json/v1/1/search.php?s={name}")
     Single<List<Meal>> getAllMealsBySearch(@Path("name") String name);

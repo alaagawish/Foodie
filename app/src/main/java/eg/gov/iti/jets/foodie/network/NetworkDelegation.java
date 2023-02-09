@@ -10,8 +10,10 @@ import eg.gov.iti.jets.foodie.model.MealByFilter;
 
 public interface NetworkDelegation {
     public void onSuccess(List<Meal> meals);
+
     public void onSuccessCountries(List<Country> countries);
-    public void onSuccessMealByFilter(List<MealByFilter> meals);
+
+    public void onSuccessMealByFilter(List<Meal> meals);
 
     public void onSuccessMeal(Meal meals);
 

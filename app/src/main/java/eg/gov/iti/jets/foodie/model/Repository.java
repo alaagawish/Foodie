@@ -56,4 +56,10 @@ public class Repository implements RepositoryInterface {
         remoteSource.enqueueCall(networkDelegate);
 
     }
+
+    @Override
+    public void getFilteredMeals(NetworkDelegation networkDelegate, String name, char c) {
+        remoteSource.enqueueCall(networkDelegate, name, c);
+
+    }
 }

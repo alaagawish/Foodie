@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.home.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.meals.view.MealsActivity;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 
 public class IngredientRecyclerViewAdapter  extends RecyclerView.Adapter<IngredientRecyclerViewAdapter.ViewHolder> {
@@ -49,9 +51,10 @@ public class IngredientRecyclerViewAdapter  extends RecyclerView.Adapter<Ingredi
         holder.countryCardTextView.setText(ingredient.get(position).getStrIngredient());
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
         holder.countryCardTextView.setOnClickListener(e -> {
-//            Intent intent = new Intent(context, DetailsActivity.class);
-//            intent.putExtra("meal", allMeals.get(position));
-//            context.startActivity(intent);
+            Intent intent = new Intent(context, MealsActivity.class);
+            intent.putExtra("name", ingredientList);
+            intent.putExtra("type", "Ingredient");
+            context.startActivity(intent);
             //new activity with category meals
         });
     }
