@@ -43,9 +43,9 @@
     <string name="signup">Sign Up</string>
     <string name="myFavourites">My Favourites</string>
     <string name="dailyInspiration">Daily Inspiration</string>
-    <string name="category">Category</string>
-    <string name="ingredient">Ingredient</string>
-    <string name="region">Region</string>
+    <string name="category">Check these Categories</string>
+    <string name="ingredient">Check meals by these Ingredients</string>
+    <string name="area">Check meals in these Countries</string>
     <string name="slidePagerMeal">Slide Pager Meal</string>
     <string name="search_meal">Search for a meal</string>
     <string name="meal">Yogurt with fruits</string>
@@ -54,4 +54,6 @@
     <string name="dinner">Dinner</string>
     <string name="appetizers">Appetizers</string>
     <string name="lunch">Lunch</string>
+    <string name="try_this">Try this recipe</string>
+    <string name="egypt">Egypt</string>
 </resources>

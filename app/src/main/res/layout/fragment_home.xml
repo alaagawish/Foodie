@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="213dp"
             android:layout_marginTop="8dp"
+            android:elevation="16dp"
             app:layout_constraintEnd_toStartOf="@+id/endGuideline"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="@+id/startGuideline"
@@ -63,44 +64,144 @@
             app:sliderIndicatorSelectedColor="@color/green"
             app:sliderIndicatorUnselectedColor="@color/white"
             app:sliderScrollTimeInSec="1"
-            app:sliderStartAutoCycle="true"
-            android:elevation="16dp"/>
+            app:sliderStartAutoCycle="true" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/categoryButton"
-            android:layout_width="120dp"
+        <TextView
+            android:id="@+id/tryTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/green"
-            android:text="@string/category"
+            android:text="@string/try_this"
             android:textColor="@color/dark_blue"
+            android:textSize="35sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/startGuideline"
             app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/ingredientButton"
-            android:layout_width="130dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/randomCardView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="@+id/endGuideline"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/tryTextView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/slidePagerImageView"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageButton
+                    android:id="@+id/heartButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:backgroundTint="@color/white"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_favorite_border_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/slidePagerImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/slidePagerImageView" />
+
+                <TextView
+                    android:id="@+id/slidePagerMealTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/slidePagerMeal"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/slidePagerImageView"
+                    app:layout_constraintStart_toStartOf="@+id/slidePagerImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/slidePagerImageView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/categoryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/category"
+            android:textColor="@color/dark_blue"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/randomCardView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesHomeRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/categoryTextView"
+            app:spanCount="2"
+            tools:listitem="@layout/category_card" />
+
+        <TextView
+            android:id="@+id/ingredientTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:background="@color/transparent"
             android:text="@string/ingredient"
             android:textColor="@color/dark_blue"
-            app:layout_constraintBottom_toBottomOf="@+id/categoryButton"
-            app:layout_constraintStart_toEndOf="@+id/categoryButton"
-            app:layout_constraintTop_toTopOf="@+id/categoryButton"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/categoriesHomeRecyclerView"
             app:layout_constraintVertical_bias="0.0" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/regionButton"
-            android:layout_width="100dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredientsHomeRecyclerView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientTextview"
+            app:layout_constraintVertical_bias="0.0"
+            app:spanCount="2"
+            tools:listitem="@layout/country_card" />
+
+        <TextView
+            android:id="@+id/areaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:background="@color/transparent"
-            android:text="@string/region"
+            android:text="@string/area"
             android:textColor="@color/dark_blue"
-            app:layout_constraintBottom_toBottomOf="@+id/ingredientButton"
-            app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+            android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/ingredientButton"
-            app:layout_constraintTop_toTopOf="@+id/ingredientButton"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientsHomeRecyclerView"
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -108,15 +209,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toStartOf="@+id/endGuideline"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="@+id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@+id/categoryButton"
+            app:layout_constraintTop_toBottomOf="@+id/areaTextView"
             app:layout_constraintVertical_bias="0.0"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/slide_pager_home__card"
-            android:orientation="horizontal"/>
+            app:spanCount="3"
+            tools:listitem="@layout/country_card" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/endGuideline"
