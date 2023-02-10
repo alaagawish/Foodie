@@ -16,7 +16,6 @@ import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
 
 public class FavouritesFragment extends Fragment implements FavouriteMealsClickListener{
 
@@ -58,7 +57,7 @@ public class FavouritesFragment extends Fragment implements FavouriteMealsClickL
     }
 
     @Override
-    public void onClick(MealFavPlan mealFavPlan) {
+    public void onClick(Meal meal) {
 
     }
 }

@@ -9,18 +9,19 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
+import eg.gov.iti.jets.foodie.model.Meal;
+
 
 @Dao
 public interface MealFavPlanDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertFavMeal(MealFavPlan mealFavPlan);
+    void insertFavMeal(Meal meal);
 
     @Delete
-    void deleteFromFavMeal(MealFavPlan mealFavPlan);
+    void deleteFromFavMeal(Meal meal);
 
     @Query("SELECT * FROM favMeals")
-    LiveData<List<MealFavPlan>> getAllFavMeals();
+    LiveData<List<Meal>> getAllFavMeals();
 
 
 }

@@ -10,7 +10,6 @@ import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.MealByFilter;
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
 import eg.gov.iti.jets.foodie.model.RepositoryInterface;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 
@@ -25,8 +24,8 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     }
 
     @Override
-    public void addFavouriteMeal(MealFavPlan mealFavPlan) {
-        repositoryInterface.insertMeal(mealFavPlan);
+    public void addFavouriteMeal(Meal meal) {
+        repositoryInterface.insertMeal(meal);
     }
 
     @Override

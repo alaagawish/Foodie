@@ -1,7 +1,8 @@
 package eg.gov.iti.jets.foodie.favourites.view;
 
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
+
+import eg.gov.iti.jets.foodie.model.Meal;
 
 public interface FavouriteMealsClickListener {
-    public void onClick(MealFavPlan mealFavPlan);
+    public void onClick(Meal meal);
 }

@@ -66,7 +66,11 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 videoId = meal.getStrYoutube().split("=")[1];
 //                youTubePlayer.loadVideo(videoId, 0);
-                youTubePlayer.cueVideo(videoId, 0);
+                if(videoId==null){
+                    youTubePlayer.cueVideo("qdhWz7qAaCU",0);
+                }else {
+                    youTubePlayer.cueVideo(videoId, 0);
+                }
             }
         });
 

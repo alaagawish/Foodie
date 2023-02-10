@@ -7,11 +7,10 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
 
 public class LocalSource implements LocalSourceInterface {
     private static LocalSource localSource = null;
-    private LiveData<List<MealFavPlan>> storedMeals;
+    private LiveData<List<Meal>> storedMeals;
     private MealFavPlanDAO mealFavPlanDAO;
 
     private LocalSource(Context context) {
@@ -28,22 +27,22 @@ public class LocalSource implements LocalSourceInterface {
     }
 
     @Override
-    public void insertFavMeal(MealFavPlan mealFavPlan) {
+    public void insertFavMeal(Meal meal) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mealFavPlanDAO.insertFavMeal(mealFavPlan);
+                mealFavPlanDAO.insertFavMeal(meal);
             }
         }).start();
 
     }
 
     @Override
-    public void removeMeal(MealFavPlan mealFavPlan) {
+    public void removeMeal(Meal meal) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mealFavPlanDAO.deleteFromFavMeal(mealFavPlan);
+                mealFavPlanDAO.deleteFromFavMeal(meal);
             }
 
         }).start();
@@ -52,7 +51,7 @@ public class LocalSource implements LocalSourceInterface {
 
 
     @Override
-    public LiveData<List<MealFavPlan>> getAllMealsStored() {
+    public LiveData<List<Meal>> getAllMealsStored() {
         return storedMeals;
     }
 

@@ -35,21 +35,20 @@ import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
 import eg.gov.iti.jets.foodie.model.Repository;
 import eg.gov.iti.jets.foodie.network.API_Client;
 
 public class HomeFragment extends Fragment implements HomeMealsClickListener, HomeMealsViewInterface {
 
-    SliderView sliderView;
-    Meal randomMeal;
-    SliderAdapter sliderAdapter;
-    HomePresenterInterface homePresenterInterface;
-    ImageButton randomHeartButton;
-    ImageView randomImageView;
-    TextView randomMealTextView;
+    private SliderView sliderView;
+    private Meal randomMeal;
+    private SliderAdapter sliderAdapter;
+    private HomePresenterInterface homePresenterInterface;
+    private ImageButton randomHeartButton;
+    private ImageView randomImageView;
+    private TextView randomMealTextView;
     private static final String TAG = "HomeFragment";
-    CardView randomCardView;
+    private CardView randomCardView;
     private ArrayList<Slider> sliderArrayList;
     private RecyclerView ingredientsHomeRecyclerView, categoriesHomeRecyclerView, countriesHomeRecyclerView;
     private CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
@@ -137,11 +136,11 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
 
     @Override
     public void addMeal(Meal meal) {
-        MealFavPlan mealFavPlan = new MealFavPlan();
+//        Meal meal1 = new Meal();
+//
+//        meal1.setMeal(meal);
 
-        mealFavPlan.setMeal(meal);
-
-        homePresenterInterface.addFavouriteMeal(mealFavPlan);
+        homePresenterInterface.addFavouriteMeal(meal);
     }
 
     public void init(View view) {

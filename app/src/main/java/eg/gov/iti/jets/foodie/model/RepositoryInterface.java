@@ -15,11 +15,11 @@ import eg.gov.iti.jets.foodie.db.MealFavPlanDAO;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 
 public interface RepositoryInterface {
-    public void insertMeal(MealFavPlan mealFavPlan);
+    public void insertMeal(Meal meal);
 
-    public void removeMeal(MealFavPlan mealFavPlan);
+    public void removeMeal(Meal meal);
 
-    public LiveData<List<MealFavPlan>> getMealsDB();
+    public LiveData<List<Meal>> getMealsDB();
 
     public void getAllRandomMeals(NetworkDelegation networkDelegate);
 

@@ -65,6 +65,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.slidePagerImageView);
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
+        meal.setId(Integer.parseInt(meal.getIdMeal()));
         holder.mealCardConstraintLayout.setOnClickListener(e -> {
 
             Intent intent = new Intent(context, DetailsActivity.class);
@@ -73,6 +74,17 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
             //new activity with category meals
         });
         holder.heartButton.setOnClickListener(e -> {
+            if (!meal.isFav()) {
+                Log.d(TAG, "onBindViewHolder: add to fav");
+                meal.setFav(true);
+                holder.heartButton.setImageResource(R.drawable.baseline_favorite_24);
+
+            } else {
+                Log.d(TAG, "onBindViewHolder: removed from fav");
+                meal.setFav(false);
+                holder.heartButton.setImageResource(R.drawable.baseline_favorite_border_24);
+            }
+            mealsClickListener.addFavor(meal);
 
         });
     }

@@ -10,7 +10,6 @@ import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
 import eg.gov.iti.jets.foodie.model.RepositoryInterface;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 import eg.gov.iti.jets.foodie.search.view.SearchViewInterface;

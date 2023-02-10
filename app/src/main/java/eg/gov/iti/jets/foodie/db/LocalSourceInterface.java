@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
+import eg.gov.iti.jets.foodie.model.Meal;
+
 
 public interface LocalSourceInterface {
-    public void insertFavMeal(MealFavPlan mealFavPlan);
+    public void insertFavMeal(Meal meal);
 
-    public void removeMeal(MealFavPlan mealFavPlan);
+    public void removeMeal(Meal meal);
 
-    public LiveData<List<MealFavPlan>> getAllMealsStored();
+    public LiveData<List<Meal>> getAllMealsStored();
 }
 

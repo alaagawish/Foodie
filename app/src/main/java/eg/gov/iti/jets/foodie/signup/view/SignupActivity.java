@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
     EditText passwordEditTextSignUp;
     EditText confirmPasswordEditTextLogin;
     String emailVal = "^(.+)@(.+)$";
-    String passwordVal = "^(?=.\\*[0-9])(?=.\\*[a-z])(?=.\\*[A-Z])(?=.\\*[@#$%^&()])(?=\\S+$).{8,20}$";
+    String passwordVal = "^(?=.\\*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&()])(?=\\S+$).{8,20}$";
 
 
     @Override
@@ -50,6 +50,8 @@ public class SignupActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance("https://foodie-b0b13-default-rtdb.firebaseio.com/");
 
+        signUpButton = findViewById(R.id.signUpButton);
+        loginText = findViewById(R.id.loginTextView);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +77,7 @@ public class SignupActivity extends AppCompatActivity {
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
                                     auth.getCurrentUser().updateProfile(profileUpdates);
                                     database.getReference().child("usersSignInGoogle").child(userName).setValue(usersSignInGoogle);
-                                    Toast.makeText(SignupActivity.this, "Your account created", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignupActivity.this, "SignUp Successfully", Toast.LENGTH_SHORT).show();
                                     intent = new Intent(SignupActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 } else {

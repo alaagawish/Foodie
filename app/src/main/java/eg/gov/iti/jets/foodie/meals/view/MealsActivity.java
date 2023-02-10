@@ -91,11 +91,18 @@ public class MealsActivity extends AppCompatActivity implements MealsClickListen
     public void showMeals(List<Meal> meals) {
         Log.d(TAG, "showMealsArea: ");
         for (int i = 0; i < meals.size(); i++) {
-            Log.d(TAG, "showMeals: vvvvvvvvvvvv " + meals.get(i).getStrArea());
-
             mealsPresenterInterface.getMealDetails(meals.get(i).getIdMeal());
-            Log.d(TAG, "showMeals: aaaaaaaaa " + meals.get(i).getStrArea());
         }
     }
 
+    @Override
+    public void addFavor(Meal meal) {
+        mealsPresenterInterface.addFavouriteMeal(meal);
+    }
+
+//    @Override
+//    public void removeFavor(Meal meal) {
+//        mealsPresenterInterface.removeFavouriteMeal(meal);
+//
+//    }
 }

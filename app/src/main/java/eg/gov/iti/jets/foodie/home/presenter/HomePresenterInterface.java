@@ -1,9 +1,12 @@
 package eg.gov.iti.jets.foodie.home.presenter;
 
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
+
+import java.util.regex.Matcher;
+
+import eg.gov.iti.jets.foodie.model.Meal;
 
 public interface HomePresenterInterface {
-    public void addFavouriteMeal(MealFavPlan mealFavPlan);
+    public void addFavouriteMeal(Meal meal);
 
     public void getRandomMeals();
 

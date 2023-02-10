@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.favourites.view.FavouriteViewInterface;
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
+import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.RepositoryInterface;
 
 public class FavouritePresenter implements FavouritePresenterInterface {
@@ -20,12 +20,12 @@ public class FavouritePresenter implements FavouritePresenterInterface {
     }
 
     @Override
-    public void removeFavouriteMeal(MealFavPlan mealFavPlan) {
-        repositoryInterface.removeMeal(mealFavPlan);
+    public void removeFavouriteMeal(Meal meal) {
+        repositoryInterface.removeMeal(meal);
     }
 
     @Override
-    public LiveData<List<MealFavPlan>> getAllMealFavPlan() {
+    public LiveData<List<Meal>> getAllMealFavPlan() {
         return repositoryInterface.getMealsDB();
     }
 }

@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import eg.gov.iti.jets.foodie.model.MealFavPlan;
+import eg.gov.iti.jets.foodie.model.Meal;
+
 
 public interface FavouritePresenterInterface {
-    public void removeFavouriteMeal(MealFavPlan mealFavPlan);
+    public void removeFavouriteMeal(Meal meal);
 
-    public LiveData<List<MealFavPlan>> getAllMealFavPlan();
+    public LiveData<List<Meal>> getAllMealFavPlan();
 
 }
