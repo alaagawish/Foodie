@@ -140,8 +140,6 @@ public class API_Client implements RemoteSource {
         Single<CountryResponse> countries = api_service.getAllCountries();
         Single<CategoryResponse> allCategories = api_service.getAllCategories();
         Single<IngredientResponse> allIngredients = api_service.getAllIngredients();
-//        Single<String> largeImage = api_service.getImageOfIngredient(ingredientName);
-//        Single<String> smallImage = api_service.getSmallImageOfIngredient(ingredientImgName);
         Log.d(TAG, "startCall: ");
 
 
@@ -162,7 +160,6 @@ public class API_Client implements RemoteSource {
         countries.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(myResponse -> {
-//                            Log.d(TAG, "enqueueCall country: " + myResponse.getCountries().get(0).getStrArea());
                             networkDelegate.onSuccessCountries(myResponse.getCountries());
                         },
                         throwable -> networkDelegate.onFailure(throwable.getMessage()));
@@ -180,16 +177,6 @@ public class API_Client implements RemoteSource {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ingredientResponse -> networkDelegate.onSuccessIngredient(ingredientResponse.getMeals()),
                         throwable -> networkDelegate.onFailure(throwable.getMessage()));
-
-//        largeImage.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(meals -> networkDelegate.onSuccessString(meals),
-//                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//
-//        smallImage.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(meals -> networkDelegate.onSuccessString(meals),
-//                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
 
 
 //              use disposter to close all observers

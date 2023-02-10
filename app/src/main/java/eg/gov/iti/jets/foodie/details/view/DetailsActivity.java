@@ -34,7 +34,7 @@ import eg.gov.iti.jets.foodie.model.Repository;
 import eg.gov.iti.jets.foodie.network.API_Client;
 import kr.co.prnd.readmore.ReadMoreTextView;
 
-public class DetailsActivity extends AppCompatActivity implements MealClickListener , DetailsViewInterface, AllIngredientsClickListener{
+public class DetailsActivity extends AppCompatActivity implements MealClickListener, DetailsViewInterface, AllIngredientsClickListener {
     private static final String TAG = "DetailsActivity";
     private YouTubePlayerView youTubePlayerView;
     private RecyclerView allIngredientsRecyclerView;
@@ -68,14 +68,19 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
         mealPreparationTextView.setText(meal.getStrInstructions());
         areaTextView.setText(meal.getStrArea());
         foodTypeTextView.setText(meal.getStrCategory());
+        if (!meal.isFav()) {
+            likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_border_24);
+        } else {
+            likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_24);
+        }
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 videoId = meal.getStrYoutube().split("=")[1];
 //                youTubePlayer.loadVideo(videoId, 0);
-                if(videoId==null){
-                    youTubePlayer.cueVideo("qdhWz7qAaCU",0);
-                }else {
+                if (videoId == null) {
+                    youTubePlayer.cueVideo("qdhWz7qAaCU", 0);
+                } else {
                     youTubePlayer.cueVideo(videoId, 0);
                 }
             }
