@@ -3,6 +3,7 @@ package eg.gov.iti.jets.foodie.model;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -11,12 +12,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "favMeals")
+@Entity(tableName = "favMeals",primaryKeys = {"id","day"})
 public class Meal implements Serializable {
     private static final String TAG = "Meal";
 
 
-    @PrimaryKey
+//    @PrimaryKey
     @NonNull
     private int id;
     private String idMeal;
@@ -24,6 +25,9 @@ public class Meal implements Serializable {
     private String username;
     private String email;
     private boolean isFav;
+    @ColumnInfo(name = "day", defaultValue = "temp")
+    @NonNull
+
     private String day;
     private String date;
 
@@ -80,7 +84,6 @@ public class Meal implements Serializable {
 
     public Meal() {
         ingredientList = new ArrayList<>();
-//        convertId();
     }
 
     public Meal(String strMeal, String strMealThumb) {
@@ -103,7 +106,6 @@ public class Meal implements Serializable {
         this.strInstructions = strInstructions;
         this.strMealThumb = strMealThumb;
         this.strYoutube = strYoutube;
-//        this.ingredientList = ingredientList;
     }
 
     public String getIdMeal() {
@@ -247,7 +249,6 @@ public class Meal implements Serializable {
     }
 
     public void setFav(boolean fav) {
-//        convertId();
         isFav = fav;
     }
 
@@ -610,21 +611,6 @@ public class Meal implements Serializable {
     public void setStrMeasure20(String strMeasure20) {
         this.strMeasure20 = strMeasure20;
     }
-
-    //    public void setMeal(Meal meal) {
-//        this.strMeal = meal.getStrMeal();
-//        this.strCategory = meal.getStrCategory();
-//        this.strArea = meal.getStrArea();
-//        this.strInstructions = meal.getStrInstructions();
-//        this.strMealThumb = meal.getStrMealThumb();
-//        this.strYoutube = meal.getStrYoutube();
-//        for (Ingredient ingredient : meal.getIngredientList()) {
-//            Log.d(TAG, "setMeal: " + ingredient.getName());
-//        }
-//    public void convertId() {
-//        this.id = Integer.parseInt(this.idMeal);
-//
-//    }
 
     public void setIngredientList(List<Ingredient> ingredientList) {
         this.ingredientList = ingredientList;
