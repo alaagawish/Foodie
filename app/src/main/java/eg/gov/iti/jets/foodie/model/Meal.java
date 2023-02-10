@@ -151,63 +151,63 @@ public class Meal implements Serializable {
     }
 
     public List<Ingredient> getIngredientList() {
-        if (!strIngredient1.equals(""))
+        if (strIngredient1 != null && !strIngredient1.equals(""))
             ingredientList.add(new Ingredient(strIngredient1, strMeasure1));
-        if (!strIngredient2.equals(""))
+        if (strIngredient2 != null && !strIngredient2.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient2, strMeasure2));
-        if (!strIngredient3.equals(""))
+        if (strIngredient3 != null && !strIngredient3.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient3, strMeasure3));
-        if (!strIngredient4.equals(""))
+        if (strIngredient4 != null && !strIngredient4.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient4, strMeasure4));
-        if (!strIngredient5.equals(""))
+        if (strIngredient5 != null && !strIngredient5.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient5, strMeasure5));
-        if (!strIngredient6.equals(""))
+        if (strIngredient6 != null && !strIngredient6.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient6, strMeasure6));
-        if (!strIngredient7.equals(""))
+        if (strIngredient7 != null && !strIngredient7.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient7, strMeasure7));
-        if (!strIngredient8.equals(""))
+        if (strIngredient8 != null && !strIngredient8.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient8, strMeasure8));
-        if (!strIngredient9.equals(""))
+        if (strIngredient9 != null && !strIngredient9.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient9, strMeasure9));
-        if (!strIngredient10.equals(""))
+        if (strIngredient10 != null && !strIngredient10.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient10, strMeasure10));
-        if (!strIngredient11.equals(""))
+        if (strIngredient11 != null && !strIngredient11.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient11, strMeasure11));
-        if (!strIngredient12.equals(""))
+        if (strIngredient12 != null && !strIngredient12.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient12, strMeasure12));
-        if (!strIngredient13.equals(""))
+        if (strIngredient13 != null && !strIngredient13.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient13, strMeasure13));
-        if (!strIngredient14.equals(""))
+        if (strIngredient14 != null && !strIngredient14.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient14, strMeasure14));
-        if (!strIngredient15.equals(""))
+        if (strIngredient15 != null && !strIngredient15.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient15, strMeasure15));
-        if (!strIngredient16.equals(""))
+        if (strIngredient16 != null && !strIngredient16.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient16, strMeasure16));
-        if (!strIngredient17.equals(""))
+        if (strIngredient17 != null && !strIngredient17.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient17, strMeasure17));
-        if (!strIngredient18.equals(""))
+        if (strIngredient18 != null && !strIngredient18.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient18, strMeasure18));
-        if (!strIngredient19.equals(""))
+        if (strIngredient19 != null && !strIngredient19.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient19, strMeasure19));
-        if (!strIngredient20.equals(""))
+        if (strIngredient20 != null && !strIngredient20.equals(""))
 
             ingredientList.add(new Ingredient(strIngredient20, strMeasure20));
 

@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.meals.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
 import eg.gov.iti.jets.foodie.meals.view.MealsAdapter;
 import eg.gov.iti.jets.foodie.home.view.HomeMealsClickListener;
 import eg.gov.iti.jets.foodie.model.Country;
+import eg.gov.iti.jets.foodie.model.Ingredient;
 import eg.gov.iti.jets.foodie.model.Meal;
 
 public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> {
@@ -64,13 +67,9 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
         holder.mealCardConstraintLayout.setOnClickListener(e -> {
 
-            //get meal by id first
-
-
-//            Intent intent = new Intent(context, DetailsActivity.class);
-
-//            intent.putExtra("meal", allMeals.get(position));
-//            context.startActivity(intent);
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("meal", meals.get(position));
+            context.startActivity(intent);
             //new activity with category meals
         });
         holder.heartButton.setOnClickListener(e -> {

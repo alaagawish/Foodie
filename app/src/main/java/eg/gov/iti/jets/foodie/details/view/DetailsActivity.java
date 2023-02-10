@@ -41,6 +41,7 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
     private ImageView mealImageView;
     private TextView mealNameTextview, areaTextView, foodTypeTextView;
     String videoId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-              videoId = meal.getStrYoutube().split("=")[1];
+                videoId = meal.getStrYoutube().split("=")[1];
 //                youTubePlayer.loadVideo(videoId, 0);
                 youTubePlayer.cueVideo(videoId, 0);
             }

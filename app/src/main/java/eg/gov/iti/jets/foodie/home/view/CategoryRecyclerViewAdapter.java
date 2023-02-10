@@ -61,7 +61,6 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.categoryNameCardImageView);
 
-        Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
         holder.categoryConstraintLayout.setOnClickListener(e -> {
             Intent intent = new Intent(context, MealsActivity.class);
             intent.putExtra("name", category);

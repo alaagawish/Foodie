@@ -31,13 +31,9 @@ public class API_Client implements RemoteSource {
     private static final String BASE_URL = "https://themealdb.com/";
     private static final String TAG = "API_Client";
     private static API_Client api_client = null;
-    String area = "canadian";
     String id = "11";
-    String ingredient = "chicken";
-    char c = 'a';
     String ingredientImgName = "";
-    String searchName = "kosh";
-    String ingredientName = "Salt", category = "Dessert";
+    String ingredientName = "Salt";
 
 
     private API_Client() {
@@ -48,6 +44,17 @@ public class API_Client implements RemoteSource {
             api_client = new API_Client();
         }
         return api_client;
+    }
+
+    @Override
+    public void enqueueCallById(NetworkDelegation networkDelegate, String id) {
+        Single<MyResponse> mealById = api_service.getMealById(id);
+        mealById.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                            networkDelegate.onSuccess(response.getMeals());
+                        },
+                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
     }
 
     @Override
@@ -66,11 +73,13 @@ public class API_Client implements RemoteSource {
             allMealsByArea.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(myResponse -> {
-                                Log.d(TAG, "enqueueCall: kkkkkkkkkk" + myResponse.getMeals().get(0).getStrMeal());
+                                Log.d(TAG, "enqueueCall: " + myResponse.getMeals().get(0).getStrMeal());
                                 networkDelegate.onSuccessMealByFilter(myResponse.getMeals());
                             },
                             throwable -> networkDelegate.onFailure(throwable.getMessage()));
-
+//            Single<List<Meal>> m = allMealsByArea.concatMap(response -> {
+//                return api_service.getMealById(response.getIdMeal());
+//            }).subscribe(myResponse -> networkDelegate.onSuccessMealByFilter(myResponse.getMeals()));
 
         } else if (c == 'i') {
             Single<MyResponse> allMealsByIngredient = api_service.getAllMealsByIngredient(name);
@@ -92,6 +101,28 @@ public class API_Client implements RemoteSource {
     }
 
     @Override
+    public void enqueueCallBySearch(NetworkDelegation networkDelegate, String search) {
+        Gson gson = new GsonBuilder().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .build();
+
+        api_service = retrofit.create(API_Service.class);
+
+        Single<MyResponse> allMealsBySearch = api_service.getAllMealsBySearch(search);
+
+        allMealsBySearch.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(myResponse -> {
+                            Log.d(TAG, "enqueueCall: search ");
+                            networkDelegate.onSuccess(myResponse.getMeals());
+                        },
+                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
+    }
+
+    @Override
     public void enqueueCall(NetworkDelegation networkDelegate) {
 
         Gson gson = new GsonBuilder().create();
@@ -104,9 +135,7 @@ public class API_Client implements RemoteSource {
         api_service = retrofit.create(API_Service.class);
 
 
-//        Single<List<Meal>> allMealsBySearch = api_service.getAllMealsBySearch(searchName);
 //        Single<Meal> allMealsByFirstLetter = api_service.getAllMealsByFirstLetter(c);
-//        Single<Meal> mealById = api_service.getMealById(id);
         Single<MyResponse> mealsByRandom = api_service.getMealsByRandom();
         Single<CountryResponse> countries = api_service.getAllCountries();
         Single<CategoryResponse> allCategories = api_service.getAllCategories();
@@ -116,22 +145,12 @@ public class API_Client implements RemoteSource {
         Log.d(TAG, "startCall: ");
 
 
-//        allMealsBySearch.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(meals -> networkDelegate.onSuccess(meals),
-//                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//
-//
 //        allMealsByFirstLetter.subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(meals -> networkDelegate.onSuccessMeal(meals),
 //                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//        mealById.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(meals -> networkDelegate.onSuccessMeal(meals),
-//                        throwable -> networkDelegate.onFailure(throwable.getMessage()));
-//
-//
+
+
         mealsByRandom.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(myResponse -> {
@@ -176,4 +195,3 @@ public class API_Client implements RemoteSource {
 //              use disposter to close all observers
     }
 }
-
