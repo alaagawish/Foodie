@@ -60,13 +60,10 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
@@ -96,20 +93,29 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
             Intent intent = new Intent(getContext(), DetailsActivity.class);
             intent.putExtra("meal", randomMeal);
             startActivity(intent);
-
         });
 
+        randomHeartButton.setOnClickListener(e -> {
+            randomMeal.setId(Integer.parseInt(randomMeal.getIdMeal()));
+            if (!randomMeal.isFav()) {
+                Log.d(TAG, "onBindViewHolder: add to fav");
+                randomMeal.setFav(true);
+                randomHeartButton.setImageResource(R.drawable.baseline_favorite_24);
+
+            } else {
+                Log.d(TAG, "onBindViewHolder: removed from fav");
+                randomMeal.setFav(false);
+                randomHeartButton.setImageResource(R.drawable.baseline_favorite_border_24);
+            }
+            addFavor(randomMeal);
+        });
 
     }
 
     @Override
     public void showMeals(List<Meal> meals) {
         randomMeal = meals.get(0);
-        Glide.with(getContext()).load(meals.get(0).getStrMealThumb())
-                .apply(new RequestOptions().override(200, 160))
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(randomImageView);
+        Glide.with(getContext()).load(meals.get(0).getStrMealThumb()).apply(new RequestOptions().override(200, 160)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground).into(randomImageView);
         randomMealTextView.setText(meals.get(0).getStrMeal());
     }
 
@@ -136,10 +142,6 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
 
     @Override
     public void addMeal(Meal meal) {
-//        Meal meal1 = new Meal();
-//
-//        meal1.setMeal(meal);
-
         homePresenterInterface.addFavouriteMeal(meal);
     }
 
@@ -163,4 +165,8 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         countriesHomeRecyclerView.setAdapter(countryRecyclerViewAdapter);
     }
 
+    @Override
+    public void addFavor(Meal meal) {
+        homePresenterInterface.addFavouriteMeal(meal);
+    }
 }

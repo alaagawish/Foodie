@@ -24,11 +24,17 @@ import java.util.List;
 
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.db.LocalSource;
+import eg.gov.iti.jets.foodie.details.presenter.DetailsPresenter;
+import eg.gov.iti.jets.foodie.details.presenter.DetailsPresenterInterface;
+import eg.gov.iti.jets.foodie.meals.presenter.MealsPresenter;
 import eg.gov.iti.jets.foodie.model.Ingredient;
 import eg.gov.iti.jets.foodie.model.Meal;
+import eg.gov.iti.jets.foodie.model.Repository;
+import eg.gov.iti.jets.foodie.network.API_Client;
 import kr.co.prnd.readmore.ReadMoreTextView;
 
-public class DetailsActivity extends AppCompatActivity implements AllIngredientsClickListener {
+public class DetailsActivity extends AppCompatActivity implements MealClickListener , DetailsViewInterface, AllIngredientsClickListener{
     private static final String TAG = "DetailsActivity";
     private YouTubePlayerView youTubePlayerView;
     private RecyclerView allIngredientsRecyclerView;
@@ -41,6 +47,7 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
     private ImageView mealImageView;
     private TextView mealNameTextview, areaTextView, foodTypeTextView;
     String videoId;
+    DetailsPresenterInterface detailsPresenterInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +88,16 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
     }
 
     public void AddFav(View view) {
-        if (!favFlag) {
-            favFlag = true;
+        meal.setId(Integer.parseInt(meal.getIdMeal()));
+        if (!meal.isFav()) {
+            meal.setFav(true);
             likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_24);
-        } else {
-            favFlag = false;
-            likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_border_24);
 
+        } else {
+            meal.setFav(false);
+            likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_border_24);
         }
+        addMealToFav(meal);
     }
 
     public void init() {
@@ -103,14 +112,12 @@ public class DetailsActivity extends AppCompatActivity implements AllIngredients
         mealPreparationTextView = findViewById(R.id.mealPreparationTextView);
         areaTextView = findViewById(R.id.areaTextView);
         foodTypeTextView = findViewById(R.id.foodTypeTextView);
+        detailsPresenterInterface = new DetailsPresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(this), this));
 
     }
 
-    public void dumy() {
-        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
-        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
-        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
-        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
-        dumyIngredients.add(new Ingredient("Chicken", "360g", "https://www.unileverfoodsolutions.co.in/wp-content/uploads/2020/11/Featured-3.jpg"));
+    @Override
+    public void addMealToFav(Meal meal) {
+        detailsPresenterInterface.addFavouriteMeal(meal);
     }
 }
