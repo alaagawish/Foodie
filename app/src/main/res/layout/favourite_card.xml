@@ -13,7 +13,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/favCardConstraintLayout">
 
             <ImageView
                 android:id="@+id/favouriteImageView"
@@ -51,6 +52,9 @@
                 android:textColor="@color/dark_blue"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:maxEms="12"
+                android:maxLines="2"
+                app:layout_constraintRight_toLeftOf="@+id/favouriteHeartImageButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/favouriteImageView"
                 app:layout_constraintTop_toBottomOf="@+id/favouriteImageView"
