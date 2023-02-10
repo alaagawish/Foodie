@@ -18,6 +18,7 @@ import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.home.view.HomeFragment;
 import eg.gov.iti.jets.foodie.home.view.HomeRecyclerViewAdapter;
 import eg.gov.iti.jets.foodie.model.Meal;
+import eg.gov.iti.jets.foodie.model.MealFavPlan;
 
 public class FavouritesFragment extends Fragment implements FavouriteMealsClickListener{
 
@@ -58,4 +59,8 @@ public class FavouritesFragment extends Fragment implements FavouriteMealsClickL
         meals.add(new Meal("spicy chicken", "https://vismaifood.com/storage/app/uploads/public/105/fc7/89f/thumb__700_0_0_0_auto.jpg"));
     }
 
+    @Override
+    public void onClick(MealFavPlan mealFavPlan) {
+
+    }
 }
