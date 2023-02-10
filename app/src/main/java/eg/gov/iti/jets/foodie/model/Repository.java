@@ -2,6 +2,7 @@ package eg.gov.iti.jets.foodie.model;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -47,8 +48,19 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
+    public void removeMealPlanned(Meal meal) {
+        Log.d(TAG, "removeMealPlanned: ");
+        localSourceInterface.removePlannedMeal(meal);
+    }
+
+    @Override
     public LiveData<List<Meal>> getMealsDB() {
         return localSourceInterface.getAllMealsStored();
+    }
+
+    @Override
+    public LiveData<List<Meal>> getMealsByDayDB(String day) {
+        return localSourceInterface.getStoredMealsByDay(day);
     }
 
     @Override

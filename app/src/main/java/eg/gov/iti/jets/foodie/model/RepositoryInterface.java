@@ -15,17 +15,20 @@ import eg.gov.iti.jets.foodie.db.MealFavPlanDAO;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 
 public interface RepositoryInterface {
-    public void insertMeal(Meal meal);
+    void insertMeal(Meal meal);
 
-    public void removeMeal(Meal meal);
+    void removeMeal(Meal meal);
+    void removeMealPlanned(Meal meal);
 
-    public LiveData<List<Meal>> getMealsDB();
+    LiveData<List<Meal>> getMealsDB();
 
-    public void getAllRandomMeals(NetworkDelegation networkDelegate);
+    LiveData<List<Meal>> getMealsByDayDB(String day);
 
-    public void getFilteredMeals(NetworkDelegation networkDelegate, String name, char c);
+    void getAllRandomMeals(NetworkDelegation networkDelegate);
 
-    public void getMealDetails(NetworkDelegation networkDelegate, String id);
+    void getFilteredMeals(NetworkDelegation networkDelegate, String name, char c);
 
-    public void getSearchedMeals(NetworkDelegation networkDelegate, String search);
+    void getMealDetails(NetworkDelegation networkDelegate, String id);
+
+    void getSearchedMeals(NetworkDelegation networkDelegate, String search);
 }

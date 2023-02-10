@@ -73,16 +73,18 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
         } else {
             likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_24);
         }
+
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                videoId = meal.getStrYoutube().split("=")[1];
+                if (meal.getStrYoutube() != null && !meal.getStrYoutube().equals("")) {
+                    videoId = meal.getStrYoutube().split("=")[1];
 //                youTubePlayer.loadVideo(videoId, 0);
-                if (videoId == null) {
-                    youTubePlayer.cueVideo("qdhWz7qAaCU", 0);
-                } else {
                     youTubePlayer.cueVideo(videoId, 0);
+                } else {
+                    youTubePlayer.cueVideo("qdhWz7qAaCU", 0);
                 }
+
             }
         });
 

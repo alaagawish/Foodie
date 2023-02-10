@@ -12,6 +12,10 @@ public interface LocalSourceInterface {
 
     public void removeMeal(Meal meal);
 
+    public void removePlannedMeal(Meal meal);
+
     public LiveData<List<Meal>> getAllMealsStored();
+
+    public LiveData<List<Meal>> getStoredMealsByDay(String day);
 }
 

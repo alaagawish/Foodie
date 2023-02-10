@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.plan.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +24,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import eg.gov.iti.jets.foodie.R;
 
+import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
 import eg.gov.iti.jets.foodie.model.Meal;
 
 
@@ -61,11 +64,15 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.ViewHolder> {
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.mealImageViewPlannerCard);
         holder.deleteMealImageViewPlannerCard.setOnClickListener(e -> {
-            //delete from list
-            allMeals.remove(meal);
+            Log.d(TAG, "onBindViewHolder: delete " + meal.getStrMeal());
+            allMealsClickListener.deleteMealFromDay(meal);
             notifyDataSetChanged();
         });
-        Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
+        holder.planCardConstraintLayout.setOnClickListener(e -> {
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("meal", meal);
+            context.startActivity(intent);
+        });
 
     }
 
@@ -78,12 +85,14 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mealNameTextView;
         ImageView deleteMealImageViewPlannerCard, mealImageViewPlannerCard;
+        ConstraintLayout planCardConstraintLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             deleteMealImageViewPlannerCard = itemView.findViewById(R.id.deleteMealImageViewPlannerCard);
             mealImageViewPlannerCard = itemView.findViewById(R.id.mealImageViewPlannerCard);
             mealNameTextView = itemView.findViewById(R.id.mealNameTextView);
+            planCardConstraintLayout = itemView.findViewById(R.id.planCardConstraintLayout);
 
 
         }

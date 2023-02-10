@@ -28,13 +28,13 @@ import eg.gov.iti.jets.foodie.network.API_Client;
 
 public class MealsActivity extends AppCompatActivity implements MealsClickListener, MealsViewInterface {
     private static final String TAG = "MealsActivity";
-    ImageButton backArrowCircularImageButton;
-    TextView mealsTypeTextView;
-    RecyclerView itemsRecyclerView;
-    String type;
-    MealsAdapter mealsAdapter;
-    MealsPresenterInterface mealsPresenterInterface;
-    List<Meal> meals;
+    private ImageButton backArrowCircularImageButton;
+    private TextView mealsTypeTextView;
+    private RecyclerView itemsRecyclerView;
+    private String type;
+    private MealsAdapter mealsAdapter;
+    private MealsPresenterInterface mealsPresenterInterface;
+    private List<Meal> meals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,6 @@ public class MealsActivity extends AppCompatActivity implements MealsClickListen
             mealsPresenterInterface.getFilteredMeals(name.getStrIngredient(), 'i');
 
         }
-
 
         backArrowCircularImageButton.setOnClickListener(e -> {
             Intent intent1 = new Intent(MealsActivity.this, MainActivity.class);
