@@ -2,6 +2,7 @@ package eg.gov.iti.jets.foodie.meals.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -34,12 +36,14 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
     private List<Meal> meals;
     private Context context;
     private MealsClickListener mealsClickListener;
+    boolean flag;
 
-    public MealsAdapter(Context context, MealsClickListener mealsClickListener) {
+    public MealsAdapter(Context context, MealsClickListener mealsClickListener, boolean flag) {
         super();
         meals = new ArrayList<>();
         this.context = context;
         this.mealsClickListener = mealsClickListener;
+        this.flag = flag;
     }
 
     public void setAllMeals(List<Meal> meals) {
@@ -74,18 +78,22 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
             //new activity with category meals
         });
         holder.heartButton.setOnClickListener(e -> {
-            if (!meal.isFav()) {
-                Log.d(TAG, "onBindViewHolder: add to fav");
-                meal.setFav(true);
-                holder.heartButton.setImageResource(R.drawable.baseline_favorite_24);
+            if(flag) {
+                if (!meal.isFav()) {
+                    Log.d(TAG, "onBindViewHolder: add to fav");
+                    meal.setFav(true);
+                    holder.heartButton.setImageResource(R.drawable.baseline_favorite_24);
 
-            } else {
-                Log.d(TAG, "onBindViewHolder: removed from fav");
-                meal.setFav(false);
-                holder.heartButton.setImageResource(R.drawable.baseline_favorite_border_24);
+                } else {
+                    Log.d(TAG, "onBindViewHolder: removed from fav");
+                    meal.setFav(false);
+                    holder.heartButton.setImageResource(R.drawable.baseline_favorite_border_24);
+                }
+                mealsClickListener.addFavor(meal);
             }
-            mealsClickListener.addFavor(meal);
-
+            else {
+                Toast.makeText(context, "Create account first", Toast.LENGTH_LONG).show();
+            }
         });
     }
 

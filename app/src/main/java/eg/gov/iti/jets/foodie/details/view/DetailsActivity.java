@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -27,6 +29,7 @@ import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.db.LocalSource;
 import eg.gov.iti.jets.foodie.details.presenter.DetailsPresenter;
 import eg.gov.iti.jets.foodie.details.presenter.DetailsPresenterInterface;
+import eg.gov.iti.jets.foodie.login.view.LoginActivity;
 import eg.gov.iti.jets.foodie.meals.presenter.MealsPresenter;
 import eg.gov.iti.jets.foodie.model.Ingredient;
 import eg.gov.iti.jets.foodie.model.Meal;
@@ -48,6 +51,7 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
     private TextView mealNameTextview, areaTextView, foodTypeTextView;
     String videoId;
     DetailsPresenterInterface detailsPresenterInterface;
+    SharedPreferences sharedPreferences1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,7 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
         mealPreparationTextView.setText(meal.getStrInstructions());
         areaTextView.setText(meal.getStrArea());
         foodTypeTextView.setText(meal.getStrCategory());
+        sharedPreferences1 = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
         if (!meal.isFav()) {
             likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_border_24);
         } else {
@@ -95,16 +100,21 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
     }
 
     public void AddFav(View view) {
-        meal.setId(Integer.parseInt(meal.getIdMeal()));
-        if (!meal.isFav()) {
-            meal.setFav(true);
-            likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_24);
-
-        } else {
-            meal.setFav(false);
-            likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_border_24);
+        if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
+            Toast.makeText(DetailsActivity.this, "Create account first", Toast.LENGTH_LONG).show();
         }
-        addMealToFav(meal);
+        else {
+            meal.setId(Integer.parseInt(meal.getIdMeal()));
+            if (!meal.isFav()) {
+                meal.setFav(true);
+                likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_24);
+
+            } else {
+                meal.setFav(false);
+                likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_border_24);
+            }
+            addMealToFav(meal);
+        }
     }
 
     public void init() {

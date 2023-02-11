@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.List;
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.db.LocalSource;
+import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
 import eg.gov.iti.jets.foodie.home.presenter.HomePresenter;
+import eg.gov.iti.jets.foodie.login.view.LoginActivity;
 import eg.gov.iti.jets.foodie.meals.presenter.MealsPresenter;
 import eg.gov.iti.jets.foodie.meals.presenter.MealsPresenterInterface;
 import eg.gov.iti.jets.foodie.model.Category;
@@ -35,11 +39,13 @@ public class MealsActivity extends AppCompatActivity implements MealsClickListen
     private MealsAdapter mealsAdapter;
     private MealsPresenterInterface mealsPresenterInterface;
     private List<Meal> meals;
+    SharedPreferences sharedPreferences1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meals);
+        sharedPreferences1 = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
         init();
 
         Intent intent = getIntent();
@@ -73,7 +79,7 @@ public class MealsActivity extends AppCompatActivity implements MealsClickListen
         itemsRecyclerView = findViewById(R.id.itemsRecyclerView);
         mealsTypeTextView = findViewById(R.id.mealsTypeTextView);
         backArrowCircularImageButton = findViewById(R.id.backArrowCircularImageButton);
-        mealsAdapter = new MealsAdapter(this, this);
+        mealsAdapter = new MealsAdapter(this, this, !sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND"));
 
 
     }

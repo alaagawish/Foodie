@@ -56,9 +56,8 @@ public class FavouritesFragment extends Fragment implements FavouriteMealsClickL
             @Override
             public void onChanged(List<Meal> meals) {
                 favMeals.clear();
-                for (Meal meal: meals)
-                {
-                    if(meal.isFav())
+                for (Meal meal : meals) {
+                    if (meal.isFav())
                         favMeals.add(meal);
                 }
                 favouriteAdapter.setAllMeals(favMeals);

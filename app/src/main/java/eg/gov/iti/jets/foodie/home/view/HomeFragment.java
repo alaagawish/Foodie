@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.home.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.db.LocalSource;
 import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
 import eg.gov.iti.jets.foodie.home.presenter.HomePresenter;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.login.view.LoginActivity;
 import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.IngredientList;
@@ -84,6 +88,8 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         sliderView.setAutoCycle(true);
         sliderView.startAutoCycle();
 
+        SharedPreferences sharedPreferences1 = requireActivity().getSharedPreferences(LoginActivity.PREF, 0);
+
 
         homePresenterInterface = new HomePresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
         homePresenterInterface.getRandomMeals();
@@ -96,18 +102,23 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         });
 
         randomHeartButton.setOnClickListener(e -> {
-            randomMeal.setId(Integer.parseInt(randomMeal.getIdMeal()));
-            if (!randomMeal.isFav()) {
-                Log.d(TAG, "onBindViewHolder: add to fav");
-                randomMeal.setFav(true);
-                randomHeartButton.setImageResource(R.drawable.baseline_favorite_24);
-
-            } else {
-                Log.d(TAG, "onBindViewHolder: removed from fav");
-                randomMeal.setFav(false);
-                randomHeartButton.setImageResource(R.drawable.baseline_favorite_border_24);
+            if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
+                Toast.makeText(getContext(), "Create account first", Toast.LENGTH_LONG).show();
             }
-            addFavor(randomMeal);
+            else {
+                randomMeal.setId(Integer.parseInt(randomMeal.getIdMeal()));
+                if (!randomMeal.isFav()) {
+                    Log.d(TAG, "onBindViewHolder: add to fav");
+                    randomMeal.setFav(true);
+                    randomHeartButton.setImageResource(R.drawable.baseline_favorite_24);
+
+                } else {
+                    Log.d(TAG, "onBindViewHolder: removed from fav");
+                    randomMeal.setFav(false);
+                    randomHeartButton.setImageResource(R.drawable.baseline_favorite_border_24);
+                }
+                addFavor(randomMeal);
+            }
         });
 
     }
