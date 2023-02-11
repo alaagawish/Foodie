@@ -46,6 +46,17 @@ public class LocalSource implements LocalSourceInterface {
     }
 
     @Override
+    public void deleteTable() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mealFavPlanDAO.deleteTableData();
+            }
+        }).start();
+
+    }
+
+    @Override
     public void removeMeal(Meal meal) {
         new Thread(new Runnable() {
             @Override
@@ -56,6 +67,7 @@ public class LocalSource implements LocalSourceInterface {
         }).start();
 
     }
+
 
     @Override
     public void removePlannedMeal(Meal meal) {
