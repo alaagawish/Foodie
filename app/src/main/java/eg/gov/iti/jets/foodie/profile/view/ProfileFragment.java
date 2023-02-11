@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.profile.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class ProfileFragment extends Fragment {
     FirebaseAuth mAuth;
     GoogleSignInClient gsc;
     GoogleSignInOptions gso;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,17 +54,15 @@ public class ProfileFragment extends Fragment {
         logoutButton = view.findViewById(R.id.logoutButton);
         mAuth = FirebaseAuth.getInstance();
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(getContext(),gso);
+        gsc = GoogleSignIn.getClient(getContext(), gso);
 
-        GoogleSignInAccount account=GoogleSignIn.getLastSignedInAccount(getContext());
-        if(account != null)
-        {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+        if (account != null) {
             String userName = account.getDisplayName();
             usernameTextView.setText(userName);
         }
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null)
-        {
+        if (user != null) {
             String userName = user.getDisplayName();
             usernameTextView.setText(userName);
         }
@@ -74,8 +74,10 @@ public class ProfileFragment extends Fragment {
                 gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(LoginActivity.PREF, 0);
+                        sharedPreferences.edit().clear().commit();
                         Intent intent = new Intent(getActivity(), LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 });

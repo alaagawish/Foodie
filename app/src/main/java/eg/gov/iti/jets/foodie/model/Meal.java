@@ -12,17 +12,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "favMeals",primaryKeys = {"id","day"})
+@Entity(tableName = "favMeals", primaryKeys = {"id", "day"})
 public class Meal implements Serializable {
     private static final String TAG = "Meal";
 
 
-//    @PrimaryKey
+    //    @PrimaryKey
     @NonNull
     private int id;
     private String idMeal;
     private String password;
-    private String username;
+    private String userName;
     private String email;
     private boolean isFav;
     @ColumnInfo(name = "day", defaultValue = "temp")
@@ -276,12 +276,12 @@ public class Meal implements Serializable {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {

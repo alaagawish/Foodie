@@ -24,22 +24,23 @@ import java.util.regex.Pattern;
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.login.view.LoginActivity;
+import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.usersSignInGoogle;
 
 
 public class SignupActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
-    FirebaseDatabase database;
-    Intent intent;
-    Button signUpButton;
-    TextView loginText;
-    EditText usernameEditTextSignUp;
-    EditText emailEditTextSignUp;
-    EditText passwordEditTextSignUp;
-    EditText confirmPasswordEditTextLogin;
-    String emailVal = "^(.+)@(.+)$";
-    String passwordVal = "^(?=.\\*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&()])(?=\\S+$).{8,20}$";
+    private FirebaseAuth auth;
+    private FirebaseDatabase database;
+    private Intent intent;
+    private Button signUpButton;
+    private TextView loginText;
+    private EditText usernameEditTextSignUp;
+    private EditText emailEditTextSignUp;
+    private EditText passwordEditTextSignUp;
+    private EditText confirmPasswordEditTextLogin;
+    private String emailVal = "^(.+)@(.+)$";
+    private String passwordVal = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&()])(?=\\S+$).{8,20}$";
 
 
     @Override
@@ -70,13 +71,18 @@ public class SignupActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    usersSignInGoogle usersSignInGoogle = new usersSignInGoogle();
-                                    assert usersSignInGoogle != null;
-                                    usersSignInGoogle.setEmail(email);
-                                    usersSignInGoogle.setUserName(userName);
+                                    Meal meal = new Meal();
+//                                    usersSignInGoogle usersSignInGoogle = new usersSignInGoogle();
+//                                    assert usersSignInGoogle != null;
+                                    assert meal != null;
+//                                    usersSignInGoogle.setEmail(email);
+                                    meal.setEmail(email);
+//                                    usersSignInGoogle.setUserName(userName);
+                                    meal.setUserName(userName);
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
                                     auth.getCurrentUser().updateProfile(profileUpdates);
-                                    database.getReference().child("usersSignInGoogle").child(userName).setValue(usersSignInGoogle);
+//                                    database.getReference().child("usersSignInGoogle").child(userName).setValue(usersSignInGoogle);
+                                    database.getReference().child("meal").child(userName).setValue(meal);
                                     Toast.makeText(SignupActivity.this, "SignUp Successfully", Toast.LENGTH_SHORT).show();
                                     intent = new Intent(SignupActivity.this, MainActivity.class);
                                     startActivity(intent);
@@ -132,5 +138,9 @@ public class SignupActivity extends AppCompatActivity {
         passwordEditTextSignUp = findViewById(R.id.passwordEditTextSignUp);
         confirmPasswordEditTextLogin = findViewById(R.id.confirmPasswordEditTextLogin);
 
+    }
+
+    public void back(View view) {
+        finish();
     }
 }
