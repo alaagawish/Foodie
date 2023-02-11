@@ -52,6 +52,13 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
+    public void deleteDBTable() {
+        localSourceInterface.deleteTable();
+
+    }
+
+
+    @Override
     public void removeMealPlanned(Meal meal) {
         Log.d(TAG, "removeMealPlanned: ");
         localSourceInterface.removePlannedMeal(meal);

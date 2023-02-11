@@ -19,11 +19,14 @@ public interface RepositoryInterface {
 
     void removeMeal(Meal meal);
 
+    void deleteDBTable();
+
     void removeMealPlanned(Meal meal);
 
     LiveData<List<Meal>> getMealsDB();
 
     LiveData<List<Meal>> getAllFavMeals();
+
     LiveData<List<Meal>> getPlannedMealss();
 
     LiveData<List<Meal>> getMealsByDayDB(String day);

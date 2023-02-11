@@ -78,7 +78,6 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
     private static final int PHOTO_SELECTED = 1;
     private static final int PICK_FROM_GALLERY = 0;
     private ProfilePresenterInterface profilePresenterInterface;
-//    private List<Meal> favorMeals, planMeals;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -127,6 +126,9 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                profilePresenterInterface.deleteDBTable();
+
                 FirebaseAuth.getInstance().signOut();
                 gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -146,9 +148,7 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
             profilePresenterInterface.getAllFavMeal().observe((LifecycleOwner) getContext(), new Observer<List<Meal>>() {
                 @Override
                 public void onChanged(List<Meal> meals) {
-                    System.out.println("kkkkkkk " + meals.get(0));
                     personalMeal.setFavList(meals);
-                    System.out.println("klllll " + personalMeal.getFavList().get(0));
 
                 }
             });
@@ -157,29 +157,14 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
                 @Override
                 public void onChanged(List<Meal> meals) {
                     personalMeal.setPlannedList(meals);
-                    System.out.println("kkkkkoshari "+personalMeal.getPlannedList().get(0).getStrMeal());
                 }
             });
 
             personalMeal.setUserName(usernameTextView.getText().toString());
             personalMeal.setEmail(emailTextView.getText().toString());
-//            Log.d(TAG, "onViewCreated: "+personalMeal.getFavList().get(0));
-//            System.out.println(personalMeal.getFavList().get(0));
             Log.d(TAG, "onViewCreated: ");
             databaseReference.setValue(personalMeal);
 
-//            databaseReference.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    for (DataSnapshot dataSnapshot : snapshot.getChildren())
-//                        Log.d(TAG, "onDataChange: " + dataSnapshot.getValue().toString());
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
 
         });
         editProfileCircleImageView.setOnClickListener(e -> {

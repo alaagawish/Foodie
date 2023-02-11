@@ -24,6 +24,9 @@ public interface MealFavPlanDAO {
     @Delete
     void deleteFromPlan(Meal meal);
 
+    @Query("DELETE FROM favMeals")
+    void deleteTableData();
+
     @Query("SELECT * FROM favMeals ")
     LiveData<List<Meal>> getAllMeals();
 

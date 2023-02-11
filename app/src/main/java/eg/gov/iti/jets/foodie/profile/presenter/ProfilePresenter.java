@@ -36,4 +36,10 @@ public class ProfilePresenter implements ProfilePresenterInterface {
         Log.d(TAG, "getAllPlannedMeal: ");
         return repositoryInterface.getPlannedMealss();
     }
+
+    @Override
+    public void deleteDBTable() {
+        Log.d(TAG, "deleteDBTable: deleting data");
+        repositoryInterface.deleteDBTable();
+    }
 }
