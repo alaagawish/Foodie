@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.io.File;
+
 import eg.gov.iti.jets.foodie.favourites.view.FavouritesFragment;
 import eg.gov.iti.jets.foodie.home.view.HomeFragment;
 import eg.gov.iti.jets.foodie.login.view.LoginActivity;
@@ -24,11 +26,12 @@ import eg.gov.iti.jets.foodie.search.view.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private HomeFragment homeFragment = new HomeFragment();
-    private ProfileFragment profileFragment = new ProfileFragment();
-    private FavouritesFragment favouritesFragment = new FavouritesFragment();
-    private SearchFragment searchFragment = new SearchFragment();
-    private PlanFragment planFragment = new PlanFragment();
+    private HomeFragment homeFragment;
+    private ProfileFragment profileFragment;
+    private FavouritesFragment favouritesFragment;
+    private SearchFragment searchFragment;
+    private PlanFragment planFragment;
+    public static File cacheFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.profile:
                         if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
-                           dialog();
+                            dialog();
                         } else {
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, profileFragment).commit();
                         }
@@ -81,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
     public void back(View view) {
         finish();
     }
-    public void dialog()
-    {
+
+    public void dialog() {
         View dialogLayout = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_guest, null);
         HomeFragment.searchDialog = new Dialog(MainActivity.this);
         HomeFragment.searchDialog.setContentView(dialogLayout);
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init() {
+        cacheFile = MainActivity.this.getCacheDir();
         planFragment = new PlanFragment();
         homeFragment = new HomeFragment();
         profileFragment = new ProfileFragment();

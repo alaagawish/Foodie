@@ -38,13 +38,12 @@
         android:layout_width="355dp"
         android:layout_height="532dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toStartOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@+id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/myFavouritesTextView"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/favourite_card"
-        app:spanCount="2"/>
+        app:spanCount="2"
+        tools:listitem="@layout/favourite_card" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/endGuideline"

@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -63,7 +65,7 @@ import okhttp3.internal.cache.DiskLruCache;
 public class ProfileFragment extends Fragment implements ProfileClickListener, ProfileViewInterface {
     private static final String TAG = "ProfileFragment";
 
-    private Button logoutButton;
+
     private TextView usernameTextView, emailTextView;
     private Button logoutButton, backupButton;
     private FirebaseAuth mAuth;
@@ -195,7 +197,6 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
         profileCircleImageView = view.findViewById(R.id.profileCircleImageView);
         firebaseDatabase = FirebaseDatabase.getInstance();
         profilePresenterInterface = new ProfilePresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
-
     }
 
 //    private void selectPhoto() {
@@ -268,8 +269,4 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
 
     }
 
-    public void init(View view) {
-        usernameTextView = view.findViewById(R.id.usernameTextView);
-        logoutButton = view.findViewById(R.id.logoutButton);
-    }
 }
