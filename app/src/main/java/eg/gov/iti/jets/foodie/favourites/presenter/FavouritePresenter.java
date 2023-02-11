@@ -26,6 +26,6 @@ public class FavouritePresenter implements FavouritePresenterInterface {
 
     @Override
     public LiveData<List<Meal>> getAllMealFavPlan() {
-        return repositoryInterface.getMealsDB();
+        return repositoryInterface.getAllFavMeals();
     }
 }

@@ -24,8 +24,14 @@ public interface MealFavPlanDAO {
     @Delete
     void deleteFromPlan(Meal meal);
 
-    @Query("SELECT * FROM favMeals")
+    @Query("SELECT * FROM favMeals ")
+    LiveData<List<Meal>> getAllMeals();
+
+    @Query("SELECT * FROM favMeals where isFav = 1")
     LiveData<List<Meal>> getAllFavMeals();
+
+    @Query("SELECT * FROM favMeals where isFav = 0  and day !='temp'")
+    LiveData<List<Meal>> getPlannedMeals();
 
     @Query("SELECT * FROM favMeals where day = :day")
     LiveData<List<Meal>> getMealsByDay(String day);

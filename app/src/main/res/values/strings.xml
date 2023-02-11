@@ -59,4 +59,5 @@
     <string name="type" >Type</string>
     <string name="warning">WARNING!</string>
     <string name="guest">Guest cannot access this part!, login first.</string>
+    <string name="backup">Backup now</string>
 </resources>

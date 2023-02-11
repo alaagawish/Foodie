@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        init();
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, homeFragment).commit();
         SharedPreferences sharedPreferences1 = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -70,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, favouritesFragment).commit();
                         }
                         return true;
+
+
                 }
                 return false;
             }
@@ -87,5 +88,15 @@ public class MainActivity extends AppCompatActivity {
         HomeFragment.searchDialog.setContentView(dialogLayout);
         HomeFragment.searchDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         HomeFragment.searchDialog.show();
+    }
+
+    public void init() {
+        planFragment = new PlanFragment();
+        homeFragment = new HomeFragment();
+        profileFragment = new ProfileFragment();
+        favouritesFragment = new FavouritesFragment();
+        searchFragment = new SearchFragment();
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+
     }
 }

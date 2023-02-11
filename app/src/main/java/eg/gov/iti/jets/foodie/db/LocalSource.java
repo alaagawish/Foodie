@@ -10,13 +10,15 @@ import eg.gov.iti.jets.foodie.model.Meal;
 
 public class LocalSource implements LocalSourceInterface {
     private static LocalSource localSource = null;
-    private LiveData<List<Meal>> storedMeals, saturdayMeals, sundayMeals, mondayMeals, tuesdayMeals, wednesdayMeals, thursdayMeals, fridayMeals;
+    private LiveData<List<Meal>> plannedMeals, favMeals, storedMeals, saturdayMeals, sundayMeals, mondayMeals, tuesdayMeals, wednesdayMeals, thursdayMeals, fridayMeals;
     private MealFavPlanDAO mealFavPlanDAO;
 
     private LocalSource(Context context) {
         AppDatabase appDatabase = AppDatabase.getInstance(context.getApplicationContext());
         mealFavPlanDAO = appDatabase.mealFavPlanDAO();
-        storedMeals = mealFavPlanDAO.getAllFavMeals();
+        storedMeals = mealFavPlanDAO.getAllMeals();
+        plannedMeals = mealFavPlanDAO.getPlannedMeals();
+        favMeals = mealFavPlanDAO.getAllFavMeals();
         saturdayMeals = mealFavPlanDAO.getMealsByDay("saturday");
         sundayMeals = mealFavPlanDAO.getMealsByDay("sunday");
         mondayMeals = mealFavPlanDAO.getMealsByDay("monday");
@@ -96,4 +98,13 @@ public class LocalSource implements LocalSourceInterface {
         }
     }
 
+    @Override
+    public LiveData<List<Meal>> getAllFavMeals() {
+        return favMeals;
+    }
+
+    @Override
+    public LiveData<List<Meal>> getPlannedMealss() {
+        return plannedMeals;
+    }
 }
