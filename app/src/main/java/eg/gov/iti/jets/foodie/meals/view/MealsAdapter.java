@@ -1,5 +1,6 @@
 package eg.gov.iti.jets.foodie.meals.view;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
+import eg.gov.iti.jets.foodie.home.view.HomeFragment;
 import eg.gov.iti.jets.foodie.meals.view.MealsAdapter;
 import eg.gov.iti.jets.foodie.home.view.HomeMealsClickListener;
 import eg.gov.iti.jets.foodie.model.Country;
@@ -92,7 +95,11 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
                 mealsClickListener.addFavor(meal);
             }
             else {
-                Toast.makeText(context, "Create account first", Toast.LENGTH_LONG).show();
+                View dialogLayout = LayoutInflater.from(context).inflate(R.layout.dialog_guest, null);
+                HomeFragment.searchDialog = new Dialog(context);
+                HomeFragment.searchDialog.setContentView(dialogLayout);
+                HomeFragment.searchDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                HomeFragment.searchDialog.show();
             }
         });
     }

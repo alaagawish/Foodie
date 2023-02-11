@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         init();
+        SharedPreferences sharedPreferences1 = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance("https://foodie-b0b13-default-rtdb.firebaseio.com/");
 
@@ -72,17 +74,17 @@ public class SignupActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Meal meal = new Meal();
-//                                    usersSignInGoogle usersSignInGoogle = new usersSignInGoogle();
-//                                    assert usersSignInGoogle != null;
                                     assert meal != null;
-//                                    usersSignInGoogle.setEmail(email);
                                     meal.setEmail(email);
-//                                    usersSignInGoogle.setUserName(userName);
                                     meal.setUserName(userName);
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
                                     auth.getCurrentUser().updateProfile(profileUpdates);
-//                                    database.getReference().child("usersSignInGoogle").child(userName).setValue(usersSignInGoogle);
                                     database.getReference().child("meal").child(userName).setValue(meal);
+                                    SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(LoginActivity.PASSWORD, pass);
+                                    editor.putString(LoginActivity.EMAIL, email);
+                                    editor.commit();
                                     Toast.makeText(SignupActivity.this, "SignUp Successfully", Toast.LENGTH_SHORT).show();
                                     intent = new Intent(SignupActivity.this, MainActivity.class);
                                     startActivity(intent);

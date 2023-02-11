@@ -17,5 +17,6 @@
     <color name="shadow">#0D4E81</color>
     <color name="hint">#B4B4B4</color>
     <color name="transparent">#00141414</color>
+    <color name="yellow">#FFFFEB3B</color>
 
 </resources>

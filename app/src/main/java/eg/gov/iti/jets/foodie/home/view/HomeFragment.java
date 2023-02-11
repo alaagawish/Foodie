@@ -1,5 +1,6 @@
 package eg.gov.iti.jets.foodie.home.view;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +61,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     private CountryRecyclerViewAdapter countryRecyclerViewAdapter;
     private IngredientRecyclerViewAdapter ingredientRecyclerViewAdapter;
     List<Meal> meals;
-
+    public static Dialog searchDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,11 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
 
         randomHeartButton.setOnClickListener(e -> {
             if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
-                Toast.makeText(getContext(), "Create account first", Toast.LENGTH_LONG).show();
+                View dialogLayout = LayoutInflater.from(getContext()).inflate(R.layout.dialog_guest, null);
+                searchDialog = new Dialog(getContext());
+                searchDialog.setContentView(dialogLayout);
+                searchDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                searchDialog.show();
             }
             else {
                 randomMeal.setId(Integer.parseInt(randomMeal.getIdMeal()));

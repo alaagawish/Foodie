@@ -6,13 +6,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,7 @@ import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.db.LocalSource;
 import eg.gov.iti.jets.foodie.details.presenter.DetailsPresenter;
 import eg.gov.iti.jets.foodie.details.presenter.DetailsPresenterInterface;
+import eg.gov.iti.jets.foodie.home.view.HomeFragment;
 import eg.gov.iti.jets.foodie.login.view.LoginActivity;
 import eg.gov.iti.jets.foodie.meals.presenter.MealsPresenter;
 import eg.gov.iti.jets.foodie.model.Ingredient;
@@ -101,7 +105,11 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
 
     public void AddFav(View view) {
         if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
-            Toast.makeText(DetailsActivity.this, "Create account first", Toast.LENGTH_LONG).show();
+            View dialogLayout = LayoutInflater.from(this).inflate(R.layout.dialog_guest, null);
+            HomeFragment.searchDialog = new Dialog(this);
+            HomeFragment.searchDialog.setContentView(dialogLayout);
+            HomeFragment.searchDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            HomeFragment.searchDialog.show();
         }
         else {
             meal.setId(Integer.parseInt(meal.getIdMeal()));

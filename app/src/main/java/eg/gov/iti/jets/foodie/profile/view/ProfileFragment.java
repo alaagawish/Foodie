@@ -22,18 +22,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.login.view.LoginActivity;
 
 public class ProfileFragment extends Fragment {
 
-    TextView usernameTextView;
-    Button logoutButton;
-    FirebaseAuth mAuth;
-    GoogleSignInClient gsc;
-    GoogleSignInOptions gso;
+    private TextView usernameTextView;
+    private Button logoutButton;
+    private FirebaseAuth mAuth;
+    private GoogleSignInClient gsc;
+    private GoogleSignInOptions gso;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,7 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
@@ -50,8 +47,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        usernameTextView = view.findViewById(R.id.usernameTextView);
-        logoutButton = view.findViewById(R.id.logoutButton);
+        init(view);
         mAuth = FirebaseAuth.getInstance();
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(getContext(), gso);
@@ -83,5 +79,10 @@ public class ProfileFragment extends Fragment {
                 });
             }
         });
+    }
+
+    public void init(View view) {
+        usernameTextView = view.findViewById(R.id.usernameTextView);
+        logoutButton = view.findViewById(R.id.logoutButton);
     }
 }

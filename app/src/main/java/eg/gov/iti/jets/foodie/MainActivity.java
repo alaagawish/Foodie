@@ -2,10 +2,14 @@ package eg.gov.iti.jets.foodie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -44,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.profile:
                         if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
-                            Toast.makeText(MainActivity.this, "Create account first", Toast.LENGTH_LONG).show();
+                           dialog();
                         } else {
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, profileFragment).commit();
                         }
                         return true;
                     case R.id.planner:
                         if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
-                            Toast.makeText(MainActivity.this, "Create account first", Toast.LENGTH_LONG).show();
+                            dialog();
                         } else {
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, planFragment).commit();
                         }
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.favourite:
                         if (sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
-                            Toast.makeText(MainActivity.this, "Create account first", Toast.LENGTH_LONG).show();
+                            dialog();
                         } else {
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, favouritesFragment).commit();
                         }
@@ -75,5 +79,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void back(View view) {
         finish();
+    }
+    public void dialog()
+    {
+        View dialogLayout = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_guest, null);
+        HomeFragment.searchDialog = new Dialog(MainActivity.this);
+        HomeFragment.searchDialog.setContentView(dialogLayout);
+        HomeFragment.searchDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        HomeFragment.searchDialog.show();
     }
 }
