@@ -30,7 +30,6 @@ public class Meal implements Serializable {
 
     private String day;
     private String date;
-
     private String strMeal;
     private String strDrinkAlternate;
     private String strCategory;
@@ -41,6 +40,29 @@ public class Meal implements Serializable {
     private String strYoutube;
     @Ignore
     private List<Ingredient> ingredientList;
+
+    @Ignore
+    private List<Meal> plannedList;
+
+    @Ignore
+    private List<Meal> favList;
+
+    public List<Meal> getPlannedList() {
+        return plannedList;
+    }
+
+    public void setPlannedList(List<Meal> plannedList) {
+        this.plannedList = plannedList;
+    }
+
+    public List<Meal> getFavList() {
+        return favList;
+    }
+
+    public void setFavList(List<Meal> favList) {
+        this.favList = favList;
+    }
+
     private String strIngredient1;
     private String strIngredient2;
     private String strIngredient3;

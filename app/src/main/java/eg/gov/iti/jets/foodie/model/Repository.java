@@ -20,6 +20,10 @@ public class Repository implements RepositoryInterface {
     private static final String TAG = "Repository";
     private static Repository repository = null;
 
+    @Override
+    public LiveData<List<Meal>> getPlannedMealss() {
+        return localSourceInterface.getPlannedMealss();
+    }
 
     public static Repository getInstance(RemoteSource remoteSource, LocalSourceInterface localSourceInterface, Context context) {
         if (repository == null)
@@ -56,6 +60,11 @@ public class Repository implements RepositoryInterface {
     @Override
     public LiveData<List<Meal>> getMealsDB() {
         return localSourceInterface.getAllMealsStored();
+    }
+
+    @Override
+    public LiveData<List<Meal>> getAllFavMeals() {
+        return localSourceInterface.getAllFavMeals();
     }
 
     @Override

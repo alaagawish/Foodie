@@ -46,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String PASSWORD = "PASSWORD";
 
     private Button loginButton;
-    private TextView skipText;
-    private TextView signUpText;
+    private TextView skipText,signUpText;
     private Intent intent;
     private EditText emailEditTextLogin, passwordEditTextLogin;
     private ImageButton googleButton;
@@ -64,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         init();
         SharedPreferences sharedPreferences1 = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
-        if (!sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals( "NOT FOUND")) {
+        if (!sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
             finish();
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(i);
@@ -76,8 +75,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(i);
         }
-//        messageTextView.setText(sharedPreferences1.getString(MainActivity.MESSAGE, "NOT FOUND"));
-//        phoneTextView.setText(sharedPreferences1.getString(MainActivity.PHONE, "NOT FOUND"));
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
-
                                         SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
 //                            editor.putString(LoginActivity.USERNAME, messageTextView.getText().toString());
@@ -101,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                         intent = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -158,9 +155,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
                             Meal meal = new Meal();
+
                             assert meal != null;
                             meal.setEmail(user.getEmail());
-                            meal.setPassword("1234");
                             meal.setUserName(user.getDisplayName());
                             database.getReference().child("meal").child(user.getDisplayName()).setValue(meal);
 

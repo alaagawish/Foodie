@@ -16,19 +16,18 @@ import eg.gov.iti.jets.foodie.profile.view.ProfileFragment;
 import eg.gov.iti.jets.foodie.search.view.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
-    HomeFragment homeFragment = new HomeFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
-    FavouritesFragment favouritesFragment = new FavouritesFragment();
-    SearchFragment searchFragment = new SearchFragment();
-    PlanFragment planFragment = new PlanFragment();
+    private BottomNavigationView bottomNavigationView;
+    private HomeFragment homeFragment;
+    private ProfileFragment profileFragment;
+    private FavouritesFragment favouritesFragment;
+    private SearchFragment searchFragment;
+    private PlanFragment planFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        init();
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFrameLayout, homeFragment).commit();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -56,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+    }
+
+    public void init() {
+        planFragment = new PlanFragment();
+        homeFragment = new HomeFragment();
+        profileFragment = new ProfileFragment();
+        favouritesFragment = new FavouritesFragment();
+        searchFragment = new SearchFragment();
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
 
     }
 }

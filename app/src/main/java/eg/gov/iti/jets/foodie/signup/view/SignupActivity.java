@@ -72,16 +72,11 @@ public class SignupActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Meal meal = new Meal();
-//                                    usersSignInGoogle usersSignInGoogle = new usersSignInGoogle();
-//                                    assert usersSignInGoogle != null;
                                     assert meal != null;
-//                                    usersSignInGoogle.setEmail(email);
                                     meal.setEmail(email);
-//                                    usersSignInGoogle.setUserName(userName);
                                     meal.setUserName(userName);
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
                                     auth.getCurrentUser().updateProfile(profileUpdates);
-//                                    database.getReference().child("usersSignInGoogle").child(userName).setValue(usersSignInGoogle);
                                     database.getReference().child("meal").child(userName).setValue(meal);
                                     Toast.makeText(SignupActivity.this, "SignUp Successfully", Toast.LENGTH_SHORT).show();
                                     intent = new Intent(SignupActivity.this, MainActivity.class);
