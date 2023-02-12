@@ -6,7 +6,6 @@ import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealByFilter;
 
 public interface NetworkDelegation {
     public void onSuccess(List<Meal> meals);

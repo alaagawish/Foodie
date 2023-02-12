@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     List<Meal> meals;
     public static Dialog searchDialog;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -94,7 +96,9 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
 
 
         homePresenterInterface = new HomePresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
+
         homePresenterInterface.getRandomMeals();
+        insertData();
 
 
         randomCardView.setOnClickListener(e -> {
@@ -110,8 +114,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
                 searchDialog.setContentView(dialogLayout);
                 searchDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 searchDialog.show();
-            }
-            else {
+            } else {
                 randomMeal.setId(Integer.parseInt(randomMeal.getIdMeal()));
                 if (!randomMeal.isFav()) {
                     Log.d(TAG, "onBindViewHolder: add to fav");
@@ -185,5 +188,12 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     @Override
     public void addFavor(Meal meal) {
         homePresenterInterface.addFavouriteMeal(meal);
+    }
+
+    public void insertData() {
+        for (Meal m : LoginActivity.plannedMeals)
+            homePresenterInterface.addFavouriteMeal(m);
+        for (Meal m : LoginActivity.favMeals)
+            homePresenterInterface.addFavouriteMeal(m);
     }
 }

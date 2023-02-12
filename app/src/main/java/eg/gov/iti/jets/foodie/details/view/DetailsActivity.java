@@ -110,8 +110,7 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
             HomeFragment.searchDialog.setContentView(dialogLayout);
             HomeFragment.searchDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             HomeFragment.searchDialog.show();
-        }
-        else {
+        } else {
             meal.setId(Integer.parseInt(meal.getIdMeal()));
             if (!meal.isFav()) {
                 meal.setFav(true);

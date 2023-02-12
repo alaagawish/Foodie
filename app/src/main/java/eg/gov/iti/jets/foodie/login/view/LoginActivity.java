@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,34 +29,47 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.db.LocalSource;
+import eg.gov.iti.jets.foodie.login.presenter.LoginPresenter;
+import eg.gov.iti.jets.foodie.login.presenter.LoginPresenterInterface;
+import eg.gov.iti.jets.foodie.meals.presenter.MealsPresenter;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.usersSignInGoogle;
+import eg.gov.iti.jets.foodie.model.Repository;
+import eg.gov.iti.jets.foodie.network.API_Client;
 import eg.gov.iti.jets.foodie.signup.view.SignupActivity;
 
 
+//public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     public static final String PREF = "PREF";
     public static final String USERNAME = "USERNAME";
     public static final String EMAIL = "EMAIL";
     public static final String PASSWORD = "PASSWORD";
-
+    private LoginPresenterInterface loginPresenterInterface;
     private Button loginButton;
-    private TextView skipText,signUpText;
+    private TextView skipText, signUpText;
     private Intent intent;
     private EditText emailEditTextLogin, passwordEditTextLogin;
     private ImageButton googleButton;
-
     private GoogleSignInClient client, gsc;
+    public static List<Meal> favMeals, plannedMeals;
     private FirebaseAuth auth;
-    private FirebaseDatabase database;
+    private Meal meall;
+    private FirebaseDatabase firebaseDatabase;
     private GoogleSignInOptions gso;
+    private DatabaseReference databaseReference;
     private String emailVal = "^(.+)@(.+)$";
 
     @Override
@@ -64,17 +79,22 @@ public class LoginActivity extends AppCompatActivity {
         init();
         SharedPreferences sharedPreferences1 = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
         if (!sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").equals("NOT FOUND")) {
+            Log.d(TAG, "onCreate: " + sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND"));
+            retriveDataToDB(sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").replaceAll("[\\.#$\\[\\]]", ""));
             finish();
+
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(i);
         }
         gsc = GoogleSignIn.getClient(this, gso);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
+            retriveDataToDB(account.getEmail().replaceAll("[\\.#$\\[\\]]", ""));
             finish();
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(i);
         }
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,15 +109,22 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onSuccess(AuthResult authResult) {
                                         SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
-//                            editor.putString(LoginActivity.USERNAME, messageTextView.getText().toString());
                                         editor.putString(LoginActivity.PASSWORD, passwordEditTextLogin.getText().toString().trim());
                                         editor.putString(LoginActivity.EMAIL, emailEditTextLogin.getText().toString().trim());
                                         editor.commit();
                                         Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                                        FirebaseUser firebaseUser = auth.getCurrentUser();
+                                        if (firebaseUser != null) {
+                                            editor.putString(LoginActivity.EMAIL, firebaseUser.getDisplayName());
+                                            editor.commit();
+
+                                            retriveDataToDB(sharedPreferences1.getString(LoginActivity.EMAIL,"NOT FOUND").replaceAll("[\\.#$\\[\\]]", ""));
+
+                                        }
+
                                         intent = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
-
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -159,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                             assert meal != null;
                             meal.setEmail(user.getEmail());
                             meal.setUserName(user.getDisplayName());
-                            database.getReference().child("meal").child(user.getDisplayName()).setValue(meal);
+                            firebaseDatabase.getReference().child("meal").child(user.getEmail().replaceAll("[\\.#$\\[\\]]","")).setValue(meal);
 
                             SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -181,19 +208,93 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void init() {
+        favMeals = new ArrayList<>();
+        plannedMeals = new ArrayList<>();
+//        loginPresenterInterface = new LoginPresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(this), this));
         loginButton = findViewById(R.id.loginButton);
         skipText = findViewById(R.id.skipTextView);
         signUpText = findViewById(R.id.signUpTextView);
         googleButton = findViewById(R.id.googleButton);
         auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance("https://foodie-b0b13-default-rtdb.firebaseio.com/");
+        firebaseDatabase = FirebaseDatabase.getInstance("https://foodie-b0b13-default-rtdb.firebaseio.com/");
         passwordEditTextLogin = findViewById(R.id.passwordEditTextLogin);
         emailEditTextLogin = findViewById(R.id.emailEditTextLogin);
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+
 
     }
 
     public void back(View view) {
         finish();
     }
+
+    public void retriveDataToDB(String name) {
+        if (!name.equals("NOT FOUND")) {
+            databaseReference = firebaseDatabase.getReference().child("meal").child(name);
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (dataSnapshot.getKey().equals("favList")) {
+
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                Log.d(TAG, "onDataChange: dddddddddddddd " + data.child("idMeal").getValue().toString());
+                                meall = new Meal(data.child("idMeal").getValue().toString(), true, "temp", data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
+//                            loginPresenterInterface.showMealDetailsLog(data.child("idMeal").getValue().toString());
+//                            loginPresenterInterface.addMeals(meall);
+                                favMeals.add(meall);
+
+                            }
+                            Log.d(TAG, "onDataChange: ch " + dataSnapshot.getChildren());
+
+                        } else if (dataSnapshot.getKey().equals("plannedList")) {
+
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+
+                                Log.d(TAG, "onDataChange: pppppppp " + data.child("idMeal").getValue().toString());
+                                Log.d(TAG, "onDataChange: pppppppp " + data.child("day").getValue().toString());
+                                meall = new Meal(data.child("idMeal").getValue().toString(), false, data.child("day").getValue().toString(), data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
+                                plannedMeals.add(meall);
+//                            loginPresenterInterface.addMeals(meall);
+
+                            }
+                            Log.d(TAG, "onDataChange: ch " + dataSnapshot.getChildren());
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+
+            });
+        } else {
+            Toast.makeText(this, "Can't retrive your data.....", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+//    @Override
+//    public void showMealsLog(List<Meal> meals) {
+//        Log.d(TAG, "showMealsArea: ");
+//        for (int i = 0; i < meals.size(); i++) {
+//            loginPresenterInterface.getMealDetails(meals.get(i).getIdMeal());
+//        }
+//    }
+
+//    @Override
+//    public void showMealDetailsLog(Meal meal) {
+//        this.meals.add(meal);
+//        Log.d(TAG, "showMealDetails: " + meal.getStrMeal());
+//
+//    }
+
+//    @Override
+//    public void addMealss(Meal meal) {
+//        Log.d(TAG, "addMealss: ssssss");
+////        loginPresenterInterface.addMeals(meal);
+//
+//    }
 }

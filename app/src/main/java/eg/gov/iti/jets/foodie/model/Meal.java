@@ -25,6 +25,19 @@ public class Meal implements Serializable {
     private String userName;
     private String email;
     private boolean isFav;
+
+    public Meal(String idMeal, boolean isFav, @NonNull String day, String strMeal, String strCategory, String strArea, String strInstructions, String strMealThumb, String strYoutube) {
+        this.idMeal = idMeal;
+        this.isFav = isFav;
+        this.day = day;
+        this.strMeal = strMeal;
+        this.strCategory = strCategory;
+        this.strArea = strArea;
+        this.strInstructions = strInstructions;
+        this.strMealThumb = strMealThumb;
+        this.strYoutube = strYoutube;
+    }
+
     @ColumnInfo(name = "day", defaultValue = "temp")
     @NonNull
 

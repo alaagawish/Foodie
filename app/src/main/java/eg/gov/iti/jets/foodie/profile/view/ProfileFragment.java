@@ -143,7 +143,7 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
             }
         });
         backupButton.setOnClickListener(e -> {
-            databaseReference = firebaseDatabase.getReference().child("meal").child(usernameTextView.getText().toString());
+            databaseReference = firebaseDatabase.getReference().child("meal").child(emailTextView.getText().toString().replaceAll("[\\.#$\\[\\]]",""));
             personalMeal = new Meal();
             profilePresenterInterface.getAllFavMeal().observe((LifecycleOwner) getContext(), new Observer<List<Meal>>() {
                 @Override

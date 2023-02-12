@@ -1,18 +1,11 @@
 package eg.gov.iti.jets.foodie.network;
 
-import java.util.List;
-
 import eg.gov.iti.jets.foodie.home.model.CategoryResponse;
 import eg.gov.iti.jets.foodie.home.model.CountryResponse;
 import eg.gov.iti.jets.foodie.home.model.IngredientResponse;
-import eg.gov.iti.jets.foodie.model.Category;
-import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealByFilter;
-import eg.gov.iti.jets.foodie.model.MealByIngredient;
 import eg.gov.iti.jets.foodie.model.MyResponse;
 import io.reactivex.rxjava3.core.Single;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

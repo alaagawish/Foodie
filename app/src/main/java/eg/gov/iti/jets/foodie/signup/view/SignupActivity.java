@@ -26,7 +26,6 @@ import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.R;
 import eg.gov.iti.jets.foodie.login.view.LoginActivity;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.usersSignInGoogle;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -79,7 +78,7 @@ public class SignupActivity extends AppCompatActivity {
                                     meal.setUserName(userName);
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
                                     auth.getCurrentUser().updateProfile(profileUpdates);
-                                    database.getReference().child("meal").child(userName).setValue(meal);
+                                    database.getReference().child("meal").child(email.replaceAll("[\\.#$\\[\\]]", "")).setValue(meal);
                                     SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(LoginActivity.PASSWORD, pass);

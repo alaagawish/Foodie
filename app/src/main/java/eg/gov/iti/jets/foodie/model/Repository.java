@@ -57,7 +57,6 @@ public class Repository implements RepositoryInterface {
 
     }
 
-
     @Override
     public void removeMealPlanned(Meal meal) {
         Log.d(TAG, "removeMealPlanned: ");

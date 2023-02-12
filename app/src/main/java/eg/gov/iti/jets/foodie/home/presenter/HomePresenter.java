@@ -9,7 +9,6 @@ import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
 import eg.gov.iti.jets.foodie.model.IngredientList;
 import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealByFilter;
 import eg.gov.iti.jets.foodie.model.RepositoryInterface;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 
@@ -70,7 +69,7 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
 
     @Override
     public void onFailure(String error) {
-        Log.d(TAG, "onFailure: no products");
+        Log.d(TAG, "onFailure: no products " + error);
     }
 
 

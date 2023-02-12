@@ -1,9 +1,11 @@
-package eg.gov.iti.jets.foodie.meals.presenter;
+package eg.gov.iti.jets.foodie.login.presenter;
 
 import android.util.Log;
 
 import java.util.List;
 
+import eg.gov.iti.jets.foodie.login.view.LoginViewInterface;
+import eg.gov.iti.jets.foodie.meals.presenter.MealsPresenterInterface;
 import eg.gov.iti.jets.foodie.meals.view.MealsViewInterface;
 import eg.gov.iti.jets.foodie.model.Category;
 import eg.gov.iti.jets.foodie.model.Country;
@@ -12,20 +14,25 @@ import eg.gov.iti.jets.foodie.model.Meal;
 import eg.gov.iti.jets.foodie.model.RepositoryInterface;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 
-public class MealsPresenter implements MealsPresenterInterface, NetworkDelegation {
-    private MealsViewInterface mealsViewInterface;
+public class LoginPresenter implements LoginPresenterInterface, NetworkDelegation {
+    private LoginViewInterface loginViewInterface;
     private RepositoryInterface repositoryInterface;
     private static final String TAG = "MealsPresenter";
 
-    public MealsPresenter(MealsViewInterface mealsViewInterface, RepositoryInterface repositoryInterface) {
-        this.mealsViewInterface = mealsViewInterface;
+    public LoginPresenter(LoginViewInterface loginViewInterface, RepositoryInterface repositoryInterface) {
+        this.loginViewInterface = loginViewInterface;
         this.repositoryInterface = repositoryInterface;
     }
 
     @Override
     public void onSuccess(List<Meal> meals) {
-        Log.d(TAG, "onSuccess: ");
-        mealsViewInterface.showMealDetails(meals.get(0));
+
+    }
+
+    @Override
+    public void addMeals(Meal meal) {
+        repositoryInterface.insertMeal(meal);
+
     }
 
     @Override
@@ -35,12 +42,11 @@ public class MealsPresenter implements MealsPresenterInterface, NetworkDelegatio
 
     @Override
     public void onSuccessMealByFilter(List<Meal> meals) {
-        Log.d(TAG, "onSuccessMealByFilter: " + meals.get(0).getStrMeal());
-        mealsViewInterface.showMeals(meals);
+
     }
 
     @Override
-    public void onSuccessMeal(Meal meals) {
+    public void onSuccessMeal(Meal meal) {
 
     }
 
@@ -65,18 +71,10 @@ public class MealsPresenter implements MealsPresenterInterface, NetworkDelegatio
 
     }
 
-    @Override
-    public void addFavouriteMeal(Meal meal) {
-        repositoryInterface.insertMeal(meal);
-    }
 
-    @Override
-    public void getMealDetails(String id) {
-        repositoryInterface.getMealDetails(this, id);
-    }
+//    @Override
+//    public void showMealDetailsLog(String id) {
+//        repositoryInterface.getMealDetails(this, id);
+//    }
 
-    @Override
-    public void getFilteredMeals(String name, char c) {
-        repositoryInterface.getFilteredMeals(this, name, c);
-    }
 }

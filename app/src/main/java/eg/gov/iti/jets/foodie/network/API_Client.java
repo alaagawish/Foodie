@@ -1,22 +1,14 @@
 package eg.gov.iti.jets.foodie.network;
 
-import android.app.Application;
 import android.util.Log;
 
-import com.google.android.gms.common.data.SingleRefDataBufferIterator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.util.List;
 
 import eg.gov.iti.jets.foodie.MainActivity;
 import eg.gov.iti.jets.foodie.home.model.CategoryResponse;
 import eg.gov.iti.jets.foodie.home.model.CountryResponse;
 import eg.gov.iti.jets.foodie.home.model.IngredientResponse;
-import eg.gov.iti.jets.foodie.model.Category;
-import eg.gov.iti.jets.foodie.model.IngredientList;
-import eg.gov.iti.jets.foodie.model.Meal;
-import eg.gov.iti.jets.foodie.model.MealByFilter;
 import eg.gov.iti.jets.foodie.model.MyResponse;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -25,9 +17,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
