@@ -13,7 +13,8 @@ Foodie is a food application that helps you to:
 Foodie suggests for you a random meals to pick from,
 You can search using meal name, country, ingredient, and category,
 When you pick up a meal you can check its country, type, ingredients, steps to do the meal, and finally youtube vedio to visiual steps
-You can add one of them to your favourites or your week plan,
+You can add one or more of them to your favourites or your week plan,
+You can schedule an event to your mobile calendar with your meal to remember you,
 You can upload your profile picture.
 You can backup your data (favourite list and week plan) to retrieve them within you login.
 
