@@ -8,10 +8,13 @@ Foodie is a food application that helps you to:
 
 # Implementation
 + We used Android studio to create Foodie, Firebase to backup data, Room for local storage for retrieving data after backup, Shared Preference for keeping the user login even after he closed the app but not logged out, caching data when turning off wifi/mobile data
-+ We also facilitate to user to login by different ways:
++ We facilitate to user to login by different ways:
   + regular email and password
   + google
   + skip mood (guest mood)
+ + Our application supports two moods:
+  + Light mood
+  + Dark mood
 
 ### Navigation through Foodie
 
@@ -60,6 +63,9 @@ Foodie is a food application that helps you to:
 
 #### Adding Meal for your Mobile Calendar Screen 
 ![photo_6001098782269356614_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310759-84464af3-b662-4ad4-9611-1d784138e58c.png)
+
+#### Dark mood Screen 
+
 
 # Contributors
 + Ahd Wael
