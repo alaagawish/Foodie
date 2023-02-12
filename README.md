@@ -28,17 +28,21 @@ Foodie is a food application that helps you to:
 ![photo_6001098782269356602_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310346-58e6d562-ed6e-4153-a64c-0c54737987aa.png)
 
 #### Home Screen 
-![photo_6001098782269356599_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310392-fc4bd679-afdd-4444-a84e-bab73acca522.png)![photo_6001098782269356600_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310395-2c001a7c-5a2b-4e45-a4d0-a5959d7305ea.png)
+![photo_6001098782269356599_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310392-fc4bd679-afdd-4444-a84e-bab73acca522.png)
+![photo_6001098782269356600_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310395-2c001a7c-5a2b-4e45-a4d0-a5959d7305ea.png)
 
 #### Meal Detatils Screen
 ![photo_6001098782269356612_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310451-d1d37e6b-f4b9-40b5-8304-56c40a94f32d.png)
 ![photo_6001098782269356613_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310452-f0b43f7c-e0f0-4e1a-b6fe-8e54278726c2.png)
 
 #### Meal by specific Ingredient Screen
+![photo_6001098782269356617_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218311061-ed308e77-5bae-4631-9883-73fc291bacfb.png)
 
 #### Meal by specific Country Screen
+![photo_6001098782269356616_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218311023-cf27df9e-81a1-46a3-b9ce-1afbf4d726a2.png)
 
-#### Meal by specific Country Screen
+#### Meal by specific Category Screen
+![photo_6001098782269356618_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218311075-045d3270-80de-4c8a-ae0b-00f775f8d1a7.png)
 
 #### Search Screen
 ![photo_6001098782269356611_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310549-04e3201d-47e9-47f1-84a5-71644d55a4e8.png)
