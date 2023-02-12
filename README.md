@@ -10,6 +10,7 @@ Foodie is a food application that helps you to:
 + First way you can login by regular email and password, or by google.
 + Second way you can register using username, email, password, confirm password.
 + Finally you can login as guest but you will not be able to add in favourite list or in foodie plan.
+
 Foodie suggests for you a random meals to pick from,
 You can search using meal name, country, ingredient, and category,
 When you pick up a meal you can check its country, type, ingredients, steps to do the meal, and finally youtube vedio to visiual steps
