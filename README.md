@@ -1,14 +1,17 @@
 # Foodie
 Foodie is a food application that helps you to:
 + Add your favourite meals
-+ Plane for your week
++ Plan for your week
 + Backup your data
++ Add to your mobile calendar
++ Guide you to cook the chosen meal
 
-# How to use
-+ We used Android studio to Create Foodie, Firebase to backup data, Room for local storage and space for retrieving data after backup, Shared Preference for keeping the user sign in even after he close the app but not loged out
+# Implementation
++ We used Android studio to create Foodie, Firebase to backup data, Room for local storage for retrieving data after backup, Shared Preference for keeping the user login even after he closed the app but not logged out, caching data when turning off wifi/mobile data
 + We also facilitate to user to login by different ways:
   + regular email and password
   + google
+  + skip mood (guest mood)
 
 ### Navigation through Foodie
 
@@ -35,5 +38,5 @@ Foodie is a food application that helps you to:
 #### Profile Screen 
 
 # Contributors
-+ Alaa Gawish
 + Ahd Wael
++ Alaa Gawish
