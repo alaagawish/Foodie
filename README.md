@@ -29,7 +29,7 @@ Foodie is a food application that helps you to:
 
 #### Home Screen 
 ![photo_6001098782269356599_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310392-fc4bd679-afdd-4444-a84e-bab73acca522.png)
-|![photo_6001098782269356600_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310395-2c001a7c-5a2b-4e45-a4d0-a5959d7305ea.png)
+:|: ![photo_6001098782269356600_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310395-2c001a7c-5a2b-4e45-a4d0-a5959d7305ea.png)
 
 #### Meal Detatils Screen
 ![photo_6001098782269356612_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310451-d1d37e6b-f4b9-40b5-8304-56c40a94f32d.png)
