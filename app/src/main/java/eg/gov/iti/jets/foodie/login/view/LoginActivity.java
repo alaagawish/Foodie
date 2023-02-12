@@ -235,9 +235,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (dataSnapshot.getKey().equals("favList")) {
 
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                Log.d(TAG, "onDataChange: dddddddddddddd " + data.child("idMeal").getValue().toString());
+                                Log.d(TAG, "onDataChange:  " + data.child("idMeal").getValue().toString());
                                 meall = new Meal(Integer.parseInt(data.child("id").getValue().toString()), data.child("idMeal").getValue().toString(), true, "temp", data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
-                                favMeals.add(meall);
+                                favMeals.add(ingredients(data, meall));
 
                             }
 
@@ -245,9 +245,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
 
-                                Log.d(TAG, "onDataChange: pppppppp " + data.child("day").getValue().toString());
+                                Log.d(TAG, "onDataChange:  " + data.child("day").getValue().toString());
                                 meall = new Meal(Integer.parseInt(data.child("id").getValue().toString()), data.child("idMeal").getValue().toString(), false, data.child("day").getValue().toString(), data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
-                                plannedMeals.add(meall);
+                                plannedMeals.add(ingredients(data, meall));
                             }
 
                         }
@@ -263,5 +263,134 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Can't retrive your data.....", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+
+
+    public Meal ingredients(DataSnapshot data, Meal meall) {
+        Log.d(TAG, "ingredients: " + meall.getStrMeal() + " " + data.hasChild("strIngredient1"));
+        if (data.hasChild("strIngredient1")) {
+            if (data.child("strIngredient1").getValue().toString() != null && !data.child("strIngredient1").getValue().toString().equals("")) {
+                meall.setStrIngredient1(data.child("strIngredient1").getValue().toString());
+                meall.setStrMeasure1(data.child("strMeasure1").getValue().toString());
+                if (data.hasChild("strIngredient2")) {
+                    if (data.child("strIngredient2").getValue().toString() != null && !data.child("strIngredient2").getValue().toString().equals("")) {
+                        meall.setStrIngredient2(data.child("strIngredient2").getValue().toString());
+                        meall.setStrMeasure2(data.child("strMeasure2").getValue().toString());
+                        if (data.hasChild("strIngredient3")) {
+                            if (data.child("strIngredient3").getValue().toString() != null && !data.child("strIngredient3").getValue().toString().equals("")) {
+                                meall.setStrIngredient3(data.child("strIngredient3").getValue().toString());
+                                meall.setStrMeasure3(data.child("strMeasure3").getValue().toString());
+                                if (data.hasChild("strIngredient4")) {
+                                    if (data.child("strIngredient4").getValue().toString() != null && !data.child("strIngredient4").getValue().toString().equals("")) {
+                                        meall.setStrIngredient4(data.child("strIngredient4").getValue().toString());
+                                        meall.setStrMeasure4(data.child("strMeasure4").getValue().toString());
+                                        if (data.hasChild("strIngredient5")) {
+                                            if (data.child("strIngredient5").getValue().toString() != null && !data.child("strIngredient5").getValue().toString().equals("")) {
+                                                meall.setStrIngredient5(data.child("strIngredient5").getValue().toString());
+                                                meall.setStrMeasure5(data.child("strMeasure5").getValue().toString());
+                                                if (data.hasChild("strIngredient6")) {
+                                                    if (data.child("strIngredient6").getValue().toString() != null && !data.child("strIngredient6").getValue().toString().equals("")) {
+                                                        meall.setStrIngredient6(data.child("strIngredient6").getValue().toString());
+                                                        meall.setStrMeasure6(data.child("strMeasure6").getValue().toString());
+                                                        if (data.hasChild("strIngredient7")) {
+                                                            if (data.child("strIngredient7").getValue().toString() != null && !data.child("strIngredient7").getValue().toString().equals("")) {
+                                                                meall.setStrIngredient7(data.child("strIngredient7").getValue().toString());
+                                                                meall.setStrMeasure7(data.child("strMeasure7").getValue().toString());
+                                                                if (data.hasChild("strIngredient8")) {
+                                                                    if (data.child("strIngredient8").getValue().toString() != null && !data.child("strIngredient8").getValue().toString().equals("")) {
+                                                                        meall.setStrIngredient8(data.child("strIngredient8").getValue().toString());
+                                                                        meall.setStrMeasure8(data.child("strMeasure8").getValue().toString());
+                                                                        if (data.hasChild("strIngredient9")) {
+                                                                            if (data.child("strIngredient9").getValue().toString() != null && !data.child("strIngredient9").getValue().toString().equals("")) {
+                                                                                meall.setStrIngredient9(data.child("strIngredient9").getValue().toString());
+                                                                                meall.setStrMeasure9(data.child("strMeasure9").getValue().toString());
+                                                                                if (data.hasChild("strIngredient10")) {
+                                                                                    if (data.child("strIngredient10").getValue().toString() != null && !data.child("strIngredient10").getValue().toString().equals("")) {
+                                                                                        meall.setStrIngredient10(data.child("strIngredient10").getValue().toString());
+                                                                                        meall.setStrMeasure10(data.child("strMeasure10").getValue().toString());
+                                                                                        if (data.hasChild("strIngredient11")) {
+                                                                                            if (data.child("strIngredient11").getValue().toString() != null && !data.child("strIngredient11").getValue().toString().equals("")) {
+                                                                                                meall.setStrIngredient11(data.child("strIngredient11").getValue().toString());
+                                                                                                meall.setStrMeasure11(data.child("strMeasure11").getValue().toString());
+                                                                                                if (data.hasChild("strIngredient12")) {
+                                                                                                    if (data.child("strIngredient12").getValue().toString() != null && !data.child("strIngredient12").getValue().toString().equals("")) {
+                                                                                                        meall.setStrIngredient12(data.child("strIngredient12").getValue().toString());
+                                                                                                        meall.setStrMeasure12(data.child("strMeasure12").getValue().toString());
+                                                                                                        if (data.hasChild("strIngredient13")) {
+                                                                                                            if (data.child("strIngredient13").getValue().toString() != null && !data.child("strIngredient13").getValue().toString().equals("")) {
+                                                                                                                meall.setStrIngredient13(data.child("strIngredient13").getValue().toString());
+                                                                                                                meall.setStrMeasure13(data.child("strMeasure13").getValue().toString());
+                                                                                                                if (data.hasChild("strIngredient14")) {
+                                                                                                                    if (data.child("strIngredient14").getValue().toString() != null && !data.child("strIngredient14").getValue().toString().equals("")) {
+                                                                                                                        meall.setStrIngredient14(data.child("strIngredient14").getValue().toString());
+                                                                                                                        meall.setStrMeasure14(data.child("strMeasure14").getValue().toString());
+                                                                                                                        if (data.hasChild("strIngredient15")) {
+                                                                                                                            if (data.child("strIngredient15").getValue().toString() != null && !data.child("strIngredient15").getValue().toString().equals("")) {
+                                                                                                                                meall.setStrIngredient15(data.child("strIngredient15").getValue().toString());
+                                                                                                                                meall.setStrMeasure15(data.child("strMeasure15").getValue().toString());
+                                                                                                                                if (data.hasChild("strIngredient16")) {
+                                                                                                                                    if (data.child("strIngredient16").getValue().toString() != null && !data.child("strIngredient16").getValue().toString().equals("")) {
+                                                                                                                                        meall.setStrIngredient16(data.child("strIngredient16").getValue().toString());
+                                                                                                                                        meall.setStrMeasure16(data.child("strMeasure16").getValue().toString());
+                                                                                                                                        if (data.hasChild("strIngredient17")) {
+                                                                                                                                            if (data.child("strIngredient17").getValue().toString() != null && !data.child("strIngredient17").getValue().toString().equals("")) {
+                                                                                                                                                meall.setStrIngredient17(data.child("strIngredient17").getValue().toString());
+                                                                                                                                                meall.setStrMeasure17(data.child("strMeasure17").getValue().toString());
+                                                                                                                                                if (data.hasChild("strIngredient18")) {
+                                                                                                                                                    if (data.child("strIngredient18").getValue().toString() != null && !data.child("strIngredient18").getValue().toString().equals("")) {
+                                                                                                                                                        meall.setStrIngredient18(data.child("strIngredient18").getValue().toString());
+                                                                                                                                                        meall.setStrMeasure18(data.child("strMeasure18").getValue().toString());
+                                                                                                                                                        if (data.hasChild("strIngredient19")) {
+                                                                                                                                                            if (data.child("strIngredient19").getValue().toString() != null && !data.child("strIngredient19").getValue().toString().equals("")) {
+                                                                                                                                                                meall.setStrIngredient19(data.child("strIngredient19").getValue().toString());
+                                                                                                                                                                meall.setStrMeasure19(data.child("strMeasure19").getValue().toString());
+                                                                                                                                                                if (data.hasChild("strIngredient20")) {
+                                                                                                                                                                    if (data.child("strIngredient20").getValue().toString() != null && !data.child("strIngredient20").getValue().toString().equals("")) {
+                                                                                                                                                                        meall.setStrIngredient20(data.child("strIngredient20").getValue().toString());
+                                                                                                                                                                        meall.setStrMeasure20(data.child("strMeasure20").getValue().toString());
+                                                                                                                                                                    }
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return meall;
     }
 }

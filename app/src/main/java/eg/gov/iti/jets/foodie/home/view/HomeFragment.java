@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.home.view;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +53,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     private SliderAdapter sliderAdapter;
     private HomePresenterInterface homePresenterInterface;
     private ImageButton randomHeartButton;
-    private ImageView randomImageView;
+    private ImageView randomImageView, addRandomMealToCalenderSliderPagerImageView;
     private TextView randomMealTextView;
     private static final String TAG = "HomeFragment";
     private CardView randomCardView;
@@ -100,7 +102,20 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         homePresenterInterface.getRandomMeals();
         Log.d(TAG, "onViewCreated: size " + LoginActivity.favMeals.size() + " " + LoginActivity.plannedMeals.size());
         insertData();
+        addRandomMealToCalenderSliderPagerImageView.setOnClickListener(e -> {
 
+            Intent i = new Intent(Intent.ACTION_INSERT);
+            i.setData(CalendarContract.Events.CONTENT_URI);
+            i.putExtra(CalendarContract.Events.TITLE, randomMeal.getStrMeal() + " is the meal of the day");
+            i.putExtra(CalendarContract.Events.DESCRIPTION, " ");
+            SharedPreferences sharedPreferences = getContext().getSharedPreferences(LoginActivity.PREF, getContext().MODE_PRIVATE);
+            i.putExtra(Intent.EXTRA_EMAIL, sharedPreferences.getString(LoginActivity.EMAIL, " "));
+            if (i.resolveActivity(getContext().getPackageManager()) != null)
+                startActivity(i);
+            else Toast.makeText(getContext(), "Can't save the event..", Toast.LENGTH_SHORT).show();
+
+
+        });
 
         randomCardView.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), DetailsActivity.class);
@@ -168,6 +183,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
 
     public void init(View view) {
         randomHeartButton = view.findViewById(R.id.randomHeartButton);
+        addRandomMealToCalenderSliderPagerImageView = view.findViewById(R.id.addRandomMealToCalenderSliderPagerImageView);
         randomImageView = view.findViewById(R.id.randomImageView);
         randomMealTextView = view.findViewById(R.id.randomMealTextView);
         randomCardView = view.findViewById(R.id.randomCardView);
@@ -194,14 +210,12 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     public void insertData() {
         for (Meal m : LoginActivity.plannedMeals) {
             Log.d(TAG, "insertData: plan " + m.getStrMeal());
-
 //            homePresenterInterface.getMealDetails(m.getIdMeal());
             homePresenterInterface.addFavouriteMeal(m);
         }
         for (Meal m : LoginActivity.favMeals) {
             Log.d(TAG, "insertData: fav " + m.getStrMeal());
 //            homePresenterInterface.getMealDetails(m.getIdMeal());
-
             homePresenterInterface.addFavouriteMeal(m);
         }
     }

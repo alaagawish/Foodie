@@ -64,8 +64,6 @@ import okhttp3.internal.cache.DiskLruCache;
 
 public class ProfileFragment extends Fragment implements ProfileClickListener, ProfileViewInterface {
     private static final String TAG = "ProfileFragment";
-
-
     private TextView usernameTextView, emailTextView;
     private Button logoutButton, backupButton;
     private FirebaseAuth mAuth;
@@ -168,7 +166,7 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
 
         });
         editProfileCircleImageView.setOnClickListener(e -> {
-//            selectPhoto();
+            selectPhoto();
         });
     }
 
@@ -184,66 +182,65 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
         profilePresenterInterface = new ProfilePresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
     }
 
-//    private void selectPhoto() {
-//        final CharSequence[] options = {"Choose from Gallery", "Cancel"};
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setTitle("Upload Photo!");
-//        builder.setItems(options, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int item) {
-//                if (options[item].equals("Choose from Gallery")) {
-//
-//
-//                    if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//                        ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_FROM_GALLERY);
-//                    } else {
-//                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        startActivityForResult(intent, PHOTO_SELECTED);
-//                    }
-//
-//                } else if (options[item].equals("Cancel")) {
-//                    dialog.dismiss();
-//                }
-//            }
-//        });
-//        builder.show();
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_OK && requestCode == PHOTO_SELECTED && data != null) {
-//            Uri selectedImage = data.getData();
-//            String filePath = UploadUtils.getPath(selectedImage, requireContext());
-//            String mimeType = requireActivity().getContentResolver().getType(selectedImage);
-//            File userPhotoFile = new File(selectedImage.getPath());
-//            Log.d("upload: picUri", selectedImage.toString());
-//            Log.d("upload: filePath", filePath);
-//            Log.d("upload: contetType", mimeType);
-//            uploadUserProfilePhoto(userPhotoFile, mimeType);
-//        }
-//    }
-//
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == PICK_FROM_GALLERY) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(intent, PHOTO_SELECTED);
-//            } else {
-//                Toast.makeText(requireContext(), "You have to grant permissions to open the gallery", Toast.LENGTH_LONG).show();
-//            }
-//        }
-//    }
-//
-//    public void uploadUserProfilePhoto(File userPhoto, String contentType) {
-//        Uri uri = Uri.fromFile(userPhoto);
-//
-//        profileCircleImageView.setImageURI(uri);
-//    }
+    private void selectPhoto() {
+        final CharSequence[] options = {"Choose from Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Upload Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Choose from Gallery")) {
 
+
+                    if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_FROM_GALLERY);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, PHOTO_SELECTED);
+                    }
+
+                } else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == PHOTO_SELECTED && data != null) {
+            Uri selectedImage = data.getData();
+            String filePath = UploadUtils.getPath(selectedImage, requireContext());
+            String mimeType = requireActivity().getContentResolver().getType(selectedImage);
+            File userPhotoFile = new File(selectedImage.getPath());
+            Log.d("upload: picUri", selectedImage.toString());
+            Log.d("upload: filePath", filePath);
+            Log.d("upload: contetType", mimeType);
+            uploadUserProfilePhoto(userPhotoFile, mimeType);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PICK_FROM_GALLERY) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, PHOTO_SELECTED);
+            } else {
+                Toast.makeText(requireContext(), "You have to grant permissions to open the gallery", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    public void uploadUserProfilePhoto(File userPhoto, String contentType) {
+        Uri uri = Uri.fromFile(userPhoto);
+
+        profileCircleImageView.setImageURI(uri);
+    }
 
     @Override
     public void favMeals(List<Meal> meals) {

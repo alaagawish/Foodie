@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +53,7 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
     private ReadMoreTextView mealPreparationTextView;
     boolean favFlag = false;
     private Meal meal;
-    private ImageView mealImageView;
+    private ImageView mealImageView, addToCalenderImageButton;
     private TextView mealNameTextview, areaTextView, foodTypeTextView;
     String videoId;
     DetailsPresenterInterface detailsPresenterInterface;
@@ -82,22 +84,40 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
         } else {
             likeCircularImageButton.setImageResource(R.drawable.baseline_favorite_24);
         }
+        addToCalenderImageButton.setOnClickListener(e -> {
+            Intent i = new Intent(Intent.ACTION_INSERT);
+            i.setData(CalendarContract.Events.CONTENT_URI);
+            i.putExtra(CalendarContract.Events.TITLE, meal.getStrMeal() + " is the meal of the day");
+            i.putExtra(CalendarContract.Events.DESCRIPTION, " ");
+            SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
+            i.putExtra(Intent.EXTRA_EMAIL, sharedPreferences.getString(LoginActivity.EMAIL, " "));
+            if (i.resolveActivity(DetailsActivity.this.getPackageManager()) != null)
+                startActivity(i);
+            else
+                Toast.makeText(DetailsActivity.this, "Can't save the event..", Toast.LENGTH_SHORT).show();
 
-        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                if (meal.getStrYoutube() != null && !meal.getStrYoutube().equals("")) {
-                    videoId = meal.getStrYoutube().split("=")[1];
-//                youTubePlayer.loadVideo(videoId, 0);
-                    youTubePlayer.cueVideo(videoId, 0);
-                } else {
-                    youTubePlayer.cueVideo("qdhWz7qAaCU", 0);
-                }
-
-            }
         });
 
-        backArrowCircularImageButton.setOnClickListener(e -> {
+
+        youTubePlayerView.addYouTubePlayerListener(new
+
+                                                           AbstractYouTubePlayerListener() {
+                                                               @Override
+                                                               public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                                                                   if (meal.getStrYoutube() != null && !meal.getStrYoutube().equals("")) {
+                                                                       videoId = meal.getStrYoutube().split("=")[1];
+//                youTubePlayer.loadVideo(videoId, 0);
+                                                                       youTubePlayer.cueVideo(videoId, 0);
+                                                                   } else {
+                                                                       youTubePlayer.cueVideo("qdhWz7qAaCU", 0);
+                                                                   }
+
+                                                               }
+                                                           });
+
+        backArrowCircularImageButton.setOnClickListener(e ->
+
+        {
             Intent intent = new Intent(DetailsActivity.this, MainActivity.class);
             startActivity(intent);
         });
@@ -133,6 +153,7 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
         likeCircularImageButton = findViewById(R.id.likeCircularImageButton);
         mealNameTextview = findViewById(R.id.mealNameTextview);
         mealImageView = findViewById(R.id.mealImageView);
+        addToCalenderImageButton = findViewById(R.id.addToCalenderImageButton);
         mealPreparationTextView = findViewById(R.id.mealPreparationTextView);
         areaTextView = findViewById(R.id.areaTextView);
         foodTypeTextView = findViewById(R.id.foodTypeTextView);

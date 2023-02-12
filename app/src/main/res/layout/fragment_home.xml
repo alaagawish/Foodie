@@ -105,6 +105,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/avatars" />
 
+                <ImageView
+                    android:id="@+id/addRandomMealToCalenderSliderPagerImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:backgroundTint="@color/white"
+                    android:elevation="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_calendar_month_24"
+                    app:layout_constraintBottom_toTopOf="@+id/randomHeartButton"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
                 <ImageButton
                     android:id="@+id/randomHeartButton"
                     android:layout_width="50dp"
@@ -112,10 +126,11 @@
                     android:layout_marginEnd="4dp"
                     android:background="@drawable/rounded_edit_text"
                     android:backgroundTint="@color/white"
+                    android:elevation="10dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/baseline_favorite_border_24"
                     app:layout_constraintBottom_toBottomOf="@+id/randomImageView"
-                    app:layout_constraintEnd_toEndOf="@+id/randomImageView" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/randomMealTextView"

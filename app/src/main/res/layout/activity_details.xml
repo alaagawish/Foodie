@@ -62,6 +62,19 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/chicken"
                 android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/addToCalenderImageButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="end|right|bottom"
+                android:layout_marginStart="24dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_edit_text"
+                android:backgroundTint="@color/white"
+                android:elevation="30dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_calendar_month_24" />
         </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.Guideline
