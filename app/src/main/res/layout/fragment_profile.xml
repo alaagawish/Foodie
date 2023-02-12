@@ -20,10 +20,35 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/oip"
+        android:src="@drawable/baseline_account_circle_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileTopView" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/editProfileCircleImageView"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="@+id/profileCircleImageView"
+        app:layout_constraintEnd_toEndOf="@+id/profileCircleImageView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileTopView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:gravity="center"
+        android:text="@string/email"
+        android:textColor="@color/dark_blue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/profileCircleImageView" />
 
     <TextView
         android:id="@+id/usernameTextView"
@@ -31,17 +56,30 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:gravity="center"
+        android:text="@string/username"
         android:textColor="@color/dark_blue"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/profileCircleImageView"
-        android:text="@string/username" />
+        app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/backupButton"
+        android:layout_width="322dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="@string/backup"
+        android:textSize="20sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logoutButton"
         android:layout_width="322dp"
         android:layout_height="65dp"
-        android:layout_marginTop="124dp"
         android:backgroundTint="@color/dark_blue"
         android:text="@string/logout"
         android:textSize="20sp"
@@ -49,5 +87,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/backupButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

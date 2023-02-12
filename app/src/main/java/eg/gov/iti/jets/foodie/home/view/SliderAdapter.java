@@ -1,5 +1,6 @@
 package eg.gov.iti.jets.foodie.home.view;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+
 import eg.gov.iti.jets.foodie.home.view.Slider;
 
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                 .load(sliderItem.getImgUrl())
                 .fitCenter()
                 .into(viewHolder.imageViewBackground);
+
     }
 
     @Override

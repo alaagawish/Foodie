@@ -1,6 +1,7 @@
 package eg.gov.iti.jets.foodie.favourites.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.R;
+import eg.gov.iti.jets.foodie.details.view.DetailsActivity;
 import eg.gov.iti.jets.foodie.home.view.HomeMealsClickListener;
 import eg.gov.iti.jets.foodie.model.Meal;
 
@@ -51,15 +54,18 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
     public void onBindViewHolder(@NonNull FavouriteAdapter.ViewHolder holder, int position) {
         Meal meal = allMeals.get(position);
         holder.favouriteMealTextView.setText(allMeals.get(position).getStrMeal());
-        Glide.with(context).load(allMeals.get(position).getStrMealThumb())
-                .apply(new RequestOptions().override(200, 160))
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(holder.favouriteImageView);
+        Glide.with(context).load(allMeals.get(position).getStrMealThumb()).apply(new RequestOptions().override(200, 160)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground).into(holder.favouriteImageView);
         holder.favouriteHeartImageButton.setOnClickListener(e -> {
             //remove from favourite list
             allMeals.remove(meal);
             notifyDataSetChanged();
+            meal.setFav(false);
+            favouriteMealsClickListener.onClick(meal);
+        });
+        holder.favCardConstraintLayout.setOnClickListener(e -> {
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("meal", allMeals.get(position));
+            context.startActivity(intent);
         });
         Log.i("onBindViewHolder: ", holder.getAdapterPosition() + "");
 
@@ -75,12 +81,14 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         TextView favouriteMealTextView;
         ImageView favouriteImageView;
         ImageButton favouriteHeartImageButton;
+        ConstraintLayout favCardConstraintLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             favouriteMealTextView = itemView.findViewById(R.id.favouriteMealTextView);
             favouriteImageView = itemView.findViewById(R.id.favouriteImageView);
             favouriteHeartImageButton = itemView.findViewById(R.id.favouriteHeartImageButton);
+            favCardConstraintLayout = itemView.findViewById(R.id.favCardConstraintLayout);
         }
     }
 }

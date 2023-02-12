@@ -12,6 +12,11 @@ public class Ingredient {
         this.thumbnail = thumbnail;
     }
 
+    public Ingredient(String name, String amount) {
+        this.name = name;
+        this.amount = amount;
+    }
+
     public Ingredient() {
     }
 
