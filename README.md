@@ -6,6 +6,19 @@ Foodie is a food application that helps you to:
 + Add to your mobile calendar
 + Guide you to cook the chosen meal
 
+# How to use
++ First way you can login using regular email and password or by google account
++ second way you can sign up with username, email, password, confirm password
++ finally you can login as guest but you will not able to add to favourite or in foodie planner
+
+Foodie can suggest to you random meals, or you can pick a meal by searching using name, category, ingredient, and country
+after choosing your meal you can checkout its image, ingredients, steps to cook the meal, its country, its type, and youtube link for visiual steps,
+you also can add the meal to foodie calendar, favourite list and also to your mobile calendar.
+
+You can schedule your week meals by searching using name of the meal.
+
+You can change your profile picture, backup your data (favourite meals, week meals) so it will be retrieved within you login again.
+
 # Implementation
 + We used Android studio to create Foodie, Firebase to backup data, Room for local storage for retrieving data after backup, Shared Preference for keeping the user login even after he closed the app but not logged out, caching data when turning off wifi/mobile data
 + We facilitate to user to login by different ways:
