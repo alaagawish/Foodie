@@ -5,7 +5,7 @@ Foodie is a food application that helps you to:
 + Backup your data
 
 # How to use
-## we use Android studio to Create Foodie and Firebase to backup data 
+## We used Android studio to Create Foodie, Firebase to backup data, Room for local storage and space for retrieving data after backup, Shared Preference for keeping the user sign in
 
 ### Navigation through Foodie
 
