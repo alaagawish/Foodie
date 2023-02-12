@@ -40,10 +40,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_width="0dp"
+        android:layout_height="570dp"
         android:layout_marginBottom="20dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/mealsTypeTextView"
         app:spanCount="2"
         tools:listitem="@layout/slide_pager_home__card" />
@@ -53,5 +55,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_begin="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="10dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

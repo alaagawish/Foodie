@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.model.Meal;
+import io.reactivex.rxjava3.core.Completable;
 
 public class LocalSource implements LocalSourceInterface {
     private static LocalSource localSource = null;
@@ -35,49 +36,51 @@ public class LocalSource implements LocalSourceInterface {
     }
 
     @Override
-    public void insertFavMeal(Meal meal) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mealFavPlanDAO.insertFavMeal(meal);
-            }
-        }).start();
-
-    }
-
-    @Override
-    public void deleteTable() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mealFavPlanDAO.deleteTableData();
-            }
-        }).start();
-
-    }
-
-    @Override
-    public void removeMeal(Meal meal) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mealFavPlanDAO.deleteFromFavMeal(meal);
-            }
-
-        }).start();
+    public Completable insertFavMeal(Meal meal) {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+        return mealFavPlanDAO.insertFavMeal(meal);
+//            }
+//        }).start();
 
     }
 
 
     @Override
-    public void removePlannedMeal(Meal meal) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mealFavPlanDAO.deleteFromPlan(meal);
-            }
+    public Completable deleteTable() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+        return mealFavPlanDAO.deleteTableData();
+//            }
+//        }).start();
 
-        }).start();
+    }
+
+    @Override
+    public Completable removeMeal(Meal meal) {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+        return mealFavPlanDAO.deleteFromFavMeal(meal);
+//            }
+//
+//        }).start();
+
+    }
+
+
+
+    @Override
+    public Completable removePlannedMeal(Meal meal) {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+        return mealFavPlanDAO.deleteFromPlan(meal);
+//            }
+//
+//        }).start();
 
     }
 

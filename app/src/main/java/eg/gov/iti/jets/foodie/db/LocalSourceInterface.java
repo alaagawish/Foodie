@@ -5,16 +5,17 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.model.Meal;
+import io.reactivex.rxjava3.core.Completable;
 
 
 public interface LocalSourceInterface {
-    void insertFavMeal(Meal meal);
+    Completable insertFavMeal(Meal meal);
 
-    void removeMeal(Meal meal);
+    Completable removeMeal(Meal meal);
 
-    void deleteTable();
+    Completable deleteTable();
 
-    void removePlannedMeal(Meal meal);
+    Completable removePlannedMeal(Meal meal);
 
     LiveData<List<Meal>> getAllMealsStored();
 

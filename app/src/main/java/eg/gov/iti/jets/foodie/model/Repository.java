@@ -12,6 +12,9 @@ import eg.gov.iti.jets.foodie.db.LocalSourceInterface;
 import eg.gov.iti.jets.foodie.db.MealFavPlanDAO;
 import eg.gov.iti.jets.foodie.network.NetworkDelegation;
 import eg.gov.iti.jets.foodie.network.RemoteSource;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Repository implements RepositoryInterface {
     private Context context;
@@ -41,26 +44,29 @@ public class Repository implements RepositoryInterface {
 
     @Override
     public void insertMeal(Meal meal) {
-        localSourceInterface.insertFavMeal(meal);
+        Disposable disposable = localSourceInterface.insertFavMeal(meal).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(() -> Log.d(TAG, "insertMeal : done"));
+//        disposable.dispose();
 
     }
 
     @Override
     public void removeMeal(Meal meal) {
-        localSourceInterface.removeMeal(meal);
+        Disposable disposable = localSourceInterface.removeMeal(meal).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(() -> Log.d(TAG, "insertMeal : done"));
+//        disposable.dispose();
 
     }
 
     @Override
     public void deleteDBTable() {
-        localSourceInterface.deleteTable();
-
+        Disposable disposable = localSourceInterface.deleteTable().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(() -> Log.d(TAG, "insertMeal : done"));
+//        disposable.dispose();
     }
 
     @Override
     public void removeMealPlanned(Meal meal) {
         Log.d(TAG, "removeMealPlanned: ");
-        localSourceInterface.removePlannedMeal(meal);
+        Disposable disposable = localSourceInterface.removePlannedMeal(meal).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(() -> Log.d(TAG, "insertMeal : done"));
+//        disposable.dispose();
     }
 
     @Override

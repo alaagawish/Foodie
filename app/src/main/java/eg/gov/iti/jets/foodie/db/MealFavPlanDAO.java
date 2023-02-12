@@ -11,21 +11,22 @@ import androidx.room.Update;
 import java.util.List;
 
 import eg.gov.iti.jets.foodie.model.Meal;
+import io.reactivex.rxjava3.core.Completable;
 
 
 @Dao
 public interface MealFavPlanDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertFavMeal(Meal meal);
+    Completable insertFavMeal(Meal meal);
 
     @Update
-    void deleteFromFavMeal(Meal meal);
+    Completable deleteFromFavMeal(Meal meal);
 
     @Delete
-    void deleteFromPlan(Meal meal);
+    Completable deleteFromPlan(Meal meal);
 
     @Query("DELETE FROM favMeals")
-    void deleteTableData();
+    Completable deleteTableData();
 
     @Query("SELECT * FROM favMeals ")
     LiveData<List<Meal>> getAllMeals();
