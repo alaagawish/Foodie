@@ -13,8 +13,8 @@ Foodie is a food application that helps you to:
   + google
   + skip mood (guest mood)
  + Our application supports two moods:
-  + Light mood
-  + Dark mood
+   + Light mood
+   + Dark mood
 
 ### Navigation through Foodie
 
