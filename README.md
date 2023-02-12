@@ -6,7 +6,7 @@ Foodie is a food application that helps you to:
 
 # How to use
 + We used Android studio to Create Foodie, Firebase to backup data, Room for local storage and space for retrieving data after backup, Shared Preference for keeping the user sign in even after he close the app but not loged out
-+ We also facilitate to user to login by different ways like:
++ We also facilitate to user to login by different ways:
   + regular email and password
   + google
 
