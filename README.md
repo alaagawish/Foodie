@@ -16,6 +16,7 @@ Foodie is a food application that helps you to:
 ### Navigation through Foodie
 
 #### Splash Screen
+![photo_6001098782269356615_y-removebg-preview](https://user-images.githubusercontent.com/92337458/218310282-202d5eed-6a6b-4c59-95f7-561ca30c6da2.png)
 
 #### Login Screen 
 
@@ -26,6 +27,8 @@ Foodie is a food application that helps you to:
 #### Meal Detatils Screen
 
 #### Meal by specific Ingredient Screen
+
+#### Meal by specific Country Screen
 
 #### Meal by specific Country Screen
 
