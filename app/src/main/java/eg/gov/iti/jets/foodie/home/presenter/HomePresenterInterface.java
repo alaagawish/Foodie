@@ -9,5 +9,7 @@ public interface HomePresenterInterface {
     public void addFavouriteMeal(Meal meal);
 
     public void getRandomMeals();
+    public void getMealDetails(String id);
+
 
 }

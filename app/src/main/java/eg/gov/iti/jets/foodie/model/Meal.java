@@ -26,9 +26,10 @@ public class Meal implements Serializable {
     private String email;
     private boolean isFav;
 
-    public Meal(String idMeal, boolean isFav, @NonNull String day, String strMeal, String strCategory, String strArea, String strInstructions, String strMealThumb, String strYoutube) {
+    public Meal(int id, String idMeal, boolean isFav, @NonNull String day, String strMeal, String strCategory, String strArea, String strInstructions, String strMealThumb, String strYoutube) {
         this.idMeal = idMeal;
         this.isFav = isFav;
+        this.id = id;
         this.day = day;
         this.strMeal = strMeal;
         this.strCategory = strCategory;

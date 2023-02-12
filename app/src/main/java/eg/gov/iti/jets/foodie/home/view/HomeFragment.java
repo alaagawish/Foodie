@@ -98,6 +98,7 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
         homePresenterInterface = new HomePresenter(this, Repository.getInstance(API_Client.getInstance(), LocalSource.getInstance(getContext()), getContext()));
 
         homePresenterInterface.getRandomMeals();
+        Log.d(TAG, "onViewCreated: size " + LoginActivity.favMeals.size() + " " + LoginActivity.plannedMeals.size());
         insertData();
 
 
@@ -191,9 +192,46 @@ public class HomeFragment extends Fragment implements HomeMealsClickListener, Ho
     }
 
     public void insertData() {
-        for (Meal m : LoginActivity.plannedMeals)
+        for (Meal m : LoginActivity.plannedMeals) {
+            Log.d(TAG, "insertData: plan " + m.getStrMeal());
+
+//            homePresenterInterface.getMealDetails(m.getIdMeal());
             homePresenterInterface.addFavouriteMeal(m);
-        for (Meal m : LoginActivity.favMeals)
+        }
+        for (Meal m : LoginActivity.favMeals) {
+            Log.d(TAG, "insertData: fav " + m.getStrMeal());
+//            homePresenterInterface.getMealDetails(m.getIdMeal());
+
             homePresenterInterface.addFavouriteMeal(m);
+        }
+    }
+
+    @Override
+    public void showMealDetails(Meal meal) {
+        boolean flag = false;
+        for (Meal m : LoginActivity.plannedMeals) {
+            if (meal.getIdMeal().equals(m.getIdMeal()) && !m.getDay().equals("temp")) {
+                meal.setDay(m.getDay());
+                homePresenterInterface.addFavouriteMeal(meal);
+                flag = true;
+                break;
+            }
+        }
+        if (!flag) {
+            for (Meal m : LoginActivity.favMeals) {
+                if (meal.getIdMeal().equals(m.getIdMeal()) && m.isFav()) {
+                    meal.setFav(true);
+                    homePresenterInterface.addFavouriteMeal(meal);
+                    break;
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        insertData();
     }
 }

@@ -17,4 +17,7 @@ public interface HomeMealsViewInterface {
     public void showIngrediants(List<IngredientList> ingredient);
 
     public void addMeal(Meal meal);
+
+
+    public void showMealDetails(Meal meal);
 }

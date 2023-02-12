@@ -36,6 +36,7 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     public void onSuccess(List<Meal> meals) {
         Log.d(TAG, "onSuccess: ");
         homeMealsViewInterface.showMeals(meals);
+//        homeMealsViewInterface.showMealDetails(meals.get(0));
     }
 
     @Override
@@ -76,6 +77,11 @@ public class HomePresenter implements HomePresenterInterface, NetworkDelegation 
     @Override
     public void onSuccessMealByFilter(List<Meal> meals) {
 
+    }
+
+    @Override
+    public void getMealDetails(String id) {
+        repositoryInterface.getMealDetails(this, id);
     }
 
 }

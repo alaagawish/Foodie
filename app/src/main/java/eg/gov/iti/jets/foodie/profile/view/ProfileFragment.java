@@ -143,7 +143,7 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
             }
         });
         backupButton.setOnClickListener(e -> {
-            databaseReference = firebaseDatabase.getReference().child("meal").child(emailTextView.getText().toString().replaceAll("[\\.#$\\[\\]]",""));
+            databaseReference = firebaseDatabase.getReference().child("meal").child(emailTextView.getText().toString().replaceAll("[\\.#$\\[\\]]", ""));
             personalMeal = new Meal();
             profilePresenterInterface.getAllFavMeal().observe((LifecycleOwner) getContext(), new Observer<List<Meal>>() {
                 @Override
@@ -164,7 +164,7 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
             personalMeal.setEmail(emailTextView.getText().toString());
             Log.d(TAG, "onViewCreated: ");
             databaseReference.setValue(personalMeal);
-
+            Toast.makeText(getContext(), "Backup done", Toast.LENGTH_LONG).show();
 
         });
         editProfileCircleImageView.setOnClickListener(e -> {
@@ -244,6 +244,7 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
 //        profileCircleImageView.setImageURI(uri);
 //    }
 
+
     @Override
     public void favMeals(List<Meal> meals) {
 
@@ -253,5 +254,4 @@ public class ProfileFragment extends Fragment implements ProfileClickListener, P
     public void plannedMeals(List<Meal> meals) {
 
     }
-
 }

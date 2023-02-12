@@ -110,17 +110,13 @@ public class LoginActivity extends AppCompatActivity {
                                         SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
                                         editor.putString(LoginActivity.PASSWORD, passwordEditTextLogin.getText().toString().trim());
-                                        editor.putString(LoginActivity.EMAIL, emailEditTextLogin.getText().toString().trim());
+                                        editor.putString(LoginActivity.EMAIL, email);
                                         editor.commit();
                                         Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
                                         FirebaseUser firebaseUser = auth.getCurrentUser();
-                                        if (firebaseUser != null) {
-                                            editor.putString(LoginActivity.EMAIL, firebaseUser.getDisplayName());
-                                            editor.commit();
 
-                                            retriveDataToDB(sharedPreferences1.getString(LoginActivity.EMAIL,"NOT FOUND").replaceAll("[\\.#$\\[\\]]", ""));
+                                        retriveDataToDB(sharedPreferences1.getString(LoginActivity.EMAIL, "NOT FOUND").replaceAll("[\\.#$\\[\\]]", ""));
 
-                                        }
 
                                         intent = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(intent);
@@ -186,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                             assert meal != null;
                             meal.setEmail(user.getEmail());
                             meal.setUserName(user.getDisplayName());
-                            firebaseDatabase.getReference().child("meal").child(user.getEmail().replaceAll("[\\.#$\\[\\]]","")).setValue(meal);
+                            firebaseDatabase.getReference().child("meal").child(user.getEmail().replaceAll("[\\.#$\\[\\]]", "")).setValue(meal);
 
                             SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.PREF, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -229,6 +225,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void retriveDataToDB(String name) {
+        Log.d(TAG, "retriveDataToDB: name " + name);
         if (!name.equals("NOT FOUND")) {
             databaseReference = firebaseDatabase.getReference().child("meal").child(name);
             databaseReference.addValueEventListener(new ValueEventListener() {
@@ -239,26 +236,19 @@ public class LoginActivity extends AppCompatActivity {
 
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 Log.d(TAG, "onDataChange: dddddddddddddd " + data.child("idMeal").getValue().toString());
-                                meall = new Meal(data.child("idMeal").getValue().toString(), true, "temp", data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
-//                            loginPresenterInterface.showMealDetailsLog(data.child("idMeal").getValue().toString());
-//                            loginPresenterInterface.addMeals(meall);
+                                meall = new Meal(Integer.parseInt(data.child("id").getValue().toString()), data.child("idMeal").getValue().toString(), true, "temp", data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
                                 favMeals.add(meall);
 
                             }
-                            Log.d(TAG, "onDataChange: ch " + dataSnapshot.getChildren());
 
                         } else if (dataSnapshot.getKey().equals("plannedList")) {
 
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
 
-                                Log.d(TAG, "onDataChange: pppppppp " + data.child("idMeal").getValue().toString());
                                 Log.d(TAG, "onDataChange: pppppppp " + data.child("day").getValue().toString());
-                                meall = new Meal(data.child("idMeal").getValue().toString(), false, data.child("day").getValue().toString(), data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
+                                meall = new Meal(Integer.parseInt(data.child("id").getValue().toString()), data.child("idMeal").getValue().toString(), false, data.child("day").getValue().toString(), data.child("strMeal").getValue().toString(), data.child("strCategory").getValue().toString(), data.child("strArea").getValue().toString(), data.child("strInstructions").getValue().toString(), data.child("strMealThumb").getValue().toString(), data.child("strYoutube").getValue().toString());
                                 plannedMeals.add(meall);
-//                            loginPresenterInterface.addMeals(meall);
-
                             }
-                            Log.d(TAG, "onDataChange: ch " + dataSnapshot.getChildren());
 
                         }
                     }
@@ -274,27 +264,4 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Can't retrive your data.....", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-//    @Override
-//    public void showMealsLog(List<Meal> meals) {
-//        Log.d(TAG, "showMealsArea: ");
-//        for (int i = 0; i < meals.size(); i++) {
-//            loginPresenterInterface.getMealDetails(meals.get(i).getIdMeal());
-//        }
-//    }
-
-//    @Override
-//    public void showMealDetailsLog(Meal meal) {
-//        this.meals.add(meal);
-//        Log.d(TAG, "showMealDetails: " + meal.getStrMeal());
-//
-//    }
-
-//    @Override
-//    public void addMealss(Meal meal) {
-//        Log.d(TAG, "addMealss: ssssss");
-////        loginPresenterInterface.addMeals(meal);
-//
-//    }
 }
