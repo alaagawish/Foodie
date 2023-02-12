@@ -106,7 +106,7 @@ public class DetailsActivity extends AppCompatActivity implements MealClickListe
                                                                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                                                                    if (meal.getStrYoutube() != null && !meal.getStrYoutube().equals("")) {
                                                                        videoId = meal.getStrYoutube().split("=")[1];
-//                youTubePlayer.loadVideo(videoId, 0);
+//                                                                       youTubePlayer.loadVideo(videoId, 0);
                                                                        youTubePlayer.cueVideo(videoId, 0);
                                                                    } else {
                                                                        youTubePlayer.cueVideo("qdhWz7qAaCU", 0);

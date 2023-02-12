@@ -42,7 +42,7 @@
         android:id="@+id/itemsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="570dp"
-        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"

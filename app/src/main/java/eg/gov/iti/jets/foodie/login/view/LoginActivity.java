@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, "Login failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     } else {
@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             } catch (ApiException e) {
-                e.printStackTrace();
+                Toast.makeText(this, "error "+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
